@@ -1,6 +1,6 @@
 from flask import Blueprint, request
 from flask_login import login_required
-from ..models import db, Server, User, Message, server_users
+from ..models import db, Server, User, Message
 
 server_routes = Blueprint('servers', __name__)
 
@@ -25,7 +25,7 @@ def create_post():
 
 # get one server
 @server_routes.route('/<int:server_id>')
-@login_required
+# @login_required
 def get_one_server(server_id):
   server = Server.query.filter(Server.id == server_id).one()
   return {"server": server.to_dict()}
@@ -49,7 +49,7 @@ def edit_server(server_id):
 # delete one server
 @server_routes.route('/<int:server_id>', methods=['DELETE'])
 @login_required
-def delete_server(server_id)
+def delete_server(server_id):
   server = Server.query.filter(Server.id == server_id).first()
   db.session.delete(server)
   db.session.commit()
