@@ -10,8 +10,16 @@ function CreateServer() {
         Give your new server a personality with a name
         and an icon. You can always change it later.
       </p>
-      <a href="/login" className="img cs-upload-icon">UPLOAD img icon</a>
+      {/* <a href="/login" className="img cs-upload-icon">UPLOAD img icon</a> */}
       <form className="cs-server-name-form">
+        <label>
+          UPLOAD Server Icon
+        </label>
+        <input
+        type="text"
+        placeholder='URL'
+        required
+        />
         <label>
           SERVER NAME
         </label>
