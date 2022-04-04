@@ -2,6 +2,21 @@ from .db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 
+server_users = db.Table(
+    "server_users",
+    db.Column(
+      "server_id",
+      db.Integer,
+      db.ForeignKey("servers.id"),
+      primary_key=True
+    ),
+    db.Column(
+        "user_id",
+        db.Integer,
+        db.ForeignKey("users.id"),
+        primary_key=True
+    )
+)
 
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
