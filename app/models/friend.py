@@ -13,6 +13,7 @@ class Friend(db.Model):
     updated_at = db.Column(DateTime(timezone=True),
                            onupdate=func.utc_timestamp())
     # Relationships
+    
 
     def to_dict(self):
         return {
