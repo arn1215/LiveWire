@@ -85,4 +85,4 @@ const serversReducer = (state = initialState, action) => {
         default:
             return state;
     }
-}; 
+};
