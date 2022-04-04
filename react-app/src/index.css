@@ -41,12 +41,15 @@ body {
     align-items: center;
     width: 72px;
     overflow-y: scroll;
-    
-    
+
+
 }
 
 .server-icon {
     background-color: aliceblue;
+    text-align: center;
+    justify-self: start;
+    color: black;
     width: 48px;
     height: 48px;
     margin-top: 15px;
@@ -68,6 +71,8 @@ body {
     background-size: contain;
 }
 
+
+
 /* SERVER BAR WHERE SERVERS APPEAR ============================================================================================================================== */
 
 
@@ -88,12 +93,12 @@ body {
     justify-content: space-evenly;
     overflow-y: scroll;
     scrollbar-width: thin;
-   
-    
-    
+
+
+
 }
 
-.server-info { 
+.server-info {
     height: 40%;
     background-color: rgb(58, 59, 63);
     border-radius: 5px;
@@ -145,7 +150,7 @@ body {
     justify-content: space-between;
     padding: 40px;
 
-    
+
 }
 
 
@@ -183,4 +188,3 @@ body {
 ::-webkit-scrollbar {
     width: 5px;
 }
-

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import LoginForm from './components/auth/LoginForm';
+// import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
-import NavBar from './components/NavBar';
-import SideBar from './components/SideBar';
+// import NavBar from './components/NavBar';
+// import SideBar from './components/SideBar';
 import ServerBar from './components/ServerBar';
 import ChatComponent from './components/ChatComponent';
 import ProtectedRoute from './components/auth/ProtectedRoute';
@@ -30,12 +30,12 @@ function App() {
 
   return (
     <BrowserRouter>
-      <NavBar />
+      {/* <NavBar /> */}
       <Switch>
         <Route path='/login' exact={true}>
-          <LoginForm />
+          {/* <LoginForm /> */}
           <ServerBar />
-          <SideBar />
+          {/* <SideBar /> */}
           <ChatComponent />
         </Route>
         <Route path='/sign-up' exact={true}>
@@ -48,7 +48,7 @@ function App() {
           <User />
         </ProtectedRoute>
         <ProtectedRoute path='/' exact={true} >
-      
+
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>
