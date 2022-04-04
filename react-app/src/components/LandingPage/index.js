@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+import './LandingPage.css'
 
 const LandingPage = () => {
     return (
@@ -6,29 +7,36 @@ const LandingPage = () => {
             <div className='nav-div'>
                 <header className='nav-header'>
                     <nav className='landing-nav'>
-                        <NavLink to='/'>
+                        <NavLink className='logo-link' to='/'>
                             <div className='svg-logo'>SVG LOGO</div>
                         </NavLink>
-                        <NavLink to='/app'>
-                            <button className='demo-btn' type='button'>Demo User</button>
-                        </NavLink>
-                        <NavLink to='/login'>
-                            <button className='login-btn' type='button'>Login</button>
-                        </NavLink>
+                        <div>
+                            <NavLink className='nav-btn' to='/app'>
+                                Demo User
+                            </NavLink>
+                            <NavLink className='nav-btn' to='/login'>
+                                Login
+                            </NavLink>
+                        </div>
                     </nav>
-
                 </header>
             </div>
             <div className='top-row-div'>
-                <h1>IMAGINE A PLACE...</h1>
-                <div className='top-mid-div'>
-                    ...where you can belong to a school club, a gaming group, or a worldwide art community. Where just you and a handful of friends can spend time together. A place that makes it easy to talk every day and hang out more often.
+                <div className='hero-body'>
+                    <div className='hero-text'>
+                        <h1 className='imagine'>IMAGINE A PLACE...</h1>
+                        <div className='top-mid-div'>
+                            ...where you can belong to a school club, a gaming group, or a worldwide art community. Where just you and a handful of friends can spend time together. A place that makes it easy to talk every day and hang out more often.
+                        </div>
+                    </div>
+
+                    <div className='top-btn-div'>
+                        <NavLink to='/register'>
+                            <button className='livewire-register' type='button'>Open LiveWire in your browser</button>
+                        </NavLink>
+                    </div>
                 </div>
-                <div className='top-btn-div'>
-                    <NavLink to='/register'>
-                        <button className='livewire-register' type='button'>Open LiveWire in your browser</button>
-                    </NavLink>
-                </div>
+
             </div>
             <div className='row-2-div'>
                 <div className='img1-div'></div>
