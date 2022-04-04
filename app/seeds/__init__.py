@@ -12,6 +12,7 @@ seed_commands = AppGroup('seed')
 def seed():
     seed_users()
     seed_servers()
+    
     # Add other seed functions here
 
 
