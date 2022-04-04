@@ -18,7 +18,7 @@ class Server(db.Model):
             'name': self.name,
             'icon': self.icon,
             'invite_URL': self.invite_URL,
-            'channels' : self.channels
+            
         }
 
 
