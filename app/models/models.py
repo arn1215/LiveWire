@@ -6,26 +6,26 @@ from sqlalchemy.sql import func
 
 
 
-server_users = db.Table(
-    "server_users",
-    db.Column(
-    "id",
-    db.Integer,
-    primary_key=True
-    ),
-    db.Column(
-      "server_id",
-      db.Integer,
-      db.ForeignKey("servers.id"),
-      primary_key=True
-    ),
-    db.Column(
-        "user_id",
-        db.Integer,
-        db.ForeignKey("users.id"),
-        primary_key=True
-    )
-)
+# server_users = db.Table(
+#     "server_users",
+#     db.Column(
+#     "id",
+#     db.Integer,
+#     primary_key=True
+#     ),
+#     db.Column(
+#       "server_id",
+#       db.Integer,
+#       db.ForeignKey("servers.id"),
+#       primary_key=True
+#     ),
+#     db.Column(
+#         "user_id",
+#         db.Integer,
+#         db.ForeignKey("users.id"),
+#         primary_key=True
+#     )
+# )
 
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
@@ -36,7 +36,7 @@ class User(db.Model, UserMixin):
     hashed_password = db.Column(db.String(255), nullable=False)
 
     message = db.relationship("Message", back_populates="user")
-    servers = db.relationship("Server", secondary=server_users, back_populates="users")
+    # servers = db.relationship("Server", secondary=server_users, back_populates="users")
     @property
     def password(self):
         return self.hashed_password
@@ -66,7 +66,7 @@ class Server(db.Model):
     invite_URL = db.Column(db.String(255))
     # Relationships
     channels = db.relationship("Channel", back_populates="server", cascade='all, delete')
-    users = db.relationship("User", secondary=server_users, back_populates="servers")
+    # users = db.relationship("User", secondary=server_users, back_populates="servers")
 
     def to_dict(self):
         return {
@@ -76,7 +76,7 @@ class Server(db.Model):
             'icon': self.icon,
             'invite_URL': self.invite_URL,
             'channels': [channel.to_dict() for channel in self.channels],
-            'users': [user.to_dict() for user in self.users]
+            # 'users': [user.to_dict() for user in self.users]
         }
 
 

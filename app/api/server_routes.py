@@ -34,7 +34,7 @@ def get_one_server(server_id):
 
 # edit one server
 @server_routes.route('/<int:server_id>')
-@login_required
+# @login_required
 def edit_server(server_id):
   server = Server.query.get(server_id)
   data = request.json
@@ -48,7 +48,7 @@ def edit_server(server_id):
 
 # delete one server
 @server_routes.route('/<int:server_id>', methods=['DELETE'])
-@login_required
+# @login_required
 def delete_server(server_id):
   server = Server.query.filter(Server.id == server_id).first()
   db.session.delete(server)
