@@ -7,8 +7,8 @@ class Friend(db.Model):
     __tablename__ = 'friends'
     id = db.Column(db.Integer, primary_key=True)
     accepted = db.Column(db.Boolean, nullable=False)
-    sender_user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
-    recipient_user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
+    sender_user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
+    recipient_user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
     created_at = db.Column(DateTime(timezone=True), default=func.now())
     updated_at = db.Column(DateTime(timezone=True),
                            onupdate=func.utc_timestamp())

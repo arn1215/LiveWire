@@ -7,9 +7,9 @@ from sqlalchemy.sql import func
 class Message(db.Model):
     __tablename__ = "messages"
     id = db.Column(db.Integer, primary_key=True)
-    owner_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
+    owner_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
     channel_id = db.Column(db.Integer, db.ForeignKey(
-        "channel.id"), nullable=False)
+        "channels.id"), nullable=False)
     content = db.Column(db.String(4000), nullable=False)
     created_at = db.Column(DateTime(timezone=True), server_default=func.now())
     # Relationships
