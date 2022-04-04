@@ -1,6 +1,6 @@
 from flask import Blueprint, request
 from flask_login import login_required
-from ..models import db, Server, User, Message, server_users
+from ..models import db, Server, User, Message
 
 server_routes = Blueprint('servers', __name__)
 
