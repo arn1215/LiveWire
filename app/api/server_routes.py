@@ -4,13 +4,6 @@ from ..models import db, Server, User, Message, server_users
 
 server_routes = Blueprint('servers', __name__)
 
-# get all servers
-@server_routes.route('/')
-@login_required
-def get_all_servers():
-  servers = Server.query.all()
-  return { "servers": sorted([s.to_dict() for s in servers], key=lambda s: s["id"], reverse=True)}
-
 
 # get one server
 @server_routes.route('/<int:server_id>')
@@ -24,8 +17,8 @@ def get_one_server(server_id):
 
 
 
-# create new server
-@server_routes.route('/', methods=['POST'])
+# get all servers/create new server
+@server_routes.route('/', methods=['GET', 'POST'])
 def create_post():
 
   if request.method == "POST":
@@ -38,3 +31,6 @@ def create_post():
       db.session.commit()
 
       return server.to_dict()
+
+  servers = Server.query.all()
+  return { "servers": sorted([s.to_dict() for s in servers], key=lambda s: s["id"], reverse=True)}
