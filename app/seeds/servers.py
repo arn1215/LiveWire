@@ -31,7 +31,7 @@ def seed_servers():
          owner_id=1, name='METACord', icon='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ35MLJVZwc7c0K4aOJIp_8p5Q5GAVyeFuNNQ&usqp=CAU', invite_URL='www.hey.com')
 
     demo10 = Server(
-         owner_id=1, name='Just Another Server', icon='https://pbs.twimg.com/tweet_video_thumb/D29rDOtW0AA7CJI.jpg', invite_URL='www.hey.com')
+         owner_id=1, name='LiveWire Gang', icon='https://pbs.twimg.com/tweet_video_thumb/D29rDOtW0AA7CJI.jpg', invite_URL='www.hey.com')
     
     
     
