@@ -28,7 +28,7 @@ class Server(db.Model):
     # Relationships
     channels = db.relationship("Channel", back_populates="server")
     users = db.relationship(
-        "User", back_populates="todo", secondary='server_users')
+        "User", back_populates="servers", secondary='server_users')
 
     def to_dict(self):
         return {
