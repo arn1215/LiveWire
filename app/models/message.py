@@ -14,7 +14,7 @@ class Message(db.Model):
     created_at = db.Column(DateTime(timezone=True), server_default=func.now())
     # Relationships
     user = db.relationship("User", back_populates="message")
-    channel = db.relationship("Channel", back_populates="message")
+    channel = db.relationship("Channel", back_populates="messages")
 
     def to_dict(self):
         return {

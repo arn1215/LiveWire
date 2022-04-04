@@ -17,7 +17,8 @@ class Server(db.Model):
             'owner_id': self.owner_id,
             'name': self.name,
             'icon': self.icon,
-            'invite_URL': self.invite_URL
+            'invite_URL': self.invite_URL,
+            'channels' : self.channels
         }
 
 
@@ -30,6 +31,7 @@ class Channel(db.Model):
         "servers.id"), nullable=False)
     # Relationships
     server = db.relationship("Server", back_populates="channels")
+    messages = db.relationship("Message", back_populates="channel")
 
     def to_dict(self):
         return {
