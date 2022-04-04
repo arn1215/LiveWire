@@ -16,7 +16,7 @@ const addServer = (server) => {
     }
 }
 
-export const createServer = ({ owner_id, name, icon }) => async (dispatch) => {
+export const createServer = ({ owner_id, name, icon, invite_URL }) => async (dispatch) => {
     await fetch('/api/servers', {
         method: 'POST',
         headers: {
@@ -25,7 +25,8 @@ export const createServer = ({ owner_id, name, icon }) => async (dispatch) => {
         body: JSON.stringify({
             owner_id,
             name,
-            icon
+            icon,
+            invite_URL
         })
     });
 
@@ -40,9 +41,9 @@ const initialState = {};
 const serversReducer = (state = initialState, action) => {
     let newState
     switch (action.type) {
-        case SET_SERVERS:
+        case ADD_SERVER:
             newState = {...state};
-            newState[action.server.id] = action.
+            newState[action.server.id] = action.server
             return newState;
     }
 };
