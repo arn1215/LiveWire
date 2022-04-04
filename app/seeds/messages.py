@@ -27,10 +27,19 @@ def seed_messages():
     message12 = Message(
         owner_id=3, channel_id=2, content='password')
 
-    db.session.add(demo)
-    db.session.add(marnie)
-    db.session.add(bobbie)
-
+    db.session.add(message1)
+    db.session.add(message2)
+    db.session.add(message3)
+    db.session.add(message4)
+    db.session.add(message5)
+    db.session.add(message6)
+    db.session.add(message7)
+    db.session.add(message8)
+    db.session.add(message9)
+    db.session.add(message10)
+    db.session.add(message11)
+    db.session.add(message12)
+    
     db.session.commit()
 
 
