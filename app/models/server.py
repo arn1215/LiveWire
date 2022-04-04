@@ -40,3 +40,5 @@ class Server(db.Model):
             'channels': [channel.to_dict() for channel in self.channels],
             'users': [user.to_dict() for user in self.users]
         }
+
+
