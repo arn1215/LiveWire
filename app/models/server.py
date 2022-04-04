@@ -27,8 +27,7 @@ class Server(db.Model):
     invite_URL = db.Column(db.String(255))
     # Relationships
     channels = db.relationship("Channel", back_populates="server")
-    users = db.relationship(
-        "User", back_populates="servers", secondary='server_users')
+    users = db.relationship("User", secondary='server_users', back_populates="servers" )
 
     def to_dict(self):
         return {
@@ -40,5 +39,3 @@ class Server(db.Model):
             'channels': [channel.to_dict() for channel in self.channels],
             'users': [user.to_dict() for user in self.users]
         }
-
-

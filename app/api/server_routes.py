@@ -25,7 +25,7 @@ def create_post():
 
 # get one server
 @server_routes.route('/<int:server_id>')
-@login_required
+# @login_required
 def get_one_server(server_id):
   server = Server.query.filter(Server.id == server_id).one()
   return {"server": server.to_dict()}
