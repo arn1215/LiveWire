@@ -15,7 +15,6 @@ def create_post():
       server = Server(owner_id=data["owner_id"], name=data["name"], icon=data["icon"], invite_URL=data["invite_URL"])
       db.session.add(server)
       db.session.flush()
-      server.name = f"{server.name}: {server.id}"
       db.session.commit()
 
       return server.to_dict()
