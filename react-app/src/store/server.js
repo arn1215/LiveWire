@@ -2,6 +2,8 @@ const SET_SERVERS = 'servers/setServer'
 
 const ADD_SERVER = 'servers/addServer'
 
+const DELETE_SERVER = 'servers/deleteServer'
+
 const setServers = (servers) => {
     return {
         type: SET_SERVERS,
@@ -15,6 +17,15 @@ const addServer = (server) => {
         payload: server
     }
 }
+
+const deleteServer = (id) => {
+    return {
+        type: DELETE_SERVER,
+        payload: id
+    }
+}
+
+
 
 export const createServer = ({ owner_id, name, icon, invite_URL }) => async (dispatch) => {
     await fetch('/api/servers', {
@@ -36,6 +47,22 @@ export const createServer = ({ owner_id, name, icon, invite_URL }) => async (dis
     return allServers;
 };
 
+export const removeServer = (id) => async (dispatch) => {
+    const res = await fetch(`/api/servers/${id}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ id })
+    })
+
+    dispatch(deleteServer(id))
+}
+
+
+
+
+
 const initialState = {};
 
 const serversReducer = (state = initialState, action) => {
@@ -45,5 +72,17 @@ const serversReducer = (state = initialState, action) => {
             newState = {...state};
             newState[action.server.id] = action.server
             return newState;
+        case SET_SERVERS:
+            newState = {...state};
+            action.servers.forEach(server => {
+                newState[server.id] = server
+            })
+            return newState;
+        case DELETE_SERVER:
+            newState = {...state};
+            delete newState[action.payload.id]
+            return newState
+        default:
+            return state;
     }
 };
