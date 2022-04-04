@@ -1,5 +1,22 @@
 from .db import db
 
+server_users = db.Table(
+    "server_users",
+    db.Column(
+      "server_id",
+      db.Integer,
+      db.ForeignKey("servers.id"),
+      primary_key=True
+    ),
+    db.Column(
+        "user_id",
+        db.Integer,
+        db.ForeignKey("users.id"),
+        primary_key=True
+    )
+
+)
+
 
 class Server(db.Model):
     __tablename__ = 'servers'
@@ -10,6 +27,8 @@ class Server(db.Model):
     invite_URL = db.Column(db.String(255))
     # Relationships
     channels = db.relationship("Channel", back_populates="server")
+    users = db.relationship(
+        "User", back_populates="todo", secondary='server_users')
 
     def to_dict(self):
         return {
@@ -18,8 +37,6 @@ class Server(db.Model):
             'name': self.name,
             'icon': self.icon,
             'invite_URL': self.invite_URL,
-            
+            'channels': [channel.to_dict() for channel in self.channels],
+            'users': [user.to_dict() for user in self.users]
         }
-
-
-
