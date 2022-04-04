@@ -49,7 +49,7 @@ def edit_server(server_id):
 # delete one server
 @server_routes.route('/<int:server_id>', methods=['DELETE'])
 @login_required
-def delete_server(server_id)
+def delete_server(server_id):
   server = Server.query.filter(Server.id == server_id).first()
   db.session.delete(server)
   db.session.commit()
