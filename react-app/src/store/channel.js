@@ -35,16 +35,16 @@ const editChannel = (channel) => ({
 
 
 export const fetchChannel = (channel) => async (dispatch) => {
-    const res = await fetch(`/api/channels/{channel.id}`);
+    const res = await fetch(`/api/channels/${channel.id}`);
 
     if (res.ok) {
         const channel = await res.json();
         dispatch(getChannel(channel["channel"]));
     }
-
+}
 
 export const updateChannel = (channel) => async (dispatch) => {
-    const res = await fetch(`/api/channels/{channel.id}`, {
+    const res = await fetch(`/api/channels/${channel.id}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
