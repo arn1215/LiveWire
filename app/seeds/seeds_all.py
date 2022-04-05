@@ -207,9 +207,6 @@ def seed_all():
 
 
 
-    #appends
-
-#     scott.server_many.append(demo)
 
     #users
     db.session.add(demo)
@@ -226,6 +223,9 @@ def seed_all():
     db.session.add(debra)
     db.session.add(destroyer)
 
+
+    db.session.commit()
+
     #servers
     db.session.add(server1)
     db.session.add(server2)
@@ -237,6 +237,11 @@ def seed_all():
     db.session.add(server8)
     db.session.add(server9)
     db.session.add(server10)
+
+
+
+    db.session.commit()
+
 
     #channels
     db.session.add(channel1)
@@ -270,6 +275,7 @@ def seed_all():
     db.session.add(channel29)
     db.session.add(channel30)
 
+    db.session.commit()
 
     #messages
     db.session.add(message1)
@@ -289,6 +295,14 @@ def seed_all():
 
     db.session.commit()
 
+
+    # user appends
+
+    demo.server_many.append(server2)
+    marnie.server_many.append(server1)
+
+    db.session.commit()
+    db.session.close()
 
 # Uses a raw SQL query to TRUNCATE the users table.
 # SQLAlchemy doesn't have a built in function to do this

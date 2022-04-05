@@ -9,7 +9,7 @@ from sqlalchemy.sql import func
 server_users = db.Table(
     "server_users",
     db.Column(
-      "server_id",
+      "server_join_id",
       db.Integer,
       db.ForeignKey("servers.id"),
       primary_key=True
