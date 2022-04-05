@@ -64,11 +64,11 @@ def delete_server(server_id):
 
 
 
-# get user servers
+# get a user's servers
 @server_routes.route('/byUser/<int:user_id>')
 # @login_required
 def load_on_login(user_id):
-  server_list = Server.query.join(server_users).filter(server_users.user_join_id == user_id).all()
+  server_list = Server.query.join(server_users).filter(server_users.c.user_join_id == user_id).all()
   return {"servers": [server.to_dict() for server in server_list]}
 
 
