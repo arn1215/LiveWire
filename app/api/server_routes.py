@@ -39,7 +39,7 @@ def edit_server(server_id):
   server = Server.query.get(server_id)
   data = request.json
   if 'name' in data.keys():
-    server.name = data["name"]
+    server.name = data['name']
   if 'icon' in data.keys():
     server.icon = data["icon"]
   db.session.commit()
