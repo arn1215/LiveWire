@@ -28,7 +28,7 @@ const deleteServer = (id) => {
 
 
 export const createServer = ({ owner_id, name, icon, invite_URL }) => async (dispatch) => {
-    await fetch('/api/servers', {
+    const res = await fetch('/api/servers', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -41,8 +41,8 @@ export const createServer = ({ owner_id, name, icon, invite_URL }) => async (dis
         })
     });
 
-    const allServers = await fetch('/api/servers');
-    const data = await server.json();
+
+    const data = await res.json();
     dispatch(addServer(data));
     return allServers;
 };
