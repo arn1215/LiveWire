@@ -1,0 +1,18 @@
+.cs-button {
+    width: 48px;
+    height: 48px;
+    background: #000;
+    border: none;
+    border-radius: 25%;
+    margin-top: 15px;
+    background-size: contain;
+    cursor: pointer;
+}
+
+.cs {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}

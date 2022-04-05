@@ -9,11 +9,42 @@ def seed_users():
         username='marnie', email='marnie@aa.io', password='password')
     bobbie = User(
         username='bobbie', email='bobbie@aa.io', password='password')
+    betty = User(
+        username='betty', email='bettywhite@aa.io', password='password')
+    craig = User(
+        username='craig', email='imgoingtomyroom@aa.io', password='password')
+    marty = User(
+        username='marty', email='mcfly@aa.io', password='password')
+    lola = User(
+        username='lola', email='lola@aa.io', password='password')
+    jeremy = User(
+        username='jeremy', email='jeremy@aa.io', password='password')
+    yoshi= User(
+        username='yoshi', email='yoshi@aa.io', password='password')
+    jett = User(
+        username='jett', email='jettsmine@aa.io', password='password')
+    scott = User(
+        username='scott', email='scotty@aa.io', password='password')
+    debra = User(
+        username='debra', email='debra@aa.io', password='password')
+    destroyer = User(
+        username='destroyer96', email='destroyer@aa.io', password='password')
+
 
     db.session.add(demo)
     db.session.add(marnie)
     db.session.add(bobbie)
-
+    db.session.add(betty)
+    db.session.add(craig)
+    db.session.add(marty)
+    db.session.add(lola)
+    db.session.add(jeremy)
+    db.session.add(yoshi)
+    db.session.add(jett)
+    db.session.add(scott)
+    db.session.add(debra)
+    db.session.add(destroyer)
+    
     db.session.commit()
 
 
