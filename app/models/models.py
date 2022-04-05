@@ -9,11 +9,6 @@ from sqlalchemy.sql import func
 server_users = db.Table(
     "server_users",
     db.Column(
-    "id",
-    db.Integer,
-    primary_key=True
-    ),
-    db.Column(
       "server_id",
       db.Integer,
       db.ForeignKey("servers.id"),
@@ -36,7 +31,7 @@ class User(db.Model, UserMixin):
     hashed_password = db.Column(db.String(255), nullable=False)
 
     message = db.relationship("Message", back_populates="user")
-    servers = db.relationship("Server", secondary=server_users, back_populates="users")
+    server_many = db.relationship("Server", secondary=server_users, back_populates="users_many")
     @property
     def password(self):
         return self.hashed_password
@@ -52,7 +47,8 @@ class User(db.Model, UserMixin):
         return {
             'id': self.id,
             'username': self.username,
-            'email': self.email
+            'email': self.email,
+            'servers': [server.to_dict() for server in self.server_many]
         }
 
 
@@ -66,7 +62,7 @@ class Server(db.Model):
     invite_URL = db.Column(db.String(255))
     # Relationships
     channels = db.relationship("Channel", back_populates="server", cascade='all, delete')
-    users = db.relationship("User", secondary=server_users, back_populates="servers")
+    users_many = db.relationship("User", secondary=server_users, back_populates="server_many")
 
     def to_dict(self):
         return {
@@ -76,7 +72,7 @@ class Server(db.Model):
             'icon': self.icon,
             'invite_URL': self.invite_URL,
             'channels': [channel.to_dict() for channel in self.channels],
-            'users': [user.to_dict() for user in self.users]
+            'users': [user.to_dict() for user in self.users_many]
         }
 
 
@@ -110,7 +106,7 @@ class Message(db.Model):
     content = db.Column(db.String(4000), nullable=False)
     created_at = db.Column(DateTime(timezone=True), server_default=func.now())
     # Relationships
-    user = db.relationship("User", back_populates="message")
+    user = db.relationship("User", back_populates="message", cascade='all, delete')
     channel = db.relationship("Channel", back_populates="messages")
 
     def to_dict(self):
@@ -119,7 +115,7 @@ class Message(db.Model):
             'owner_id': self.owner_id,
             'channel_id': self.channel_id,
             'content': self.content,
-            'createad_at': self.created_at
+            'created_at': self.created_at
         }
 
 class Friend(db.Model):
