@@ -76,43 +76,6 @@ def seed_all():
     server10 = Server(
          owner_id=1, name='LiveWire Gang', icon='https://pbs.twimg.com/tweet_video_thumb/D29rDOtW0AA7CJI.jpg', invite_URL='www.hey.com')
 
-    #message seeds
-    message1 = Message(
-        owner_id=1, channel_id=16, content="I've come to the conclusion that the world is flat.")
-
-    message2 = Message(
-        owner_id=2, channel_id=16, content="What? We've known the world is round for thousands of years!")
-
-    message3 = Message(
-        owner_id=3, channel_id=16, content="True! Eratosthenes calculated the Earth's circumference around the second century B.C.")
-
-    message4 = Message(
-        owner_id=3, channel_id=7, content="I need more protein in my diet.")
-
-    message5 = Message(
-        owner_id=4, channel_id=16, content="What about all those images from space?!")
-
-    message6 = Message(
-        owner_id=5, channel_id=14, content="Yes, that's why I avoid crowds.")
-
-    message7 = Message(
-        owner_id=6, channel_id=14, content="They're everywhere where I work.")
-
-    message8 = Message(
-        owner_id=7, channel_id=14, content="Where do you work?")
-
-    message9 = Message(
-        owner_id=6, channel_id=14, content="DMV")
-
-    message10 = Message(
-        owner_id=6, channel_id=17, content="Are they out there?")
-
-    message11 = Message(
-        owner_id=7, channel_id=17, content="Sure, my friend was abducted just this last week.")
-
-    message12 = Message(
-        owner_id=8, channel_id=22, content="Twitch!!")
-
     #channel seeds
     channel1 = Channel(
           name='Test Channel 1', server_id=1)
@@ -204,6 +167,43 @@ def seed_all():
     channel30 = Channel(
           name='Memes Only', server_id=10)
 
+    #message seeds
+    message1 = Message(
+        owner_id=1, channel_id=16, content="I've come to the conclusion that the world is flat.")
+
+    message2 = Message(
+        owner_id=2, channel_id=16, content="What? We've known the world is round for thousands of years!")
+
+    message3 = Message(
+        owner_id=3, channel_id=16, content="True! Eratosthenes calculated the Earth's circumference around the second century B.C.")
+
+    message4 = Message(
+        owner_id=3, channel_id=7, content="I need more protein in my diet.")
+
+    message5 = Message(
+        owner_id=4, channel_id=16, content="What about all those images from space?!")
+
+    message6 = Message(
+        owner_id=5, channel_id=14, content="Yes, that's why I avoid crowds.")
+
+    message7 = Message(
+        owner_id=6, channel_id=14, content="They're everywhere where I work.")
+
+    message8 = Message(
+        owner_id=7, channel_id=14, content="Where do you work?")
+
+    message9 = Message(
+        owner_id=6, channel_id=14, content="DMV")
+
+    message10 = Message(
+        owner_id=6, channel_id=17, content="Are they out there?")
+
+    message11 = Message(
+        owner_id=7, channel_id=17, content="Sure, my friend was abducted just this last week.")
+
+    message12 = Message(
+        owner_id=8, channel_id=22, content="Twitch!!")
+
 
 
 
@@ -238,6 +238,7 @@ def seed_all():
     db.session.add(server9)
     db.session.add(server10)
 
+    server1.users_many.append(bobbie);
 
 
     db.session.commit()
@@ -298,11 +299,10 @@ def seed_all():
 
     # user appends
 
-    demo.server_many.append(server2)
-    marnie.server_many.append(server1)
+#     marnie.servers.append(server1)
 
-    db.session.commit()
-    db.session.close()
+    db.session.commit();
+
 
 # Uses a raw SQL query to TRUNCATE the users table.
 # SQLAlchemy doesn't have a built in function to do this
