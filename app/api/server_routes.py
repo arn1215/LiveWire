@@ -1,6 +1,7 @@
 from flask import Blueprint, request
 from flask_login import login_required
 from ..models import db, Server, User, Message, server_users
+from random import randint
 
 server_routes = Blueprint('servers', __name__)
 
@@ -16,7 +17,7 @@ def create_post():
         owner_id=data["owner_id"],
         name=data["name"],
         icon=data["icon"],
-        invite_URL=data["invite_URL"]
+        invite_URL= (f'{randint(100, 10000)}')
       )
 
       db.session.add(server)
