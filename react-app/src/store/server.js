@@ -41,8 +41,8 @@ export const createServer = ({ owner_id, name, icon, invite_URL }) => async (dis
         })
     });
 
-    
-    const data = await res.json(); 
+    const data = await res.json();
+  
     dispatch(addServer(data));
     return data
 };
