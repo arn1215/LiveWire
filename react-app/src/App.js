@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 // import LoginForm from './components/auth/LoginPage';
 import SignUpForm from './components/auth/RegisterPage';
 // import LoginForm from './components/auth/LoginForm';
+// import SignUpForm from './components/auth/SignUpForm';
 // import NavBar from './components/NavBar';
 // import SideBar from './components/SideBar';
 import ServerBar from './components/ServerBar';
@@ -33,13 +34,13 @@ function App() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route path='/' exact={true}>
+        <Route path='/' exact={true}> 
           <LandingPage />
         </Route>
         <Route path='/login' exact={true}>
           {/* <LoginForm /> */}
           <ServerBar />
-          {/* <SideBar /> */}
+          <SideBar />
           <ChatComponent />
         </Route>
         <Route path='/register' exact={true}>

@@ -19,8 +19,9 @@ def create_post():
 
       return server.to_dict()
 
+  users = User.query.all()
   servers = Server.query.all()
-  return { "servers": sorted([s.to_dict() for s in servers], key=lambda s: s["id"], reverse=True)}
+  return { "servers": sorted([s.to_dict() for s in servers], key=lambda s: s["id"], reverse=True), "users": sorted([u.to_dict() for u in users], key=lambda u: u["id"], reverse=True)}
 
 
 # get one server
