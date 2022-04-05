@@ -9,7 +9,7 @@ def create_channel():
     if request.method == "POST":
       data = request.get_json(force=True)
 
-      channel = Channel(owner_id=data["owner_id"], name=data["name"], icon=data["icon"], invite_URL=data["invite_URL"])
+      channel = Channel(name=data["name"], server_id=data["server_id"])
       db.session.add(channel)
       db.session.flush()
       db.session.commit()
