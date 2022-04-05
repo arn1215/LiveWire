@@ -168,40 +168,40 @@ def seed_all():
 
     #message seeds
     message1 = Message(
-        owner_id=1, channel_id=16, content="I've come to the conclusion that the world is flat.")
+        message_owner_id=1, channel_id=16, content="I've come to the conclusion that the world is flat.")
 
     message2 = Message(
-        owner_id=2, channel_id=16, content="What? We've known the world is round for thousands of years!")
+        message_owner_id=2, channel_id=16, content="What? We've known the world is round for thousands of years!")
 
     message3 = Message(
-        owner_id=3, channel_id=16, content="True! Eratosthenes calculated the Earth's circumference around the second century B.C.")
+        message_owner_id=3, channel_id=16, content="True! Eratosthenes calculated the Earth's circumference around the second century B.C.")
 
     message4 = Message(
-        owner_id=3, channel_id=7, content="I need more protein in my diet.")
+        message_owner_id=3, channel_id=7, content="I need more protein in my diet.")
 
     message5 = Message(
-        owner_id=4, channel_id=16, content="What about all those images from space?!")
+        message_owner_id=4, channel_id=16, content="What about all those images from space?!")
 
     message6 = Message(
-        owner_id=5, channel_id=14, content="Yes, that's why I avoid crowds.")
+        message_owner_id=5, channel_id=14, content="Yes, that's why I avoid crowds.")
 
     message7 = Message(
-        owner_id=6, channel_id=14, content="They're everywhere where I work.")
+        message_owner_id=6, channel_id=14, content="They're everywhere where I work.")
 
     message8 = Message(
-        owner_id=7, channel_id=14, content="Where do you work?")
+        message_owner_id=7, channel_id=14, content="Where do you work?")
 
     message9 = Message(
-        owner_id=6, channel_id=14, content="DMV")
+        message_owner_id=6, channel_id=14, content="DMV")
 
     message10 = Message(
-        owner_id=6, channel_id=17, content="Are they out there?")
+        message_owner_id=6, channel_id=17, content="Are they out there?")
 
     message11 = Message(
-        owner_id=7, channel_id=17, content="Sure, my friend was abducted just this last week.")
+        message_owner_id=7, channel_id=17, content="Sure, my friend was abducted just this last week.")
 
     message12 = Message(
-        owner_id=8, channel_id=22, content="Twitch!!")
+        message_owner_id=8, channel_id=22, content="Twitch!!")
 
 
 
