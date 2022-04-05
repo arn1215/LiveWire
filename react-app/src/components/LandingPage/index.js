@@ -31,12 +31,11 @@ const LandingPage = () => {
                     </div>
 
                     <div className='top-btn-div'>
-                        <NavLink to='/register'>
+                        <NavLink className='open-livewire-btn' to='/register'>
                             <button className='livewire-register' type='button'>Open LiveWire in your browser</button>
                         </NavLink>
                     </div>
                 </div>
-
             </div>
             <div className='row-2-div'>
                 <div className='img1-div'></div>

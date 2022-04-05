@@ -1,7 +1,4 @@
 .page-div {
-    -webkit-box-align: center;
-    -webkit-box-direction: normal;
-    -webkit-box-orient: vertical;
     align-items: center;
     background-color: #404eed;
     border-width: 0;
@@ -95,11 +92,11 @@
 }
 
 .top-row-div {
+    background-image: url();
     border-width: 0;
     box-sizing: border-box;
     color: #000;
     column-gap: 20px;
-    display: grid;
     font-family: Whitney,"Helvetica Neue",Helvetica,Arial,sans-serif;
     font-size: 100%;
     font-weight: 400;
@@ -120,14 +117,13 @@
     font-family: Whitney,"Helvetica Neue",Helvetica,Arial,sans-serif;
     font-size: 100%;
     font-weight: 400;
-    grid-column-end: span 8;
-    grid-column-start: 3;
     line-height: 18.4px;
     margin: 0;
     outline: 0;
     padding: 0;
     text-align: center;
     vertical-align: baseline;
+    width: 780px;
 }
 
 .hero-text {
@@ -201,5 +197,15 @@
 }
 
 .top-btn-div {
+    align-items: center;
+    display: flex;
     justify-content: center;
+}
+
+.open-livewire-btn {
+    text-decoration: none;
+}
+
+.row-2-div {
+    background-color: #fff;
 }
