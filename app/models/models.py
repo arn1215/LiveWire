@@ -48,7 +48,7 @@ class User(db.Model, UserMixin):
             'id': self.id,
             'username': self.username,
             'email': self.email,
-            # 'servers': [server.to_dict() for server in self.server_many]
+            'servers': [server.to_dict() for server in self.server_many]
         }
 
 
@@ -72,7 +72,7 @@ class Server(db.Model):
             'icon': self.icon,
             'invite_URL': self.invite_URL,
             'channels': [channel.to_dict() for channel in self.channels],
-            # 'users': [user.to_dict() for user in self.users_many]
+            #'users': [user.to_dict() for user in self.users_many]
         }
 
 
