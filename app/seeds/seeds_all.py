@@ -47,7 +47,7 @@ def seed_all():
 
     #server seeds
     server1 = Server(
-         owner_id=1, name='Test server', icon='https://e7.pngegg.com/pngimages/621/237/png-clipart-what-emoji-2-ghost-it-coque-happy-ghost-emoji-text-logo.png', invite_URL='www.hey.com')
+         owner_id=1, name='Test server', icon='https://e7.pngegg.com/pngimages/621/237/png-clipart-what-emoji-2-ghost-it-coque-happy-ghost-emoji-text-logo.png', invite_URL='www.hey1.com')
 
     server2 = Server(
          owner_id=1, name='Test server 2', icon='https://e7.pngegg.com/pngimages/621/237/png-clipart-what-emoji-2-ghost-it-coque-happy-ghost-emoji-text-logo.png', invite_URL='www.hey.com')
