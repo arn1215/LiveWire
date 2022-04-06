@@ -25,20 +25,24 @@ const ServerBar = () => {
      return (
       <>
         <li key={server?.id}>
-            <Link to={`/servers/${server.id}`}>
+            <Link to={`/servers/${server.id}`} className="server-icon">
                 {server?.name}
             </Link>
         </li>
-        <CreateServerModal />
       </>
     )
   });
 
     return (
+       <>
         <div className="server-bar">
-        { serversComponents }
-        </div>
+            <div>
+                { serversComponents }
+                <CreateServerModal />
 
+            </div>
+        </div>
+       </>
     )
 };
 

@@ -238,7 +238,7 @@ def seed_all():
     db.session.add(server10)
 
     server1.users_many.append(bobbie);
-
+    server2.users_many.append(bobbie);
 
     db.session.commit()
 
