@@ -20,7 +20,7 @@ const addMessage = (message) => {
     }
 }
 
-const deleteChannel = (id) => {
+const deleteMessage = (id) => {
     return {
         type: DELETE_MESSAGE,
         payload: id
@@ -28,7 +28,7 @@ const deleteChannel = (id) => {
 }
 
 const editMessage = (message) => ({
-    type: EDIT_CHANNEL,
+    type: EDIT_MESSAGE,
     payload: message
 })
 
@@ -72,13 +72,31 @@ export const updateMessage = ({ message_id, content }) => async (dispatch) => {
     return data;
 };
 
-export const removeMessage = (id) => async (dispatch) => {
-    const res = await fetch(`/api/channels/${id}`, {
+export const removeMessage = (message_id) => async (dispatch) => {
+    const res = await fetch(`/api/messages/delete/${message_id}`, {
         method: 'DELETE',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ id })
     })
-    dispatch(deleteChannel(id))
+    dispatch(deleteMessage(message_id))
+};
+
+const initialState = {}
+
+export default function messageReducer(state = initialState, action) {
+    let newState;
+    switch (action.type) {
+        case ADD_CHANNEL:
+            newState = {...state}
+            newState[action.channel.id] = action.channel
+            return newState
+        case EDIT_CHANNEL:
+            newState = {...state}
+            newState[action.channel.id] = action.channel
+            return newState
+        case DELETE_CHANNEL:
+            newState = {...state}
+            delete newState[action.payload.id]
+            return newState
+        default:
+            return state
+    }
 }
