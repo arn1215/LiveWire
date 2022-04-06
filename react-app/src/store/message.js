@@ -84,19 +84,21 @@ const initialState = {}
 export default function messageReducer(state = initialState, action) {
     let newState;
     switch (action.type) {
-        case ADD_CHANNEL:
+        case GET_MESSAGES:
             newState = {...state}
-            newState[action.channel.id] = action.channel
+            action.payload["messages"].forEach(message => {
+                return newState[message.id] = message
+            })
             return newState
-        case EDIT_CHANNEL:
+        case ADD_MESSAGE:
             newState = {...state}
-            newState[action.channel.id] = action.channel
+            newState[action.payload.id] = action.payload
             return newState
-        case DELETE_CHANNEL:
+        case DELETE_MESSAGE:
             newState = {...state}
             delete newState[action.payload.id]
             return newState
         default:
             return state
     }
-}
+};
