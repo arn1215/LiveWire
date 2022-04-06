@@ -1,7 +1,27 @@
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import * as serverActions from '../../store/server'
 
 function CreateServer() {
   const [serverName, setServerName] = useState("");
+  const [newUrl, setNewUrl] = useState("");
+  const [errors, setErrors] = useState([]);
+  const dispatch = useDispatch()
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setErrors([]);
+
+    try {
+      dispatch(serverActions.createServer({ }))
+
+    } catch (err) {
+
+    }
+
+
+
+  }
 
   return (
     <div className="cs">
@@ -17,6 +37,8 @@ function CreateServer() {
         </label>
         <input
         type="text"
+        value={newUrl}
+        onChange={(e) => setNewUrl(e.target.value)}
         placeholder='URL'
         required
         />

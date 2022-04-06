@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import './LandingPage.css'
+import DemoUser from '../DemoUser'
 
 const LandingPage = () => {
     return (
@@ -11,9 +12,10 @@ const LandingPage = () => {
                             <div className='svg-logo'>SVG LOGO</div>
                         </NavLink>
                         <div>
-                            <NavLink className='nav-btn' to='/app'>
-                                Demo User
-                            </NavLink>
+                            {/* <NavLink className='nav-btn' to='/'>
+
+                            </NavLink> */}
+                            <DemoUser />
                             <NavLink className='nav-btn' to='/login'>
                                 Login
                             </NavLink>
