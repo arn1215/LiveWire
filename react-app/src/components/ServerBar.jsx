@@ -1,50 +1,41 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import { loadUsersServers } from "../../src/store/server";
+import * as serverActions from "../../src/store/server";
 import CreateServerModal from "../components/CreateServer";
+import { Link } from "react-router-dom";
+import '../index.css'
 
 const ServerBar = () => {
     const dispatch = useDispatch();
-    const user = useSelector((state) => state.session.user);
-    console.log('this is USER,', user)
+    const [isLoaded, setIsLoaded] = useState(false)
+    const userId = useSelector(state => state.session.user.id);
+    const userServers = useSelector(state => (state.server.userServers))
+    console.log('this is USER,', userId)
 
     useEffect(() => {
-    dispatch()
-    }, []);
-
-  // if (!servers) {
-  //     return null
-  // }
-
-  // const allServers = Object.values(servers);
-
-    // const serversComponents = user.servers.map((server) => {
-    //     return (
-    //     <>
-    //         <li key={server?.id}>
-    //             <Link to={`/servers/${server.id}`} className="server-icon">
-    //                 {server?.name}
-    //             </Link>
-    //         </li>
-    //     </>
-    //     );
-    // });
+        const loaded = async () => {
+            await dispatch(serverActions.loadUsersServers(userId))
+            setIsLoaded(true)
+        }
+        loaded()
+    }, [dispatch]);
 
     return (
-        <>
+        isLoaded && (
             <div className="server-bar">
                 <div className="sb-servers-wrapper">
-                    {/* {user[2].map(server => {
-
-                        <div className="sb-server-wrapper">
-                            <Link> onClick={(e) => dispatch()}</Link>
+                    {userServers.map(server => {
+                        {console.log('this is serverid...,', server.id)}
+                        <div key={server.id} className="sb-server-wrapper">
+                            <Link onClick={(e) => dispatch()} to={`/servers/${server.id}`}>
+                                <img src={server.icon} alt="" className="sb-server-icon" />
+                            </Link>
                         </div>
-                })} */}
+                })}
                 </div>
                 <CreateServerModal />
             </div>
-        </>
+        )
     );
 };
 

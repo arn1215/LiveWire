@@ -1,9 +1,17 @@
+const LOAD_USER_SERVERS = 'servers/LOAD_USER_SERVERS'
 const LOAD_SERVERS = 'servers/LOAD_SERVERS'
 const LOAD_SERVER = 'servers/LOAD_SERVER'
 const ADD_SERVER = 'servers/ADD_SERVER'
 const EDIT_SERVER = 'servers/EDIT_SERVER'
 const DELETE_SERVER = 'servers/DELETE_SERVER'
 
+
+const loadUserServers = (user_Servers) => {
+    return {
+        type: LOAD_USER_SERVERS,
+        user_Servers
+    };
+};
 
 const loadServers = (servers) => {
     return {
@@ -40,13 +48,27 @@ const deleteServer = (serverId) => {
     }
 }
 
-// thunk
+// thunks
 
+//Edit a server
+
+export const putServer = (data) => async (dispatch) => {
+    const res = await fetch(`/api/servers/${data.id}`, {
+        method: "PUT",
+        body: JSON.stringify(data),
+    });
+    if (res.ok) {
+        const updatedServer = await res.json()
+        dispatch(editServer(updatedServer))
+        return updatedServer;
+    }
+}
 
 //load all servers
 
 export const loadAllServers = () => async (dispatch) => {
     const res = await fetch(`/api/servers/`);
+
     if (res.ok) {
         const servers = await res.json();
         dispatch(loadServers(servers.servers));
@@ -72,7 +94,7 @@ export const loadUsersServers = (userId) => async (dispatch) => {
     if (res.ok) {
         const servers = await res.json();
         const userServers = servers['servers'];
-        dispatch(loadServers(userServers))
+        dispatch(loadUserServers(userServers))
     }
 }
 
@@ -98,7 +120,6 @@ export const createServer = ({ owner_id, name, icon, invite_URL }) => async (dis
     return data;
 };
 
-
 //delete server
 
 export const removeServer = (id) => async (dispatch) => {
@@ -122,21 +143,31 @@ const serversReducer = (state={
 
     switch (action.type) {
         case ADD_SERVER: {
-            newState[action.server.id] = action.server
+            newState.allServers[action.server.id] = action.server
             return newState;
         }
         case LOAD_SERVERS: {
             action.servers.forEach(server => {
-                newState[server.id] = server
+                newState.allServers[server.id] = server;
+            })
+            return newState;
+        }
+        case LOAD_USER_SERVERS: {
+            action.user_Servers.forEach(server => {
+                newState.userServers[server.id] = server;
             })
             return newState;
         }
         case DELETE_SERVER: {
-            delete newState[action.payload.id]
+            delete newState.allServers[action.serverId]
             return newState;
         }
         case LOAD_SERVER: {
-            newState.server = action.server
+            newState.oneServer.server = action.server
+            return newState;
+        }
+        case EDIT_SERVER: {
+            newState.allServers[action.updatedServer.id] = action.updatedServer
             return newState;
         }
         default:

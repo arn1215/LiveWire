@@ -1,8 +1,5 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useHistory } from 'react-router-dom'
-import { ValidationError } from '../utils/ValidationError';
-import { ErrorMessage } from '../utils/ErrorMessage';
 import * as serverActions from '../../store/server'
 import * as sessionActions from '../../store/session'
 
@@ -10,28 +7,10 @@ import * as sessionActions from '../../store/session'
 const CreateServer = () => {
 
   const dispatch = useDispatch();
-  let history = useHistory();
   const sessionUser = useSelector((state) => state.session.user);
 
   const [name, setName] = useState("");
   const [icon, setIcon] = useState("");
-  const [errors, setErrors] = useState([]);
-  const [errorMessages, setErrorMessages] = useState({});
-
-  useEffect(() => {
-    const validationErrors = [];
-    if (name.length > 20)
-      return validationErrors.push(
-        'Please limit server names to less than 20 characters!'
-      );
-    if (name.length < 1)
-      return validationErrors.push(
-        'You must enter a name!'
-      );
-    setErrors(validationErrors);
-  }, [name]);
-
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();

@@ -40,8 +40,6 @@ function App() {
         <Route path='/login' exact={true}>
           <LoginForm />
         </Route>
-        <Route path='/servers' exact={true}>
-        </Route>
         <Route path='/register' exact={true}>
           <SignUpForm />
         </Route>
@@ -52,6 +50,9 @@ function App() {
           <User />
         </ProtectedRoute>
         <ProtectedRoute path='/servers/:serverId' exact={true} >
+
+        </ProtectedRoute>
+        <ProtectedRoute path='/servers' exact={true}>
           <ServerBar />
           <SideBar />
           <ChatComponent />
