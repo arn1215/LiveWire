@@ -41,7 +41,6 @@ function App() {
           <LoginForm />
         </Route>
         <Route path='/servers' exact={true}>
-          <ServerBar />
           <SideBar />
           <ChatComponent />
         </Route>
@@ -53,6 +52,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
+        </ProtectedRoute>
+        <ProtectedRoute path='/userServers/:serverId' exact={true} >
+          <ServerBar />
         </ProtectedRoute>
         <ProtectedRoute path='/app' exact={true} >
           <h1>My Home Page</h1>
