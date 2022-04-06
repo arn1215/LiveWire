@@ -60,7 +60,7 @@ export const loadUsersServers = (userId) => async (dispatch) => {
 //create new server
 
 export const createServer = ({ owner_id, name, icon, invite_URL }) => async (dispatch) => {
-    const res = await fetch('/api/servers', {
+    const res = await fetch('/api/servers/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

@@ -26,7 +26,6 @@ const ServerBar = () => {
       <>
         <li key={server?.id}>
             <Link to={`/servers/${server.id}`}>
-                Test Click
                 {server?.name}
             </Link>
         </li>
