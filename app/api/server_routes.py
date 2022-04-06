@@ -1,6 +1,7 @@
 from flask import Blueprint, request
 from flask_login import login_required
 from ..models import db, Server, User, Message, server_users
+from random import randint
 
 server_routes = Blueprint('servers', __name__)
 
@@ -16,7 +17,7 @@ def create_post():
         owner_id=data["owner_id"],
         name=data["name"],
         icon=data["icon"],
-        invite_URL=data["invite_URL"]
+        invite_URL= (f'{randint(100, 10000)}')
       )
 
       db.session.add(server)
@@ -40,7 +41,7 @@ def get_one_server(server_id):
 
 
 # edit one server
-@server_routes.route('/<int:server_id>')
+@server_routes.route('/<int:server_id>', methods=['PUT'])
 # @login_required
 def edit_server(server_id):
   server = Server.query.get(server_id)
@@ -54,7 +55,7 @@ def edit_server(server_id):
 
 
 # delete one server
-@server_routes.route('/<int:server_id>', methods=['DELETE'])
+@server_routes.route('/delete/<int:server_id>', methods=['DELETE'])
 # @login_required
 def delete_server(server_id):
   server = Server.query.filter(Server.id == server_id).first()
@@ -83,20 +84,20 @@ def get_server_invite(server_invite):
     return 'Server Does Not Exist!'
 
 
-# post joining a server
-@server_routes.route('/joinServer', methods=['POST'])
-# @login_required
-def join_server():
-  data = request.json
-  server = server_users(
-    server_join_id = data["server_join_data"],
-    user_id = data["user_id"]
-  )
+# # post joining a server
+# @server_routes.route('/joinServer', methods=['POST'])
+# # @login_required
+# def join_server():
+#   data = request.json
+#   server = server_users(
+#     server_join_id = data["server_join_id"],
+#     user_join_id = data["user_join_id"]
+#   )
 
-  db.session.add(server)
-  db.session.commit()
+#   db.session.add(server)
+#   db.session.commit()
 
-  joined_server = Server.query.get(data["server_join_id"])
-  server_dict = joined_server.to_dict()
+#   joined_server = Server.query.get(data["server_join_id"])
+#   server_dict = joined_server.to_dict()
 
-  return {"server": server_dict}
+#   return {"server": server_dict}

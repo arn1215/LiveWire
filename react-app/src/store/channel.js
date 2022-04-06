@@ -1,8 +1,18 @@
+const GET_CHANNEL = 'channels/getChannel'
+
 const ADD_CHANNEL = 'channels/addChannel'
 
 const DELETE_CHANNEL = 'channels/deleteChannel'
 
 const EDIT_CHANNEL = 'channels/editChannel'
+
+
+const getChannel = (channel) => {
+    return {
+        type: GET_CHANNEL,
+        payload: channel
+    }
+}
 
 const addChannel = (channel) => {
     return {
@@ -23,8 +33,18 @@ const editChannel = (channel) => ({
     payload: channel
 })
 
+
+export const fetchChannel = (channel) => async (dispatch) => {
+    const res = await fetch(`/api/channels/${channel.id}`);
+
+    if (res.ok) {
+        const channel = await res.json();
+        dispatch(getChannel(channel["channel"]));
+    }
+}
+
 export const updateChannel = (channel) => async (dispatch) => {
-    const res = await fetch(`/api/channels/{channel.id}`, {
+    const res = await fetch(`/api/channels/${channel.id}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
@@ -61,8 +81,8 @@ export const createChannel = ({ name, server_id}) => async (dispatch) => {
         })
     });
 
-    
-    const data = await res.json(); 
+
+    const data = await res.json();
     dispatch(addChannel(data));
     return data
 };
@@ -83,7 +103,7 @@ export const channelReducer = (state = initialState, action) => {
             return newState
         case DELETE_CHANNEL:
             newState = {...state}
-            delete newState[action.payload.id] 
+            delete newState[action.payload.id]
             return newState
         default:
             return state
