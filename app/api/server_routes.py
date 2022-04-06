@@ -1,5 +1,5 @@
 from flask import Blueprint, request
-from flask_login import login_required
+from flask_login import login_required, current_user
 from ..models import db, Server, User, Message, server_users
 from random import randint
 
@@ -14,20 +14,22 @@ def create_post():
       data = request.get_json(force=True)
 
       server = Server(
-        owner_id=data["owner_id"],
+        owner_id=current_user.id,
         name=data["name"],
         icon=data["icon"],
-        invite_URL= (f'{randint(100, 10000)}')
+        invite_URL= (f'{randint(100, 10000)}'),
+        users_many=[current_user]
       )
 
       db.session.add(server)
       db.session.flush()
       db.session.commit()
-
       return server.to_dict()
 
   users = User.query.all()
   servers = Server.query.all()
+
+
   return { "servers": sorted([s.to_dict() for s in servers], key=lambda s: s["id"], reverse=True), "users": sorted([u.to_dict() for u in users], key=lambda u: u["id"], reverse=True)}
 
 
@@ -69,7 +71,7 @@ def delete_server(server_id):
 @server_routes.route('/byUser/<int:user_id>')
 # @login_required
 def load_on_login(user_id):
-  server_list = Server.query.join(server_users).filter(server_users.c.user_join_id == user_id).all()
+  server_list = Server.query.join(server_users).join(User).filter(server_users.c.user_join_id == user_id).all()
   return {"servers": [server.to_dict() for server in server_list]}
 
 
@@ -84,23 +86,23 @@ def get_server_invite(server_invite):
     return 'Server Does Not Exist!'
 
 
-# # post joining a server
-# @server_routes.route('/joinServer', methods=['POST'])
-# # @login_required
-# def join_server():
-#   data = request.json
-#   server = server_users(
-#     server_join_id = data["server_join_id"],
-#     user_join_id = data["user_join_id"]
-#   )
+# post joining a server
+@server_routes.route('/joinServer', methods=['POST'])
+# @login_required
+def join_server():
+  data = request.json
 
-#   db.session.add(server)
-#   db.session.commit()
+  # server = server_users(
+  #   server_join_id = data["server_join_id"],
+  #   user_join_id = data["user_join_id"]
+  # )
+  server.users_many.append(owner_id);
+  db.session.commit()
 
-#   joined_server = Server.query.get(data["server_join_id"])
-#   server_dict = joined_server.to_dict()
+  joined_server = Server.query.get(data["server_join_id"])
+  server_dict = joined_server.to_dict()
 
-#   return {"server": server_dict}
+  return {"server": server_dict}
 
 
 # call user/ update user property associated with server
