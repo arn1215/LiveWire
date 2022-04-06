@@ -29,27 +29,19 @@ def get_messages(channel_id):
     return { "messages": [m.to_dict() for m in messages] }
 
 
-# get one server
-@server_routes.route('/<int:server_id>')
+# edit one message
+@message_routes.route('/<int:channel_id>', methods=['PUT'])
 # @login_required
-def get_one_server(server_id):
-  server = Server.query.filter(Server.id == server_id).one()
-  return {"server": server.to_dict()}
+def edit_message(channel_id):
+    data = request.get_json(force=True)
+    message = Message.query.get(data["id"])
 
+    if 'content' in data.keys():
+        message.content = data['content']
 
+    db.session.commit()
+    return message.to_dict()
 
-# edit one server
-@server_routes.route('/<int:server_id>', methods=['PUT'])
-# @login_required
-def edit_server(server_id):
-  server = Server.query.get(server_id)
-  data = request.json
-  if 'name' in data.keys():
-    server.name = data['name']
-  if 'icon' in data.keys():
-    server.icon = data["icon"]
-  db.session.commit()
-  return server.to_dict()
 
 
 # delete one server
