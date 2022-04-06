@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import * as serverActions from "../../src/store/server";
-import CreateServerModal from "../components/CreateServer";
+import * as serverActions from "../../store/server";
+import CreateServerModal from "../CreateServer";
 import { Link } from "react-router-dom";
-import '../index.css'
+import './ServerBar.css'
 
 const ServerBar = () => {
     const dispatch = useDispatch();
@@ -22,16 +22,13 @@ const ServerBar = () => {
 
     return (
         isLoaded && (
-            <div className="server-bar">
-                <div className="sb-servers-wrapper">
-                    {userServers.map(server => {
-                        {console.log('this is serverid...,', server.id)}
-                        <div key={server.id} className="sb-server-wrapper">
-                            <Link onClick={(e) => dispatch()} to={`/servers/${server.id}`}>
-                                <img src={server.icon} alt="" className="sb-server-icon" />
-                            </Link>
-                        </div>
-                })}
+            <div className="sb">
+                <div className="sb-icon-wrapper">
+                    {userServers.map(server => (
+                        <Link key={server.id} onClick={() => dispatch(serverActions.loadServerById(server.id))} to={`/servers/${server.id}`}>
+                            <img src={server.icon} alt="" className="sb-server-icon" />
+                        </Link>
+                    ))}
                 </div>
                 <CreateServerModal />
             </div>

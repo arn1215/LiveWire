@@ -22,63 +22,16 @@ body {
     flex-direction: row;
 }
 
-
-
-
-
-
-
 /* SERVER BAR WHERE SERVERS APPEAR ============================================================================================================================== */
 
 .server-bar {
     background-color: rgb(32,34,37);
     height: 100%;
     display: flex;
-    flex-direction: column;
     align-items: center;
     width: 72px;
     overflow-y: scroll;
-
-
 }
-
-.server-icon {
-    background-color: aliceblue;
-    text-align: center;
-    justify-self: start;
-    color: black;
-    width: 48px;
-    height: 48px;
-    margin-top: 15px;
-    border-radius: 50%;
-    /* background-image: url("D6yGqGzu_400x400.jpg"); */
-    background-size: contain;
-    transition-property: border-radius;
-    transition-duration: .5s;
-}
-
-
-.server-icon:hover {
-    background-color: aliceblue;
-    width: 48px;
-    height: 48px;
-    margin-top: 15px;
-    border-radius: 30%;
-    /* background-image: url("D6yGqGzu_400x400.jpg"); */
-    background-size: contain;
-}
-
-
-
-/* SERVER BAR WHERE SERVERS APPEAR ============================================================================================================================== */
-
-
-
-
-
-
-
-
 
 /* SIDE BAR WHERE CHANNELS AND DMS APPEAR ======================================================================================================================= */
 .side-bar {
@@ -90,9 +43,6 @@ body {
     justify-content: space-evenly;
     overflow-y: scroll;
     scrollbar-width: thin;
-
-
-
 }
 
 .server-info {
