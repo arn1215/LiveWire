@@ -26,11 +26,11 @@ def create_post():
       db.session.commit()
       return server.to_dict()
 
-  users = User.query.all()
+
   servers = Server.query.all()
 
 
-  return { "servers": sorted([s.to_dict() for s in servers], key=lambda s: s["id"], reverse=True), "users": sorted([u.to_dict() for u in users], key=lambda u: u["id"], reverse=True)}
+  return { "servers": sorted([s.to_dict() for s in servers], key=lambda s: s["id"], reverse=True)}
 
 
 # get one server
@@ -92,17 +92,12 @@ def get_server_invite(server_invite):
 def join_server():
   data = request.json
 
-  # server = server_users(
-  #   server_join_id = data["server_join_id"],
-  #   user_join_id = data["user_join_id"]
-  # )
-  server.users_many.append(owner_id);
-  db.session.commit()
+  server = Server.query.filter(Server.invite_URL == data["invite_URL"])
 
-  joined_server = Server.query.get(data["server_join_id"])
-  server_dict = joined_server.to_dict()
+  server.users_many.append(current_user)
+  db.session.commit(server)
 
-  return {"server": server_dict}
-
+  return server.to_dict()
+#potentially need to add to user array/depends on redux store
 
 # call user/ update user property associated with server
