@@ -15,33 +15,43 @@ const ServerBar = () => {
         dispatch(loadUsersServers(user.id));
     }, []);
 
-    const allServers = Object.values(servers);
+    // if (!servers) {
+    //     return null
+    // }
 
-    const serversComponents = allServers.map((server) => {
-        return (
-            <div className="server-bar">
-                <li key={server.id}>
-                    <Link to={`/servers/server.id`}
-                </li>
+    // const allServers = Object.values(servers);
 
+    const serversComponents = user.servers.map((server) => {
+     return (
+      <>
+        <li key={server?.id}>
+            <Link to={`/servers/${server.id}`}>
+                Test Click
+                {server?.name}
+            </Link>
+        </li>
+        <CreateServer />
+      </>
+    )
+  });
 
+    return (
+        <div className="server-bar">
+        { serversComponents }
+        </div>
 
-                {/* <a href="server/:serverId">
-                    <div className="server-icon"></div>
-                </a>
-                <a href="server/:serverId">
-                    <div className="server-icon"></div>
-                </a>
-                <a href="server/:serverId">
-                    <div className="server-icon"></div>
-                </a> */}
-                <CreateServer />
-            </div>
-        )
-    }
-
-    })
-
+    )
+};
 
 
 export default ServerBar;
+
+{/* <a href="server/:serverId">
+    <div className="server-icon"></div>
+</a>
+<a href="server/:serverId">
+    <div className="server-icon"></div>
+</a>
+<a href="server/:serverId">
+    <div className="server-icon"></div>
+</a> */}
