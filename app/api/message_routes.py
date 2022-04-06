@@ -1,6 +1,6 @@
 from flask import Blueprint, request
 from flask_login import login_required
-from ..models import db, Server, Channel, Message, server_users
+from ..models import db, Message
 from random import randint
 
 message_routes = Blueprint('messages', __name__)
