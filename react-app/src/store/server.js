@@ -100,7 +100,7 @@ export const removeServer = (id) => async (dispatch) => {
 
 const initialState = {};
 
-export const serversReducer = (state = initialState, action) => {
+export default function serversReducer (state = initialState, action) {
     let newState
     switch (action.type) {
         case ADD_SERVER:
