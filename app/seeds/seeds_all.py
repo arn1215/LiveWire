@@ -237,8 +237,17 @@ def seed_all():
     db.session.add(server9)
     db.session.add(server10)
 
-    server1.users_many.append(bobbie);
-    server2.users_many.append(bobbie);
+    server1.users_many.append(demo);
+    server2.users_many.append(demo);
+    server3.users_many.append(marnie);
+    server4.users_many.append(bobbie);
+    server5.users_many.append(bobbie);
+    server6.users_many.append(marnie);
+    server7.users_many.append(marnie);
+    server8.users_many.append(demo);
+    server9.users_many.append(demo);
+    server10.users_many.append(demo);
+
 
     db.session.commit()
 
