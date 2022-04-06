@@ -1,5 +1,5 @@
 from flask import Blueprint, request
-from flask_login import login_required
+from flask_login import login_required, current_user
 from ..models import db, Server, User, Message, server_users
 from random import randint
 
@@ -14,10 +14,11 @@ def create_post():
       data = request.get_json(force=True)
 
       server = Server(
-        owner_id=data["owner_id"],
+        owner_id=current_user.id,
         name=data["name"],
         icon=data["icon"],
         invite_URL= (f'{randint(100, 10000)}'),
+        users_many=[current_user]
       )
 
       db.session.add(server)
@@ -27,9 +28,6 @@ def create_post():
 
   users = User.query.all()
   servers = Server.query.all()
-
-  server.users_many.append(owner_id);
-  db.session.commit()
 
 
   return { "servers": sorted([s.to_dict() for s in servers], key=lambda s: s["id"], reverse=True), "users": sorted([u.to_dict() for u in users], key=lambda u: u["id"], reverse=True)}
