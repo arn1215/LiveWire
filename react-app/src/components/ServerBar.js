@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom"
 import { loadUsersServers } from "../../src/store/server"
-import CreateServer from "../components/CreateServer";
+import CreateServerModal from "../components/CreateServer";
 
 
 
@@ -29,7 +29,7 @@ const ServerBar = () => {
                 {server?.name}
             </Link>
         </li>
-        <CreateServer />
+        <CreateServerModal />
       </>
     )
   });

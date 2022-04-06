@@ -56,7 +56,7 @@ function App() {
           <SideBar />
           <ChatComponent />
         </ProtectedRoute>
-        <ProtectedRoute path='/userServers/:serverId' exact={true} >
+        <ProtectedRoute path='/userServers/servers' exact={true} >
           <ServerBar />
         </ProtectedRoute>
         <ProtectedRoute path='/app' exact={true} >

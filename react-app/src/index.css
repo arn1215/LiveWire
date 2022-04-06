@@ -28,6 +28,11 @@ body {
 
 
 
+/* MODAL STYLING*/
+
+#modal {
+    width: 50%
+}
 
 
 /* SERVER BAR WHERE SERVERS APPEAR ============================================================================================================================== */
@@ -187,3 +192,14 @@ body {
 ::-webkit-scrollbar {
     width: 5px;
 }
+
+
+
+/* VALIDATION ERRORS ===================================================*/
+
+.validationErrors {
+    color: red;
+    font-size: 20px;
+    margin: 10px;
+    text-align: center;
+  }
