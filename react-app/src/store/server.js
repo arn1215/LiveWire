@@ -1,35 +1,42 @@
-const LOAD_SERVERS = 'servers/loadServers'
+const LOAD_SERVERS = 'servers/LOAD_SERVERS'
+const LOAD_SERVER = 'servers/LOAD_SERVER'
+const ADD_SERVER = 'servers/ADD_SERVER'
+const EDIT_SERVER = 'servers/EDIT_SERVER'
+const DELETE_SERVER = 'servers/DELETE_SERVER'
 
-const ADD_SERVER = 'servers/addServer'
-
-const DELETE_SERVER = 'servers/deleteServer'
-
-const LOAD_SERVER = 'servers/loadServer'
 
 const loadServers = (servers) => {
     return {
         type: LOAD_SERVERS,
-        payload: servers
+        servers
     };
 };
 
 const loadServer = (server) => {
     return {
-        type: LOAD_SERVER
+        type: LOAD_SERVER,
+        server
     }
 }
 
 const addServer = (server) => {
     return {
         type: ADD_SERVER,
-        payload: server
+        server
     }
 }
 
-const deleteServer = (id) => {
+const editServer = (updatedServer) => {
+    return {
+        type: EDIT_SERVER,
+        updatedServer
+    }
+}
+
+const deleteServer = (serverId) => {
     return {
         type: DELETE_SERVER,
-        payload: id
+        serverId
     }
 }
 
@@ -50,6 +57,7 @@ export const loadAllServers = () => async (dispatch) => {
 
 export const loadServerById = (id) => async (dispatch) => {
     const res = await fetch(`/api/servers/${id}`)
+
     if (res.ok) {
         const server = await res.json();
         dispatch(loadServer(server.server))
@@ -64,10 +72,6 @@ export const loadUsersServers = (userId) => async (dispatch) => {
     if (res.ok) {
         const servers = await res.json();
         const userServers = servers['servers'];
-        // for (let server of userServers) {
-        //     const channelsPopulate = await fetch(`/api/channels/byServer/${server.id}`);
-        //     const serverChannels = await channelsPopulate.json();
-        // }
         dispatch(loadServers(userServers))
     }
 }
@@ -109,12 +113,10 @@ export const removeServer = (id) => async (dispatch) => {
     dispatch(deleteServer(id))
 }
 
-
-
-
-
-export const serversReducer = (state={
-
+const serversReducer = (state={
+    oneServer: {},
+    allServers: [],
+    userServers: [],
 }, action) => {
     let newState = {...state}
 
@@ -141,3 +143,5 @@ export const serversReducer = (state={
             return state;
     }
 };
+
+export default serversReducer;

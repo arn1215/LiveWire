@@ -10,7 +10,7 @@ const ServerBar = () => {
     console.log('this is USER,', user)
 
     useEffect(() => {
-    dispatch(loadUsersServers(user.id));
+    dispatch()
     }, []);
 
   // if (!servers) {
