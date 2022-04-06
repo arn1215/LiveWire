@@ -12,6 +12,7 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
 import LandingPage from './components/LandingPage';
+import ErrorPage from './components/ErrorPage'
 import { authenticate } from './store/session';
 
 
@@ -56,6 +57,9 @@ function App() {
         <ProtectedRoute path='/app' exact={true} >
           <h1>My Home Page</h1>
         </ProtectedRoute>
+        <Route path='*'>
+          <ErrorPage />
+        </Route>
       </Switch>
     </BrowserRouter>
   );

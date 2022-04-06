@@ -10,10 +10,10 @@ function DemoUser() {
 
         try {
             await dispatch(
-            sessionActions.login({
-                email: 'demo@aa.io',
-                password: "password",
-            })
+            sessionActions.login(
+                'demo@aa.io',
+                'password',
+            )
         );
         } catch (err) {
             console.error("error: ", err)

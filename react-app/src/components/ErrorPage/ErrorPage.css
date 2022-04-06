@@ -1,0 +1,18 @@
+.ErrorPage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 25vh;
+}
+
+.ErrorPage > * {
+    display: flex;
+    margin-top: 10px;
+}
+
+.returnHome {
+    text-decoration: none;
+    border: solid red 2px;
+    border-radius: 5px;
+    padding: 5px;
+}
