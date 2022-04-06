@@ -1,8 +1,10 @@
-const LOAD_SERVERS = 'servers/loadServer'
+const LOAD_SERVERS = 'servers/loadServers'
 
 const ADD_SERVER = 'servers/addServer'
 
 const DELETE_SERVER = 'servers/deleteServer'
+
+const LOAD_SERVER = 'servers/loadServer'
 
 const loadServers = (servers) => {
     return {
@@ -10,6 +12,12 @@ const loadServers = (servers) => {
         payload: servers
     };
 };
+
+const loadServer = (server) => {
+    return {
+        type: LOAD_SERVER
+    }
+}
 
 const addServer = (server) => {
     return {
@@ -38,6 +46,15 @@ export const loadAllServers = () => async (dispatch) => {
     }
 };
 
+//load one server
+
+export const loadServerById = (id) => async (dispatch) => {
+    const res = await fetch(`/api/servers/${id}`)
+    if (res.ok) {
+        const server = await res.json();
+        dispatch(loadServer(server.server))
+    }
+}
 
 //load user's servers
 
@@ -54,8 +71,6 @@ export const loadUsersServers = (userId) => async (dispatch) => {
         dispatch(loadServers(userServers))
     }
 }
-
-
 
 //create new server
 
@@ -98,25 +113,30 @@ export const removeServer = (id) => async (dispatch) => {
 
 
 
-const initialState = {};
+export const serversReducer = (state={
 
-export default function serversReducer (state = initialState, action) {
-    let newState
+}, action) => {
+    let newState = {...state}
+
     switch (action.type) {
-        case ADD_SERVER:
-            newState = {...state};
+        case ADD_SERVER: {
             newState[action.server.id] = action.server
             return newState;
-        case LOAD_SERVERS:
-            newState = {...state};
+        }
+        case LOAD_SERVERS: {
             action.servers.forEach(server => {
                 newState[server.id] = server
             })
             return newState;
-        case DELETE_SERVER:
-            newState = {...state};
+        }
+        case DELETE_SERVER: {
             delete newState[action.payload.id]
-            return newState
+            return newState;
+        }
+        case LOAD_SERVER: {
+            newState.server = action.server
+            return newState;
+        }
         default:
             return state;
     }

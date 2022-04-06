@@ -6,7 +6,7 @@ import SignUpForm from './components/auth/RegisterPage';
 // import SignUpForm from './components/auth/SignUpForm';
 // import NavBar from './components/NavBar';
 import SideBar from './components/SideBar';
-import ServerBar from './components/ServerBar';
+import ServerBar from './components/ServerBar.jsx';
 import ChatComponent from './components/ChatComponent';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
