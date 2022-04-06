@@ -41,9 +41,6 @@ function App() {
           <LoginForm />
         </Route>
         <Route path='/servers' exact={true}>
-          <ServerBar />
-          <SideBar />
-          <ChatComponent />
         </Route>
         <Route path='/register' exact={true}>
           <SignUpForm />
@@ -53,6 +50,14 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
+        </ProtectedRoute>
+        <ProtectedRoute path='/servers/:serverId' exact={true} >
+          <ServerBar />
+          <SideBar />
+          <ChatComponent />
+        </ProtectedRoute>
+        <ProtectedRoute path='/userServers/servers' exact={true} >
+          <ServerBar />
         </ProtectedRoute>
         <ProtectedRoute path='/app' exact={true} >
           <h1>My Home Page</h1>

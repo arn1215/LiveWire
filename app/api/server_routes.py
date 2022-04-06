@@ -101,3 +101,6 @@ def get_server_invite(server_invite):
 #   server_dict = joined_server.to_dict()
 
 #   return {"server": server_dict}
+
+
+# call user/ update user property associated with server

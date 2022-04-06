@@ -1,12 +1,12 @@
-const SET_SERVERS = 'servers/setServer'
+const LOAD_SERVERS = 'servers/loadServer'
 
 const ADD_SERVER = 'servers/addServer'
 
 const DELETE_SERVER = 'servers/deleteServer'
 
-const setServers = (servers) => {
+const loadServers = (servers) => {
     return {
-        type: SET_SERVERS,
+        type: LOAD_SERVERS,
         payload: servers
     };
 };
@@ -25,10 +25,42 @@ const deleteServer = (id) => {
     }
 }
 
+// thunk
 
+
+//load all servers
+
+export const loadAllServers = () => async (dispatch) => {
+    const res = await fetch(`/api/servers/`);
+    if (res.ok) {
+        const servers = await res.json();
+        dispatch(loadServers(servers.servers));
+    }
+};
+
+
+//load user's servers
+
+export const loadUsersServers = (userId) => async (dispatch) => {
+    const res = await fetch(`/api/servers/byUser/${userId}`);
+
+    if (res.ok) {
+        const servers = await res.json();
+        const userServers = servers['servers'];
+        // for (let server of userServers) {
+        //     const channelsPopulate = await fetch(`/api/channels/byServer/${server.id}`);
+        //     const serverChannels = await channelsPopulate.json();
+        // }
+        dispatch(loadServers(userServers))
+    }
+}
+
+
+
+//create new server
 
 export const createServer = ({ owner_id, name, icon, invite_URL }) => async (dispatch) => {
-    const res = await fetch('/api/servers', {
+    const res = await fetch('/api/servers/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -42,10 +74,13 @@ export const createServer = ({ owner_id, name, icon, invite_URL }) => async (dis
     });
 
     const data = await res.json();
-  
+
     dispatch(addServer(data));
-    return data
+    return data;
 };
+
+
+//delete server
 
 export const removeServer = (id) => async (dispatch) => {
     const res = await fetch(`/api/servers/${id}`, {
@@ -65,14 +100,14 @@ export const removeServer = (id) => async (dispatch) => {
 
 const initialState = {};
 
-const serversReducer = (state = initialState, action) => {
+export default function serversReducer (state = initialState, action) {
     let newState
     switch (action.type) {
         case ADD_SERVER:
             newState = {...state};
             newState[action.server.id] = action.server
             return newState;
-        case SET_SERVERS:
+        case LOAD_SERVERS:
             newState = {...state};
             action.servers.forEach(server => {
                 newState[server.id] = server

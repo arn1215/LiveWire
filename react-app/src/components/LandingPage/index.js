@@ -19,6 +19,9 @@ const LandingPage = () => {
                             <NavLink className='nav-btn' to='/login'>
                                 Login
                             </NavLink>
+                            <NavLink className='nav-btn' to='/register'>
+                                Sign Up
+                            </NavLink>
                         </div>
                     </nav>
                 </header>
@@ -33,7 +36,7 @@ const LandingPage = () => {
                     </div>
 
                     <div className='top-btn-div'>
-                        <NavLink className='open-livewire-btn' to='/register'>
+                        <NavLink className='open-livewire-btn' to='/userServers/servers'>
                             <button className='livewire-register' type='button'>Open LiveWire in your browser</button>
                         </NavLink>
                     </div>

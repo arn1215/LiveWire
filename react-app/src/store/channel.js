@@ -90,7 +90,7 @@ export const createChannel = ({ name, server_id}) => async (dispatch) => {
 
 const initialState = {}
 
-export const channelReducer = (state = initialState, action) => {
+export default function channelReducer(state = initialState, action) {
     let newState;
     switch (action.type) {
         case ADD_CHANNEL:
