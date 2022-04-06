@@ -43,6 +43,13 @@ class User(db.Model, UserMixin):
     def check_password(self, password):
         return check_password_hash(self.password, password)
 
+    def info(self):
+        return {
+            'id': self.id,
+            'username': self.username,
+            'email': self.email,
+        }
+        
     def to_dict(self):
         return {
             'id': self.id,
@@ -72,7 +79,7 @@ class Server(db.Model):
             'icon': self.icon,
             'invite_URL': self.invite_URL,
             'channels': [channel.to_dict() for channel in self.channels],
-            #'users': [user.to_dict() for user in self.users_many]
+            'users': [user.info() for user in self.users_many]
         }
 
 
