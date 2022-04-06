@@ -21,23 +21,23 @@ const ServerBar = () => {
 
     // const allServers = Object.values(servers);
 
-    const serversComponents = user.servers.map((server) => {
-     return (
-      <>
-        <li key={server?.id}>
-            <Link to={`/servers/${server.id}`} className="server-icon">
-                {server?.name}
-            </Link>
-        </li>
-      </>
-    )
-  });
+//     const serversComponents = user.servers.map((server) => {
+//      return (
+//       <>
+//         <li key={server?.id}>
+//             <Link to={`/servers/${server.id}`} className="server-icon">
+//                 {server?.name}
+//             </Link>
+//         </li>
+//       </>
+//     )
+//   });
 
     return (
        <>
         <div className="server-bar">
             <div>
-                { serversComponents }
+                {/* { serversComponents } */}
                 <CreateServerModal />
 
             </div>

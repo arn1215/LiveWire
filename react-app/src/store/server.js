@@ -109,7 +109,7 @@ export default function serversReducer (state = initialState, action) {
             return newState;
         case LOAD_SERVERS:
             newState = {...state};
-            action.servers.forEach(server => {
+            action.payload.forEach(server => {
                 newState[server.id] = server
             })
             return newState;

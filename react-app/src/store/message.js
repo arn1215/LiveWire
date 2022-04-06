@@ -94,6 +94,9 @@ export default function messageReducer(state = initialState, action) {
             newState = {...state}
             newState[action.payload.id] = action.payload
             return newState
+        case EDIT_MESSAGE:
+            newState = {...state}  
+            newState[action.payload.id] = action.payload  
         case DELETE_MESSAGE:
             newState = {...state}
             delete newState[action.payload.id]
