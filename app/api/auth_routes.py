@@ -1,8 +1,9 @@
 from flask import Blueprint, jsonify, session, request
-from app.models import User, db
+from app.models import User, db, Server
 from app.forms import LoginForm
 from app.forms import SignUpForm
 from flask_login import current_user, login_user, logout_user, login_required
+from random import randint
 
 auth_routes = Blueprint('auth', __name__)
 
@@ -70,10 +71,25 @@ def sign_up():
             email=form.data['email'],
             password=form.data['password']
         )
+        ## ADD ICON URL
+        root = Server(
+            owner_id=user,
+            name="root",
+            icon="www.placeholder.com"
+            invite_URL=(f'{randint(100, 10000)}'),
+            users_many=[user]
+        )
+
+        db.session.flush()
+
+        user.root_server = root.id
+
         db.session.add(user)
+        db.session.add(root)
         db.session.commit()
         login_user(user)
-        return user.to_dict()
+        return { "user": user.to_dict(), "root": root.to_dict()}
+
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
