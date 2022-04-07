@@ -86,7 +86,7 @@ export default function messageReducer(state = initialState, action) {
     switch (action.type) {
         case GET_MESSAGES:
             newState = {...state}
-            action.payload["messages"].forEach(message => {
+            action.payload.forEach(message => {
                 return newState[message.id] = message
             })
             return newState
