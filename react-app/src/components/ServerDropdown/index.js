@@ -73,7 +73,7 @@ const ServerDropdown = () => {
                             </div>
                         )}
                         {!belongsToUser && (
-                            <Link to='/'>
+                            <Link to='/@me'>
                                 <div className='leave-server'>
                                     Leave Server
                                 </div>
