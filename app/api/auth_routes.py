@@ -75,7 +75,7 @@ def sign_up():
         root = Server(
             owner_id=user,
             name="root",
-            icon="www.placeholder.com"
+            icon="www.placeholder.com",
             invite_URL=(f'{randint(100, 10000)}'),
             users_many=[user]
         )
