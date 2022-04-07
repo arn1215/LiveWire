@@ -2,13 +2,21 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './ServerDropdown.css'
 import { NavLink } from 'react-router-dom';
+import * as serverActions from '../../store/server';
 
 const ServerDropdown = () => {
     const dispatch = useDispatch();
     const [showMenu, setShowMenu] = useState(false);
-    const serverName = useSelector(state => state.oneServer.server.name);
+    const currentServer = useSelector(state => state.oneServer.server);
     const userServers = useSelector(state => state.userServers)
     const belongsToUser = userServers.find(server => server.name === serverName)
+
+    const deleteServer
+
+    const deleteServer = (e) => {
+        e.preventDefault();
+        dispatch(serverActions.removeServer(currentServer.id));
+    };
 
     const openMenu = () => {
         if (showMenu) return;
@@ -31,7 +39,7 @@ const ServerDropdown = () => {
         <>
             <div className='dropdown'>
                 <button onClick={openMenu}>
-                    {serverName}
+                    {currentServer.name}
                 </button>
                 {showMenu && (
                     <div className='server-dropdown'>
