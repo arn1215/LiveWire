@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useHistory } from 'react-router-dom'
 import * as channelActions from '../../store/channel'
 import * as sessionActions from '../../store/session'
 
 const DeleteChannel = () => {
 
   const dispatch = useDispatch();
+  let history = useHistory();
   const channel = useSelector((state) => state.sesssion.channel);
   const user = useSelector((state) => state.session.user);
   const server = useSelector((state) => state.session.server)
