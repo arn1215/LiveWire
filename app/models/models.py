@@ -29,6 +29,7 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
+    root_server = db.Column(db.Integer)
 
     message = db.relationship("Message", back_populates="user")
     server_many = db.relationship("Server", secondary=server_users, back_populates="users_many")
@@ -49,7 +50,7 @@ class User(db.Model, UserMixin):
             'username': self.username,
             'email': self.email,
         }
-        
+
     def to_dict(self):
         return {
             'id': self.id,
