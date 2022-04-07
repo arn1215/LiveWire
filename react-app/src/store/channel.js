@@ -95,11 +95,11 @@ export default function channelReducer(state = initialState, action) {
     switch (action.type) {
         case ADD_CHANNEL:
             newState = {...state}
-            newState[action.channel.id] = action.channel
+            newState[action.payload.id] = action.payload
             return newState
         case EDIT_CHANNEL:
             newState = {...state}
-            newState[action.channel.id] = action.channel
+            newState[action.payload.id] = action.payload
             return newState
         case DELETE_CHANNEL:
             newState = {...state}
