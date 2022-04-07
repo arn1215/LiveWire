@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { useSelector, useDispatch } from "react-redux";
-import { createMessage } from "../../store/message";
+
+import { createMessage, removeMessage, updateMessage } from "../../store/message";
 import './Message.css'
 
 const MessageComponent = () => {
@@ -9,8 +10,9 @@ const MessageComponent = () => {
 
     const user = useSelector((state) => state.session.user);
     // const messages = useSelector((state) => state.messages)
-    const messages = [{content: "yo, dude "}, {content: "bruh"}, {content: "wagud "}]
+    const messages = [{id: 1, content: "yo, dude", message_owner_id:1}, {id: 2, content: "bruh", message_owner_id:1}, {id: 3, content: "wagud ", message_owner_id:2}]
     const channel = useSelector((state) => state.channel)
+    const server = useSelector((state) => state.session.server)
     const [content, setContent] = useState("")
 
 
@@ -27,6 +29,12 @@ const MessageComponent = () => {
         await dispatch(createMessage(message))
 
     }
+
+
+    const onDelete = async (message) => {
+      await dispatch(removeMessage(message.id))
+    }
+
     return (
         <>
             <div className="chat">
@@ -35,7 +43,18 @@ const MessageComponent = () => {
               
                     <div className="message-wrap">
                         {messages.map(message => (
-                            <div className="message">{message.content}</div>
+                            <>
+                            <div key={message.id} className="message">{message?.content}</div>
+                                {/* IF YOU OWN THE MESSAGE YOU CAN SEE EDIT AND DELETE BUTTONS */}
+                                {user.id === message.message_owner_id &&  
+                                <>
+                                <button messageId={message.id} onClick={() => onDelete(message)}>delete</button>
+                                <button>edit</button>
+                                </>
+                                }
+                           
+        
+                            </>
                         ))}
                     </div>
                    
@@ -43,9 +62,7 @@ const MessageComponent = () => {
                 
                 
 
-                <div className="message-card">
-                    yo
-                </div>
+       
                 <div className="message-container">
 
                     <form onSubmit={onSubmit}>
@@ -69,7 +86,6 @@ const MessageComponent = () => {
                             onChange={(e) => setContent(e.target.value)}
                             required
                         />
-
 
                     </form>
                 </div>
