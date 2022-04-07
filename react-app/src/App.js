@@ -7,7 +7,7 @@ import SignUpForm from './components/auth/RegisterPage';
 // import NavBar from './components/NavBar';
 import SideBar from './components/ChannelBar/SideBar';
 import ServerBar from './components/ServerBar/ServerBar.jsx';
-import ChatComponent from './components/ChatComponent';
+import MessageComponent from './components/MessageComponent/MessageComponent'
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
@@ -52,7 +52,7 @@ function App() {
         <ProtectedRoute path='/servers/:serverId' exact={true} >
           <ServerBar />
           <SideBar />
-          <ChatComponent />
+          <MessageComponent />
         </ProtectedRoute>
         <ProtectedRoute path='/servers' exact={true}>
           <ServerBar />
@@ -61,7 +61,7 @@ function App() {
         <ProtectedRoute path='/userServers/servers' exact={true} >
           <ServerBar />
           <SideBar />
-          <ChatComponent />
+          <MessageComponent />
         </ProtectedRoute>
         <ProtectedRoute path='/app' exact={true} >
           <h1>My Home Page</h1>
