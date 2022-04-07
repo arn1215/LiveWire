@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './ServerDropdown.css'
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import * as serverActions from '../../store/server';
 
 const ServerDropdown = () => {
@@ -66,16 +66,18 @@ const ServerDropdown = () => {
                             </form>
 
                         )}
-                        <NavLink to='/server-edit'>Edit Server</NavLink>
+                        <Link to='/server-edit'>Edit Server</Link>
                         {belongsToUser && (
                             <div className='delete-server' onClick={deleteServer}>
                                 Delete Server
                             </div>
                         )}
                         {!belongsToUser && (
-                            <div className='leave-server' onClick={leaveServer}>
-                                Leave Server
-                            </div>
+                            <Link to='/'>
+                                <div className='leave-server'>
+                                    Leave Server
+                                </div>
+                            </Link>
                         )}
                     </div>
                 )}
