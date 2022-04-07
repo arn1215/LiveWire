@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as serverActions from "../../store/server";
 import CreateServerModal from "../CreateServer";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import './ServerBar.css'
 
 const ServerBar = () => {
@@ -10,7 +10,7 @@ const ServerBar = () => {
     const [isLoaded, setIsLoaded] = useState(false)
     const userId = useSelector(state => state.session.user.id);
     const userServers = useSelector(state => (state.server.userServers))
-    console.log('this is USER,', userId)
+    const servers = useSelector(state => (state.server))
 
     useEffect(() => {
         const loaded = async () => {

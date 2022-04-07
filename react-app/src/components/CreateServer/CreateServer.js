@@ -38,7 +38,6 @@ const CreateServer = () => {
         Give your new server a personality with a name
         and an icon. You can always change it later.
       </p>
-      {/* <a href="/login" className="img cs-upload-icon">UPLOAD img icon</a> */}
       <form onSubmit={handleSubmit} className="cs-server-name-form">
         <label>
           SERVER NAME

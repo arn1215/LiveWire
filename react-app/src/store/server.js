@@ -5,7 +5,7 @@ const ADD_SERVER = 'servers/ADD_SERVER'
 const EDIT_SERVER = 'servers/EDIT_SERVER'
 const DELETE_SERVER = 'servers/DELETE_SERVER'
 
-
+// actions
 const loadUserServers = (user_Servers) => {
     return {
         type: LOAD_USER_SERVERS,
@@ -130,7 +130,6 @@ export const removeServer = (id) => async (dispatch) => {
         },
         body: JSON.stringify({ id })
     })
-
     dispatch(deleteServer(id))
 }
 

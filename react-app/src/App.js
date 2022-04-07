@@ -60,6 +60,8 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/userServers/servers' exact={true} >
           <ServerBar />
+          <SideBar />
+          <ChatComponent />
         </ProtectedRoute>
         <ProtectedRoute path='/app' exact={true} >
           <h1>My Home Page</h1>
