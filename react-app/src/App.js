@@ -5,8 +5,8 @@ import LoginForm from './components/auth/LoginPage';
 import SignUpForm from './components/auth/RegisterPage';
 // import SignUpForm from './components/auth/SignUpForm';
 // import NavBar from './components/NavBar';
-import SideBar from './components/SideBar';
-import ServerBar from './components/ServerBar';
+import SideBar from './components/ChannelBar/SideBar';
+import ServerBar from './components/ServerBar/ServerBar.jsx';
 import ChatComponent from './components/ChatComponent';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
@@ -40,8 +40,6 @@ function App() {
         <Route path='/login' exact={true}>
           <LoginForm />
         </Route>
-        <Route path='/servers' exact={true}>
-        </Route>
         <Route path='/register' exact={true}>
           <SignUpForm />
         </Route>
@@ -56,8 +54,14 @@ function App() {
           <SideBar />
           <ChatComponent />
         </ProtectedRoute>
+        <ProtectedRoute path='/servers' exact={true}>
+          <ServerBar />
+          <SideBar />
+        </ProtectedRoute>
         <ProtectedRoute path='/userServers/servers' exact={true} >
           <ServerBar />
+          <SideBar />
+          <ChatComponent />
         </ProtectedRoute>
         <ProtectedRoute path='/app' exact={true} >
           <h1>My Home Page</h1>

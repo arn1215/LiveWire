@@ -1,0 +1,39 @@
+.sb{
+    background-color: rgb(32,34,37);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 72px;
+    overflow-y: hidden;
+}
+
+.sb-icon-wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0px 5px;
+}
+
+.sb-server-icon{
+    background-color: aliceblue;
+    text-align: center;
+    justify-self: start;
+    color: black;
+    width: 48px;
+    height: 48px;
+    margin-top: 15px;
+    border-radius: 50%;
+    background-size: contain;
+    transition-property: border-radius;
+    transition-duration: .5s;
+}
+
+.sb-server-icon:hover{
+    background-color: aliceblue;
+    width: 48px;
+    height: 48px;
+    margin-top: 15px;
+    border-radius: 30%;
+    background-size: contain;
+}
