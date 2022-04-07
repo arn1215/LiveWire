@@ -11,7 +11,7 @@ const ServerDropdown = () => {
     const [newName, setNewName] = useState('')
     const currentServer = useSelector(state => state.oneServer.server);
     const userServers = useSelector(state => state.userServers)
-    const belongsToUser = userServers.find(server => server.name === serverName)
+    const belongsToUser = userServers.find(server => server.id === currentServer.id)
 
     const deleteServer
 
