@@ -42,6 +42,14 @@ def delete_channel(channel_id):
   db.session.commit()
   return f"Deleted Channel: {channel_id}"
 
+# get one channel by id
+@channel_routes.route('/<int:channel_id>', methods=['GET'])
+# @login_required
+def get_one_channel(channel_id):
+  channel = Channel.query.filter(Channel.id == channel_id).first()
+  return channel.to_dict()
+
+
 
 
 # get channels by server_id
