@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { useSelector, useDispatch } from "react-redux";
-
 import { createMessage, removeMessage, updateMessage } from "../../store/message";
+import * as messageActions from "../../store/message";
 import './Message.css'
 
 const MessageComponent = () => {
@@ -15,12 +15,11 @@ const MessageComponent = () => {
     const server = useSelector((state) => state.session.server)
     const [content, setContent] = useState("")
     const [edit, setEdit] = useState(false)
-    const [messageId, setMessageId] = useState(null)
+    const [editedMessageId, setEditedMessageId] = useState(null)
 
 
 
-    const onSubmit = async (e) => {
-        e.preventDefault()
+    const onSubmit = () => {
 
         let message = {
             content,
@@ -29,34 +28,52 @@ const MessageComponent = () => {
         }
         setContent("")
         console.log(message)
-        await dispatch(createMessage(message))
+        dispatch(messageActions.createMessage(message))
 
     }
 
 
     const onDelete = async (message) => {
-        await dispatch(removeMessage(message.id))
+        await dispatch(messageActions.removeMessage(message.id))
+    }
+
+    const onEdit = (messageId) => {
+        setEditedMessageId(messageId)
     }
 
     return (
         <>
             <div className="chat">
-
-
-
                 <div className="message-wrap">
                     {messages.map(message => (
-                        <>
-                            <div key={message.id} className="message">{message?.content}</div>
-                            <input className={`${edit}`} value={message.content}></input>
-                            {/* IF YOU OWN THE MESSAGE YOU CAN SEE EDIT AND DELETE BUTTONS */}
-                            {user.id === message.message_owner_id &&
+                        <div>
+                            {editedMessageId !== message.id && (
                                 <>
-                                    <button messageId={message.id} onClick={() => onDelete(message) }>delete</button>
-                                    <button onClick={() =>{ setEdit(!edit)}}>edit</button>
+                                    <div key={message.id} className="message">{message?.content}</div>
+                                    {user.id === message.message_owner_id && (
+                                        <div>
+                                            <button messageId={message.id} onClick={() => onDelete(message) }>delete</button>
+                                            <button onClick={() => {onEdit(message.id)}}>edit</button>
+                                        </div>
+                                    )}
                                 </>
-                            }
-                        </>
+                            )}
+
+                            {editedMessageId === message.id && (
+                                <>
+                                    <input className={`${edit}`} value={message.content}></input>
+                                    {user.id === message.message_owner_id && (
+                                        <div>
+                                            <button messageId={message.id} onClick={() => onDelete(message) }>delete</button>
+                                            <button onClick={() => {onSubmit()}}>Submit</button>
+                                        </div>
+                                    )}
+                                </>
+                            )}
+
+
+
+                        </div>
                     ))}
                 </div>
 
@@ -68,9 +85,9 @@ const MessageComponent = () => {
                 <div className="message-container">
 
                     <form onSubmit={onSubmit}>
-                        {/* 
-                        <textarea 
-                            placeholder={`Message #`} 
+                        {/*
+                        <textarea
+                            placeholder={`Message #`}
                             type="text"
                             value={content}
                             onChange={(e) => setContent(e.target.value)}
@@ -79,7 +96,7 @@ const MessageComponent = () => {
                         >
 
                         </textarea> */}
-                        {/* 
+                        {/*
                         <button type='submit'>Submit</button> */}
                         <input
                             className="chat-field"
