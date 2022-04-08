@@ -345,9 +345,9 @@ def seed_all():
     db.session.add(channel28)
     db.session.add(channel29)
     db.session.add(channel30)
-    db.session.add(channel)
-    db.session.add(channel30)
-    db.session.add(channel30)
+    db.session.add(dm1)
+    db.session.add(dm2)
+    db.session.add(dm3)
 
     db.session.commit()
 
@@ -365,6 +365,19 @@ def seed_all():
     db.session.add(message10)
     db.session.add(message11)
     db.session.add(message12)
+    db.session.add(messageDM1)
+    db.session.add(messageDM2)
+    db.session.add(messageDM3)
+    db.session.add(messageDM4)
+    db.session.add(messageDM5)
+    db.session.add(messageDM6)
+    db.session.add(messageDM7)
+    db.session.add(messageDM8)
+    db.session.add(messageDM9)
+    db.session.add(messageDM10)
+    db.session.add(messageDM11)
+    db.session.add(messageDM12)
+
 
 
 
