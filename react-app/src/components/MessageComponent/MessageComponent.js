@@ -10,10 +10,13 @@ const MessageComponent = () => {
 
     const user = useSelector((state) => state.session.user);
     // const messages = useSelector((state) => state.messages)
-    const messages = [{id: 1, content: "yo, dude", message_owner_id:1}, {id: 2, content: "bruh", message_owner_id:1}, {id: 3, content: "wagud ", message_owner_id:2}]
+    const messages = [{ id: 1, content: "yo, dude", message_owner_id: 1 }, { id: 2, content: "bruh", message_owner_id: 2 }, { id: 3, content: "wagud", message_owner_id: 1 }]
     const channel = useSelector((state) => state.channel)
     const server = useSelector((state) => state.session.server)
     const [content, setContent] = useState("")
+    const [edit, setEdit] = useState(false)
+    const [messageId, setMessageId] = useState(null)
+
 
 
     const onSubmit = async (e) => {
@@ -32,37 +35,36 @@ const MessageComponent = () => {
 
 
     const onDelete = async (message) => {
-      await dispatch(removeMessage(message.id))
+        await dispatch(removeMessage(message.id))
     }
 
     return (
         <>
             <div className="chat">
-            
-               
-              
-                    <div className="message-wrap">
-                        {messages.map(message => (
-                            <>
-                            <div key={message.id} className="message">{message?.content}</div>
-                                {/* IF YOU OWN THE MESSAGE YOU CAN SEE EDIT AND DELETE BUTTONS */}
-                                {user.id === message.message_owner_id &&  
-                                <>
-                                <button messageId={message.id} onClick={() => onDelete(message)}>delete</button>
-                                <button>edit</button>
-                                </>
-                                }
-                           
-        
-                            </>
-                        ))}
-                    </div>
-                   
-           
-                
-                
 
-       
+
+
+                <div className="message-wrap">
+                    {messages.map(message => (
+                        <>
+                            <div key={message.id} className="message">{message?.content}</div>
+                            <input className={`${edit}`} value={message.content}></input>
+                            {/* IF YOU OWN THE MESSAGE YOU CAN SEE EDIT AND DELETE BUTTONS */}
+                            {user.id === message.message_owner_id &&
+                                <>
+                                    <button messageId={message.id} onClick={() => onDelete(message) }>delete</button>
+                                    <button onClick={() =>{ setEdit(!edit)}}>edit</button>
+                                </>
+                            }
+                        </>
+                    ))}
+                </div>
+
+
+
+
+
+
                 <div className="message-container">
 
                     <form onSubmit={onSubmit}>
