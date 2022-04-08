@@ -8,7 +8,7 @@ function CreateServerModal() {
 
     return (
         <>
-          <button onClick={() => setShowModal(true)}>+</button>
+          <button className='cs-button' onClick={() => setShowModal(true)}>+</button>
           {showModal && (
             <Modal onClose={() => setShowModal(false)}>
               <CreateServer />
@@ -17,19 +17,5 @@ function CreateServerModal() {
         </>
       );
     }
-
-
-
-//     return (
-//     <>
-//         <button id='buttonCard' className='cs-button' onClick={() => setShowModal(true)}>+</button>
-//         {showModal && (
-//             <Modal onClose={() => setShowModal(false)}>
-//                 <CreateServer />
-//             </Modal>
-//         )}
-//     </>
-//     );
-// }
 
 export default CreateServerModal;

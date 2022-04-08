@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as serverActions from "../../store/server";
 import CreateServerModal from "../CreateServer";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import './ServerBar.css'
 
 const ServerBar = () => {

@@ -43,6 +43,16 @@ function App() {
         <Route path='/register' exact={true}>
           <SignUpForm />
         </Route>
+        <ProtectedRoute path='/@me' exact={true} >
+          <ServerBar />
+          <SideBar />
+          <ChatComponent />
+        </ProtectedRoute>
+        <ProtectedRoute path='/@me/:channelId' exact={true} >
+          <ServerBar />
+          <SideBar />
+          <ChatComponent />
+        </ProtectedRoute>
         <ProtectedRoute path='/users' exact={true} >
           <UsersList/>
         </ProtectedRoute>

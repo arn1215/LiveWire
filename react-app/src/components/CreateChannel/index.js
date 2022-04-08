@@ -18,18 +18,4 @@ function CreateChannelModal() {
       );
     }
 
-
-
-//     return (
-//     <>
-//         <button id='buttonCard' className='cs-button' onClick={() => setShowModal(true)}>+</button>
-//         {showModal && (
-//             <Modal onClose={() => setShowModal(false)}>
-//                 <CreateServer />
-//             </Modal>
-//         )}
-//     </>
-//     );
-// }
-
 export default CreateChannelModal;
