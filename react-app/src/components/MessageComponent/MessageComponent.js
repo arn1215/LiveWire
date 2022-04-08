@@ -32,6 +32,15 @@ const MessageComponent = () => {
 
     }
 
+    const onSubmitEdit = (messageId) => {
+        let updatedMessage = {
+            message_id: messageId,
+            content: editedMessage
+        }
+        setEditedMessage("")
+        dispatch(messageActions.updateMessage(updatedMessage))
+    }
+
 
     const onDelete = async (message) => {
         await dispatch(messageActions.removeMessage(message.id))
@@ -69,7 +78,7 @@ const MessageComponent = () => {
                                     {user.id === message.message_owner_id && (
                                         <div>
                                             <button messageId={message.id} onClick={() => onDelete(message) }>delete</button>
-                                            <button onClick={() => {onSubmit()}}>Submit</button>
+                                            <button onClick={() => {onSubmitEdit(message.id)}}>Submit</button>
                                         </div>
                                     )}
                                 </>
