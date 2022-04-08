@@ -7,7 +7,7 @@ import UserDMs from './components/ChannelBar/UserDMs';
 import Parent from './components/Parent'
 import ServerChannels from './components/ChannelBar/ServerChannels';
 import ServerBar from './components/ServerBar/ServerBar.jsx';
-import ChatComponent from './components/ChatComponent';
+import MessageComponent from './components/MessageComponent/MessageComponent'
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
