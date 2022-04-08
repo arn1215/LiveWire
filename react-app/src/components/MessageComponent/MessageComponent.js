@@ -8,27 +8,24 @@ const MessageComponent = () => {
     const dispatch = useDispatch()
 
     const user = useSelector((state) => state.session.user);
-    // const messages = useSelector((state) => state.messages)
-    const messages = [{ id: 1, content: "yo, dude", message_owner_id: 1 }, { id: 2, content: "bruh", message_owner_id: 2 }, { id: 3, content: "wagud", message_owner_id: 1 }]
-    const channel = useSelector((state) => state.channel)
-    const server = useSelector((state) => state.session.server)
-    const [content, setContent] = useState("")
-    const [editedMessageId, setEditedMessageId] = useState(null)
-    const [editedMessage, setEditedMessage] = useState('')
+    const messages = useSelector((state) => state.messages);
+    const channel = useSelector((state) => state.channel);
+    const server = useSelector((state) => state.session.server);
+    const [content, setContent] = useState("");
+    const [editedMessageId, setEditedMessageId] = useState(null);
+    const [editedMessage, setEditedMessage] = useState('');
 
 
 
     const onSubmit = () => {
 
         let message = {
-            content,
             message_owner_id: user.id,
-            channel_id: channel.id
+            channel_id: channel.id,
+            content
         }
         setContent("")
-        console.log(message)
         dispatch(messageActions.createMessage(message))
-
     }
 
     const onSubmitEdit = (messageId) => {
