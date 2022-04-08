@@ -45,6 +45,9 @@ def seed_all():
         username='destroyer96', email='destroyer@aa.io', password='password')
 
     #server seeds
+    root = Server(
+         owner_id=1, name='root', icon='https://cdn.discordapp.com/attachments/920118561173798923/962016283442958417/discordHomeIcon.png', invite_URL= (f'{randint(100, 10000)}'))
+
     server1 = Server(
          owner_id=1, name='Test server', icon='https://e7.pngegg.com/pngimages/621/237/png-clipart-what-emoji-2-ghost-it-coque-happy-ghost-emoji-text-logo.png', invite_URL= (f'{randint(100, 10000)}'))
 

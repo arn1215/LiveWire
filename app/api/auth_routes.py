@@ -75,7 +75,7 @@ def sign_up():
         root = Server(
             owner_id=user,
             name="root",
-            icon="www.placeholder.com",
+            icon="https://cdn.discordapp.com/attachments/920118561173798923/962016283442958417/discordHomeIcon.png",
             invite_URL=(f'{randint(100, 10000)}'),
             users_many=[user]
         )
