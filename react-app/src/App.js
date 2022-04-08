@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import LoginForm from './components/auth/LoginPage';
 import SignUpForm from './components/auth/RegisterPage';
-import Main from './components/Main/index'
+import Main from './components/Server/Server'
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
@@ -59,8 +59,9 @@ function App() {
           <Main />
           {/* <MessageComponent /> */}
         </ProtectedRoute>
-        <ProtectedRoute path='/app' exact={true} >
-          <h1>My Home Page</h1>
+        <ProtectedRoute path='/servers/channels/:channelId' exact={true} >
+          <Main />
+          {/* <MessageComponent /> */}
         </ProtectedRoute>
         <Route path='*'>
           <ErrorPage />

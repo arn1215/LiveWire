@@ -19,8 +19,7 @@ const ServerChannels = () => {
             <div className="c-wrapper">
                 {channels.map(channel => (
                     <div key={channel.id} className="c-channels">
-                        <Link></Link>
-                        {`# ${channel.name}`}
+                        <Link>{`# ${channel.name}`}</Link>
                     </div>
                 ))}
             </div>
