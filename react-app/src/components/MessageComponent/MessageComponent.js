@@ -14,8 +14,8 @@ const MessageComponent = () => {
     const channel = useSelector((state) => state.channel)
     const server = useSelector((state) => state.session.server)
     const [content, setContent] = useState("")
-    const [edit, setEdit] = useState(false)
     const [editedMessageId, setEditedMessageId] = useState(null)
+    const [editedMessage, setEditedMessage] = useState('')
 
 
 
@@ -41,6 +41,10 @@ const MessageComponent = () => {
         setEditedMessageId(messageId)
     }
 
+    const handleOnChange = (e) => {
+        setEditedMessage(e.target.value)
+    }
+
     return (
         <>
             <div className="chat">
@@ -61,7 +65,7 @@ const MessageComponent = () => {
 
                             {editedMessageId === message.id && (
                                 <>
-                                    <input className={`${edit}`} value={message.content}></input>
+                                    <input value={editedMessage} onChange={handleOnChange}></input>
                                     {user.id === message.message_owner_id && (
                                         <div>
                                             <button messageId={message.id} onClick={() => onDelete(message) }>delete</button>
