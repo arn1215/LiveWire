@@ -1,0 +1,10 @@
+.c {
+    background-color: rgb(47,49,54);
+    width: 240px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    overflow-y: scroll;
+    scrollbar-width: thin;
+}
