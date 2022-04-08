@@ -10,6 +10,11 @@ const ServerBar = () => {
     return (
         <div className="sb">
             <div className="sb-icon-wrapper">
+            {userServers.slice(1).map(server => (
+                    <Link key={server.id} to={`/servers/${server.id}`}>
+                        <img src={server.icon} alt="" className="sb-server-icon" />
+                    </Link>
+                ))}
                 {userServers.slice(1).map(server => (
                     <Link key={server.id} to={`/servers/${server.id}`}>
                         <img src={server.icon} alt="" className="sb-server-icon" />

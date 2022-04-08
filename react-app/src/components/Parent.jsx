@@ -8,6 +8,7 @@ function Parent() {
     const dispatch = useDispatch();
     const [isLoaded, setIsLoaded] = useState(false)
     const user = useSelector(state => state.session.user);
+    console.log('user....', user)
 
     useEffect(() => {
         const loaded = async () => {

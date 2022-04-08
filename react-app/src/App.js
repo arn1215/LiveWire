@@ -50,14 +50,8 @@ function App() {
           <SignUpForm />
         </Route>
         <ProtectedRoute path='/@me/:serverId' exact={true} >
-          <ServerBar />
-          <UserDMs />
-          <ChatComponent />
-        </ProtectedRoute>
-        <ProtectedRoute path='/@me/:channelId' exact={true} >
-          <ServerBar />
-          <UserDMs />
-          <ChatComponent />
+          <Parent />
+          <MessageComponent />
         </ProtectedRoute>
         <ProtectedRoute path='/users' exact={true} >
           <UsersList/>
@@ -67,7 +61,7 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/servers/:serverId' exact={true} >
           <Parent />
-          <ChatComponent />
+          <MessageComponent />
         </ProtectedRoute>
         <ProtectedRoute path='/app' exact={true} >
           <h1>My Home Page</h1>
