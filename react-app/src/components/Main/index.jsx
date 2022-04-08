@@ -1,14 +1,16 @@
+import './index.css'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import ServerChannels from './ChannelBar/ServerChannels';
-import * as serverActions from "../store/server";
-import ServerBar from './ServerBar/ServerBar';
+import ServerChannels from '../ChannelBar/ServerChannels';
+import ServerBar from '../ServerBar/ServerBar';
+// import MessageComponent from '../MessageComponent/MessageComponent';
+import * as serverActions from "../../store/server";
 
 function Parent() {
     const dispatch = useDispatch();
     const [isLoaded, setIsLoaded] = useState(false)
     const user = useSelector(state => state.session.user);
-    console.log('user....', user)
+
 
     useEffect(() => {
         const loaded = async () => {
@@ -22,6 +24,7 @@ function Parent() {
     <div>
         <ServerBar />
         <ServerChannels />
+        {/* <MessageComponent /> */}
     </div>
     )
 }
