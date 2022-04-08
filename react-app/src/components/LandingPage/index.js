@@ -1,8 +1,11 @@
 import { NavLink } from "react-router-dom";
 import './LandingPage.css'
 import DemoUser from '../DemoUser'
+import { useSelector } from "react-redux";
 
 const LandingPage = () => {
+    const user = useSelector(state => state.session.user)
+
     return (
         <div className='page-div'>
             <div className='nav-div'>
@@ -33,7 +36,7 @@ const LandingPage = () => {
                     </div>
 
                     <div className='top-btn-div'>
-                        <NavLink className='open-livewire-btn' to='/@me'>
+                        <NavLink className='open-livewire-btn' to={`/@me/${user.id}`}>
                             <button className='livewire-register' type='button'>Open LiveWire in your browser</button>
                         </NavLink>
                     </div>
