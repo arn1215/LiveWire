@@ -4,9 +4,10 @@ from random import randint
 # Adds a demo user, you can add other users here if you want
 def seed_all():
 
-    #user seeds
+    ### user seeds
+
     demo = User(
-        username='Demo', email='demo@aa.io', password='password')
+        username='Demo', email='demo@aa.io', password='password', root_server=1)
 
     marnie = User(
         username='marnie', email='marnie@aa.io', password='password')
@@ -44,7 +45,8 @@ def seed_all():
     destroyer = User(
         username='destroyer96', email='destroyer@aa.io', password='password')
 
-    #server seeds
+    ### server seeds
+
     root = Server(
          owner_id=1, name='root', icon='https://cdn.discordapp.com/attachments/920118561173798923/962016283442958417/discordHomeIcon.png', invite_URL= (f'{randint(100, 10000)}'))
 
@@ -78,15 +80,16 @@ def seed_all():
     server10 = Server(
          owner_id=1, name='LiveWire Gang', icon='https://pbs.twimg.com/tweet_video_thumb/D29rDOtW0AA7CJI.jpg', invite_URL= (f'{randint(100, 10000)}'))
 
-    #channel seeds
+    ###channel seeds
+
     channel1 = Channel(
-          name='Test Channel 1', server_id=1)
+          name='Test Channel 1', server_id=2)
 
     channel2 = Channel(
-          name='Test Channel 2', server_id=1)
+          name='Test Channel 2', server_id=2)
 
     channel3 = Channel(
-          name='Test Channel 3', server_id=1)
+          name='Test Channel 3', server_id=2)
 
     channel4 = Channel(
           name='Test Channel 1', server_id=2)
@@ -95,7 +98,7 @@ def seed_all():
           name='Test Channel 2', server_id=2)
 
     channel6 = Channel(
-          name='Test Channel 3', server_id=2)
+          name='Test Channel 3', server_id=3)
 
     channel7 = Channel(
           name='Are Dogs Eggs?', server_id=3)
@@ -169,7 +172,19 @@ def seed_all():
     channel30 = Channel(
           name='Memes Only', server_id=10)
 
-    #message seeds
+    ### dm channels for demo user
+
+    dm1 = Channel(
+          name='marnie chat', server_id=1)
+
+    dm2 = Channel(
+          name='bobbie chat', server_id=1)
+
+    dm3 = Channel(
+          name='betty chat', server_id=1)
+
+    ### message seeds
+
     message1 = Message(
         message_owner_id=1, channel_id=16, content="I've come to the conclusion that the world is flat.")
 
@@ -206,11 +221,52 @@ def seed_all():
     message12 = Message(
         message_owner_id=8, channel_id=22, content="Twitch!!")
 
+    ### conversation 1
+
+    messageDM1 = Message(
+        message_owner_id=1, channel_id=31, content="Hey whats going on marnie?")
+
+    messageDM2 = Message(
+        message_owner_id=2, channel_id=31, content="Hey, not much! We still on for lunch?")
+
+    messageDM3 = Message(
+        message_owner_id=1, channel_id=31, content="You betcha! I'll see you soon!")
+
+    ### conversation 2
+
+    messageDM4 = Message(
+        message_owner_id=1, channel_id=32, content="Hey you still get on COD buddie?")
+
+    messageDM5 = Message(
+        message_owner_id=3, channel_id=32, content="Yeah, lemme grab a drink and I'll hop on")
+
+    messageDM6 = Message(
+        message_owner_id=1, channel_id=32, content="You think we actually win any today lol?")
+
+    messageDM7 = Message(
+        message_owner_id=3, channel_id=32, content="I wouldn't hold your breath lol")
+
+    messageDM8 = Message(
+        message_owner_id=1, channel_id=32, content="Glad to see its been a good investment of time, I see you on now, I'll shoot the invite")
+
+   ### conversation 3
+
+    messageDM9 = Message(
+        message_owner_id=1, channel_id=33, content="Hey betty, whats the homework again? I fell asleep right before class ended lol")
+
+    messageDM10 = Message(
+        message_owner_id=4, channel_id=33, content="I think we just needed to read chapter 11/12 for next monday")
+
+    messageDM11 = Message(
+        message_owner_id=1, channel_id=33, content="Okay awesome! You're a total lifesaver!!!!")
+
+    messageDM12 = Message(
+        message_owner_id=4, channel_id=33, content="Any time friend!! Hope you have a good weekend!"
+    )
 
 
+    # users
 
-
-    #users
     db.session.add(demo)
     db.session.add(marnie)
     db.session.add(bobbie)
@@ -228,7 +284,8 @@ def seed_all():
 
     db.session.commit()
 
-    #servers
+    # servers
+
     db.session.add(server1)
     db.session.add(server2)
     db.session.add(server3)
@@ -254,7 +311,8 @@ def seed_all():
     db.session.commit()
 
 
-    #channels
+    # channels
+
     db.session.add(channel1)
     db.session.add(channel2)
     db.session.add(channel3)
@@ -288,7 +346,8 @@ def seed_all():
 
     db.session.commit()
 
-    #messages
+    # messages
+
     db.session.add(message1)
     db.session.add(message2)
     db.session.add(message3)
