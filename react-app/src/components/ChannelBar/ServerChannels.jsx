@@ -1,14 +1,11 @@
 import './Channels.css'
 import CreateChannel from '../CreateChannel/index';
-import { useDispatch, useSelector } from 'react-redux';
-import * as channelActions from '../../store/channel';
-import * as serverActions from "../../store/server";
-import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
 const ServerChannels = () => {
-    const dispatch = useDispatch();
     const { serverId } = useParams();
+    
     const server = useSelector(state => (state.server.userServers))
     useSelector(state => state.server)
 

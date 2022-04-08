@@ -11,14 +11,17 @@ const UserChannels = () => {
     const userId = useSelector(state => state.session.user.id);
 
     useEffect(() => {
-        // dispatch(channelActions.loadAllChannels(user.id));
-    }, []);
+        const loaded = async () => {
+            dispatch(channelActions.loadAllChannels(userId));
+            setIsLoaded(true)
+        }
+        loaded()
+    }, [dispatch]);
 
 
-    return (
+    return isLoaded && (
         <div className="c">
             <div className="c-wrapper">
-
             </div>
         <CreateChannel />
         </div>

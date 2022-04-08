@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import LoginForm from './components/auth/LoginPage';
 import SignUpForm from './components/auth/RegisterPage';
 import UserDMs from './components/ChannelBar/UserDMs';
-import Parent from './components/Parent'
+import Parent from './components/ServerBar/Parent'
 import ServerChannels from './components/ChannelBar/ServerChannels';
 import ServerBar from './components/ServerBar/ServerBar.jsx';
 import ChatComponent from './components/ChatComponent';

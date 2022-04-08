@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import ServerChannels from './ChannelBar/ServerChannels';
-import * as serverActions from "../store/server";
-import ServerBar from './ServerBar/ServerBar';
+import ServerChannels from '../ChannelBar/ServerChannels';
+import * as serverActions from "../../store/server";
+import ServerBar from './ServerBar';
 
 function Parent() {
     const dispatch = useDispatch();
