@@ -4,8 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import LoginForm from './components/auth/LoginPage';
 import SignUpForm from './components/auth/RegisterPage';
 import ProtectedRoute from './components/auth/ProtectedRoute';
-import UsersList from './components/UsersList';
-import User from './components/User';
 import ServerNav from './components/ServerNav/ServerNav';
 import LandingPage from './components/LandingPage';
 import ErrorPage from './components/ErrorPage'
@@ -48,12 +46,6 @@ function App() {
         <ProtectedRoute path='/@me/:serverId' exact={true} >
           <ServerNav />
           {/* <MessageComponent /> */}
-        </ProtectedRoute>
-        <ProtectedRoute path='/users' exact={true} >
-          <UsersList/>
-        </ProtectedRoute>
-        <ProtectedRoute path='/users/:userId' exact={true} >
-          <User />
         </ProtectedRoute>
         <ProtectedRoute path='/servers/:serverId' exact={true} >
           <ServerNav />
