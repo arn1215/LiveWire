@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import LoginForm from './components/auth/LoginPage';
 import SignUpForm from './components/auth/RegisterPage';
 import UserDMs from './components/ChannelBar/UserDMs';
-import Parent from './components/ServerBar/Parent'
+import Parent from './components/Parent'
 import ServerChannels from './components/ChannelBar/ServerChannels';
 import ServerBar from './components/ServerBar/ServerBar.jsx';
 import ChatComponent from './components/ChatComponent';
@@ -14,15 +14,21 @@ import User from './components/User';
 import LandingPage from './components/LandingPage';
 import ErrorPage from './components/ErrorPage'
 import { authenticate } from './store/session';
+import * as serverActions from "./store/server";
 
 
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
+  const user = useSelector(state => state.session.user);
 
   useEffect(() => {
     (async () => {
-      await dispatch(authenticate());
+      await dispatch(authenticate()).then(() => {
+        if (user) {
+          dispatch(serverActions.loadUsersServers(user.id))
+        }
+      })
       setLoaded(true);
     })();
   }, [dispatch]);
@@ -43,7 +49,7 @@ function App() {
         <Route path='/register' exact={true}>
           <SignUpForm />
         </Route>
-        <ProtectedRoute path='/@me' exact={true} >
+        <ProtectedRoute path='/@me/:serverId' exact={true} >
           <ServerBar />
           <UserDMs />
           <ChatComponent />
