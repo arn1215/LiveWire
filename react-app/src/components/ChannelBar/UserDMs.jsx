@@ -1,35 +1,28 @@
-import './SideBar.css'
+import './Channels.css'
 import CreateChannel from '../CreateChannel/index';
 import { useDispatch, useSelector } from 'react-redux';
 import * as channelActions from '../../store/channel';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
-const Channels = () => {
+const UserChannels = () => {
     const dispatch = useDispatch();
     const [isLoaded, setIsLoaded] = useState(false);
     const userId = useSelector(state => state.session.user.id);
-    const server = useSelector(state => (state.server.oneServer))
-    console.log('this is server...', server)
-
 
     useEffect(() => {
-        const loaded = async () => {
-
-        }
-        loaded()
-    }, [dispatch]);
+        // dispatch(channelActions.loadAllChannels(user.id));
+    }, []);
 
 
     return (
-        isLoaded && (
         <div className="c">
-            <div className="sb-channels-wrapper">
-                {/* {channel.map} */}
+            <div className="c-wrapper">
+
             </div>
         <CreateChannel />
         </div>
-        )
     )
 }
 
-export default Channels;
+export default UserChannels;

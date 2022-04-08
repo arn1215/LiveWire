@@ -12,9 +12,6 @@ const LandingPage = () => {
                             <div className='svg-logo'>SVG LOGO</div>
                         </NavLink>
                         <div>
-                            {/* <NavLink className='nav-btn' to='/'>
-
-                            </NavLink> */}
                             <DemoUser />
                             <NavLink className='nav-btn' to='/login'>
                                 Login
@@ -36,7 +33,7 @@ const LandingPage = () => {
                     </div>
 
                     <div className='top-btn-div'>
-                        <NavLink className='open-livewire-btn' to='/userServers/servers'>
+                        <NavLink className='open-livewire-btn' to='/@me'>
                             <button className='livewire-register' type='button'>Open LiveWire in your browser</button>
                         </NavLink>
                     </div>

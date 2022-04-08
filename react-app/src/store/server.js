@@ -135,8 +135,8 @@ export const removeServer = (id) => async (dispatch) => {
 
 const serversReducer = (state={
     oneServer: {},
-    allServers: [],
-    userServers: [],
+    allServers: {},
+    userServers: {},
 }, action) => {
     let newState = {...state}
 
@@ -153,7 +153,7 @@ const serversReducer = (state={
         }
         case LOAD_USER_SERVERS: {
             action.user_Servers.forEach(server => {
-                newState.userServers[server.id] = server;
+                newState.userServers[server.id] = server
             })
             return newState;
         }

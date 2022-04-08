@@ -9,30 +9,20 @@ const ServerBar = () => {
     const dispatch = useDispatch();
     const [isLoaded, setIsLoaded] = useState(false)
     const userId = useSelector(state => state.session.user.id);
-    const userServers = useSelector(state => (state.server.userServers))
-    const servers = useSelector(state => (state.server))
+    const userServers = useSelector(state => Object.values(state.server.userServers))
 
-    useEffect(() => {
-        const loaded = async () => {
-            await dispatch(serverActions.loadUsersServers(userId))
-            setIsLoaded(true)
-        }
-        loaded()
-    }, [dispatch]);
 
     return (
-        isLoaded && (
-            <div className="sb">
-                <div className="sb-icon-wrapper">
-                    {userServers.map(server => (
-                        <Link key={server.id} onClick={() => dispatch(serverActions.loadServerById(server.id))} to={`/servers/${server.id}`}>
-                            <img src={server.icon} alt="" className="sb-server-icon" />
-                        </Link>
-                    ))}
-                </div>
-                <CreateServerModal />
+        <div className="sb">
+            <div className="sb-icon-wrapper">
+                {userServers.map(server => (
+                    <Link key={server.id} to={`/servers/${server.id}`}>
+                        <img src={server.icon} alt="" className="sb-server-icon" />
+                    </Link>
+                ))}
             </div>
-        )
+            <CreateServerModal />
+        </div>
     );
 };
 

@@ -19,39 +19,8 @@ body {
 #root {
     height: 100%;
     display: flex;
-    flex-direction: row;
+    /* flex-direction: row; */
 }
-
-/* SERVER BAR WHERE SERVERS APPEAR ============================================================================================================================== */
-
-.server-bar {
-    background-color: rgb(32,34,37);
-    height: 100%;
-    display: flex;
-    align-items: center;
-    width: 72px;
-    overflow-y: scroll;
-}
-
-/* SIDE BAR WHERE CHANNELS AND DMS APPEAR ======================================================================================================================= */
-.side-bar {
-    background-color: rgb(47,49,54);
-    width: 240px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
-    overflow-y: scroll;
-    scrollbar-width: thin;
-}
-
-.server-info {
-    height: 40%;
-    background-color: rgb(58, 59, 63);
-    border-radius: 5px;
-    padding: 20px;
-}
-
 
 /* Channel Cards ===========================================*/
 
@@ -74,18 +43,6 @@ body {
     background-color: rgb(57,60,67)
 }
 
-/* Channel Cards ===========================================*/
-
-
-/* SIDE BAR WHERE CHANNELS AND DMS APPEAR ======================================================================================================================= */
-
-
-
-
-
-
-
-
 
 /* MAIN CHAT DIV  ============================================================================================================================================== */
 
@@ -96,18 +53,7 @@ body {
     flex-direction: column;
     justify-content: space-between;
     padding: 40px;
-
-
 }
-
-
-/* MESSAGE CARD ========================================== */
-.message-card {}
-
-/* MESSAGE CARD ========================================== */
-
-
-
 
 /* CHAT TEXT FIELD CONTAINER ================================== */
 .chat-field {
@@ -118,25 +64,10 @@ body {
     outline: none;
     padding: 8px;
 }
-/* CHAT TEXT FIELD CONTAINER ================================== */
-
-/* MAIN CHAT DIV  ============================================================================================================================================== */
-
-
-
-
-
-
-
-
-
-
 
 ::-webkit-scrollbar {
     width: 5px;
 }
-
-
 
 /* VALIDATION ERRORS ===================================================*/
 
@@ -145,4 +76,4 @@ body {
     font-size: 20px;
     margin: 10px;
     text-align: center;
-  }
+}

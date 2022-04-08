@@ -3,9 +3,9 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import LoginForm from './components/auth/LoginPage';
 import SignUpForm from './components/auth/RegisterPage';
-// import SignUpForm from './components/auth/SignUpForm';
-// import NavBar from './components/NavBar';
-import SideBar from './components/ChannelBar/SideBar';
+import UserDMs from './components/ChannelBar/UserDMs';
+import Parent from './components/Parent'
+import ServerChannels from './components/ChannelBar/ServerChannels';
 import ServerBar from './components/ServerBar/ServerBar.jsx';
 import ChatComponent from './components/ChatComponent';
 import ProtectedRoute from './components/auth/ProtectedRoute';
@@ -45,12 +45,12 @@ function App() {
         </Route>
         <ProtectedRoute path='/@me' exact={true} >
           <ServerBar />
-          <SideBar />
+          <UserDMs />
           <ChatComponent />
         </ProtectedRoute>
         <ProtectedRoute path='/@me/:channelId' exact={true} >
           <ServerBar />
-          <SideBar />
+          <UserDMs />
           <ChatComponent />
         </ProtectedRoute>
         <ProtectedRoute path='/users' exact={true} >
@@ -60,17 +60,7 @@ function App() {
           <User />
         </ProtectedRoute>
         <ProtectedRoute path='/servers/:serverId' exact={true} >
-          <ServerBar />
-          <SideBar />
-          <ChatComponent />
-        </ProtectedRoute>
-        <ProtectedRoute path='/servers' exact={true}>
-          <ServerBar />
-          <SideBar />
-        </ProtectedRoute>
-        <ProtectedRoute path='/userServers/servers' exact={true} >
-          <ServerBar />
-          <SideBar />
+          <Parent />
           <ChatComponent />
         </ProtectedRoute>
         <ProtectedRoute path='/app' exact={true} >

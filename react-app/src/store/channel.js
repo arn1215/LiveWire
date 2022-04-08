@@ -43,8 +43,8 @@ const editChannel = (channel) => ({
 })
 
 //Thunks
-export const loadAllChannels = (server) => async (dispatch) => {
-    const res = await fetch(`/api/channels/byServer/${server.id}`);
+export const loadAllChannels = (serverId) => async (dispatch) => {
+    const res = await fetch(`/api/channels/byServer/${serverId}`);
 
     if (res.ok) {
         const channels = await res.json();
@@ -52,14 +52,14 @@ export const loadAllChannels = (server) => async (dispatch) => {
     }
 };
 
-export const fetchChannel = (channel) => async (dispatch) => {
-    const res = await fetch(`/api/channels/${channel.id}}`);
+// export const fetchChannels = (channel) => async (dispatch) => {
+//     const res = await fetch(`/api/channels/${channel.id}}`);
 
-    if (res.ok) {
-        const channel = await res.json();
-        dispatch(getChannel(channel["channel"]));
-    }
-}
+//     if (res.ok) {
+//         const channel = await res.json();
+//         dispatch(getChannel(channel["channel"]));
+//     }
+// }
 
 export const updateChannel = (channel) => async (dispatch) => {
     const res = await fetch(`/api/channels/${channel.id}`, {
@@ -83,7 +83,10 @@ export const removeChannel = (id) => async (dispatch) => {
         },
         body: JSON.stringify({ id })
     })
-    dispatch(deleteChannel(id))
+    if (res.ok) {
+        const id = await res.json()
+        dispatch(deleteChannel(id))
+    }
 }
 
 
@@ -113,28 +116,23 @@ export default function channelReducer(state = {
 }, action) {
     let newState = {...state};
     switch (action.type) {
-        case GET_CHANNEL: {
+        case GET_CHANNEL:
             newState.currentChannel.channels = action.channel
             return newState;
-        };
-        case GET_ALL_CHANNELS: {
+        case GET_ALL_CHANNELS:
             action.channels.forEach(channel => {
                 newState.allChannels[channel.id] = channel;
             });
             return newState;
-        };
-        case ADD_CHANNEL: {
+        case ADD_CHANNEL:
             newState.allChannels[action.payload.id] = action.payload
             return newState;
-        };
-        case EDIT_CHANNEL: {
+        case EDIT_CHANNEL:
             newState.allChannels[action.payload.id] = action.payload
             return newState;
-        };
-        case DELETE_CHANNEL: {
+        case DELETE_CHANNEL:
             delete newState.allChannels[action.payload.id]
             return newState;
-        };
         default:
             return state
     }
