@@ -2,9 +2,9 @@ import React from "react";
 import { useSelector } from "react-redux";
 import CreateServerModal from "../CreateServer";
 import { Link } from "react-router-dom";
-import './ServerBar.css'
+import './ServerList.css'
 
-const ServerBar = () => {
+const ServerNav = () => {
     const userServers = useSelector(state => Object.values(state.server.userServers))
 
     return (
@@ -26,4 +26,4 @@ const ServerBar = () => {
     );
 };
 
-export default ServerBar;
+export default ServerNav;

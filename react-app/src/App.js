@@ -3,10 +3,8 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import LoginForm from './components/auth/LoginPage';
 import SignUpForm from './components/auth/RegisterPage';
-import Main from './components/Main/index'
 import ProtectedRoute from './components/auth/ProtectedRoute';
-import UsersList from './components/UsersList';
-import User from './components/User';
+import ServerNav from './components/ServerNav/ServerNav';
 import LandingPage from './components/LandingPage';
 import ErrorPage from './components/ErrorPage'
 import { authenticate } from './store/session';
@@ -46,21 +44,16 @@ function App() {
           <SignUpForm />
         </Route>
         <ProtectedRoute path='/@me/:serverId' exact={true} >
-          <Main />
+          <ServerNav />
           {/* <MessageComponent /> */}
-        </ProtectedRoute>
-        <ProtectedRoute path='/users' exact={true} >
-          <UsersList/>
-        </ProtectedRoute>
-        <ProtectedRoute path='/users/:userId' exact={true} >
-          <User />
         </ProtectedRoute>
         <ProtectedRoute path='/servers/:serverId' exact={true} >
-          <Main />
+          <ServerNav />
           {/* <MessageComponent /> */}
         </ProtectedRoute>
-        <ProtectedRoute path='/app' exact={true} >
-          <h1>My Home Page</h1>
+        <ProtectedRoute path='/servers/channels/:channelId' exact={true} >
+          <ServerNav />
+          {/* <MessageComponent /> */}
         </ProtectedRoute>
         <Route path='*'>
           <ErrorPage />
