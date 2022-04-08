@@ -286,6 +286,7 @@ def seed_all():
 
     # servers
 
+    db.session.add(root)
     db.session.add(server1)
     db.session.add(server2)
     db.session.add(server3)
@@ -297,6 +298,7 @@ def seed_all():
     db.session.add(server9)
     db.session.add(server10)
 
+    root.users_many.append(demo);
     server1.users_many.append(demo);
     server2.users_many.append(demo);
     server3.users_many.append(marnie);
@@ -342,6 +344,9 @@ def seed_all():
     db.session.add(channel27)
     db.session.add(channel28)
     db.session.add(channel29)
+    db.session.add(channel30)
+    db.session.add(channel)
+    db.session.add(channel30)
     db.session.add(channel30)
 
     db.session.commit()
