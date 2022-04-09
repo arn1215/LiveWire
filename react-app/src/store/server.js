@@ -98,6 +98,16 @@ export const loadUsersServers = (userId) => async (dispatch) => {
     }
 }
 
+export const removeUsersServers = (serverId, userId) => async (dispatch) => {
+    const res = await fetch(`/api/servers/leaveServer/${serverId}/${userId}`, { method: 'DELETE'});
+
+    if (res.ok) {
+        const servers = await res.json();
+        const userServers = servers['servers'];
+        dispatch(loadUserServers(userServers));
+    }
+}
+
 //create new server
 
 export const createServer = ({ owner_id, name, icon, invite_URL }) => async (dispatch) => {
