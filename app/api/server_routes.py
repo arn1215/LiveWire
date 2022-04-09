@@ -78,9 +78,8 @@ def load_on_login(user_id):
 @server_routes.route('/leaveServer/<int:server_id>/<int:user_id>')
 # @login_required
 def remove_server_user(server_id, user_id):
-  server_user = server_users.query.filter(server_users.server_join_id == server_id, server_users.user_join_id == user_id).one()
-  db.session.delete(server_user)
-  db.session.commit()
+  d = server_users.delete().where(server_users.c.server_join_id == server_id, server_users.c.user_join_id == user_id)
+  d.execute()
   return f"Removed server {server_id} from user {user_id}"
 
 
