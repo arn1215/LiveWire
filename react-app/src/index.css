@@ -16,34 +16,6 @@ body {
     margin: 0
 }
 
-#root {
-    height: 100%;
-    display: flex;
-    /* flex-direction: row; */
-}
-
-/* Channel Cards ===========================================*/
-
-.channel-card {
-    width: 90%;
-    border-radius: 4px;
-    height: 4%;
-    background-color: rgb(47,49,54);
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    -webkit-box-shadow: var(--elevation-low);
-    box-shadow: var(--elevation-low);
-}
-
-.channel-card:hover {
-    width: 90%;
-    border-radius: 4px;
-    height: 4%;
-    background-color: rgb(57,60,67)
-}
-
-
 /* MAIN CHAT DIV  ============================================================================================================================================== */
 
 .chat {

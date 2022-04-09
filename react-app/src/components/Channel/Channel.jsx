@@ -1,4 +1,5 @@
 import React from 'react'
+import './channel.css'
 
 function Channel() {
     return (

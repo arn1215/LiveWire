@@ -53,7 +53,6 @@ export const createMessage = ({ channel_id, message_owner_id, content }) => asyn
         })
     });
 
-
     const data = await res.json();
     dispatch(addMessage(data));
     return data;
@@ -76,7 +75,9 @@ export const removeMessage = (message_id) => async (dispatch) => {
     const res = await fetch(`/api/messages/delete/${message_id}`, {
         method: 'DELETE',
     })
-    dispatch(deleteMessage(message_id))
+    if (res.ok) {
+        dispatch(deleteMessage(message_id))
+    }
 };
 
 const initialState = {}
@@ -95,8 +96,9 @@ export default function messageReducer(state = initialState, action) {
             newState[action.payload.id] = action.payload
             return newState
         case EDIT_MESSAGE:
-            newState = {...state}  
-            newState[action.payload.id] = action.payload  
+            newState = {...state}
+            newState[action.payload.id] = action.payload
+            return newState
         case DELETE_MESSAGE:
             newState = {...state}
             delete newState[action.payload.id]

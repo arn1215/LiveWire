@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import ServerList from '../ServerList/ServersList'
+import './Parent.css'
+import React, { useEffect, useState } from 'react'
 import * as serverActions from "../../store/server";
-import './ServerNav.css'
+import ServerNav from '../../components/ServerNav/ServerNav';
+import Server from '../../components/Server/Server';
+import { useDispatch, useSelector } from 'react-redux';
 
-const ServerNav = () => {
+function Parent() {
     const dispatch = useDispatch();
     const [isLoaded, setIsLoaded] = useState(false)
     const user = useSelector(state => state.session.user);
@@ -19,13 +20,12 @@ const ServerNav = () => {
     }, [dispatch, user.id]);
 
     return isLoaded && (
-        <div className="sn">
-            <h2 className="sn-title">LiveWire</h2>
-            <div className="sn-wrapper">
-                <ServerList />
-            </div>
+        <div className='parent'>
+            <ServerNav />
+            <Server />
+            {/* <MessageComponent /> */}
         </div>
-    );
-};
+    )
+}
 
-export default ServerNav;
+export default Parent
