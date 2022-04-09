@@ -4,7 +4,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 * {
-    font-family: 'Open Sans', sans-serif
+    font-family: Whitney,Helvetica Neue,Helvetica,Arial,sans-serif;
 }
 
 html {
@@ -12,6 +12,7 @@ html {
 }
 
 body {
+
     height: 100%;
     margin: 0
 }

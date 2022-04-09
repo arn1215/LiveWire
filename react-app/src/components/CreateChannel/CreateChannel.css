@@ -1,3 +1,7 @@
+.cc{
+  margin: 10px;
+}
+
 .cc-wrapper {
   display: flex;
   border-bottom: 1px solid black;
@@ -5,6 +9,15 @@
   height: 30px;
   justify-content: center;
   align-items: center;
+}
+
+.cc-title {
+  margin: 0;
+}
+
+.cc-server-name-form {
+  display: flex;
+  flex-direction: column;
 }
 
 .cc-button {
@@ -20,7 +33,6 @@
   border: none;
   color: grey;
 }
-
 
 .cc-text {
   color: grey;

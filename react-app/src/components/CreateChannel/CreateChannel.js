@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useParams } from 'react-router-dom';
 import * as channelActions from '../../store/channel'
 
 const CreateChannel = () => {
   const dispatch = useDispatch();
-  const server = useSelector((state) => state.session.server)
+  // const server = useSelector((state) => state.session.server)
+  const {serverId} = useParams()
 
   const [name, setName] = useState("")
 
@@ -13,7 +15,7 @@ const CreateChannel = () => {
 
     const newChannel = {
       name,
-      server_id: server.id
+      serverId
     }
 
     let createdChannel;
@@ -42,12 +44,8 @@ const CreateChannel = () => {
       required
       />
       <div className="cc-footer-buttons">
-        <div className="cc-footer-left">
-          <a href="/" className="cc-back-button">Home</a>
-        </div>
-        <div className="cc-submit-button">
-          <button type='submit' className="cc-submit-button">Create Channel</button>
-        </div>
+        <button type='submit' className="cc-submit-button">Create Channel</button>
+        <a href={`/servers/${serverId}`} className="cc-back-button">Back</a>
       </div>
     </form>
   </div>
