@@ -1,11 +1,28 @@
+.chat {
+    display: flex;
+    background-color: rgb(54,57,63);
+    width: 100%;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 40px;
+}
+
+.chat-field {
+    width: 95%;
+    background-color: rgba(240, 248, 255, 0.233);
+    border-radius: 8px;
+    margin-left: 15px;
+    outline: none;
+    padding: 8px;
+}
+
 .message {
     margin-bottom: 30px;
     color: aliceblue;
-    
+
 }
 
 .message:hover {
     background-color: rgb(48, 50, 56)
-    
-}
 
+}

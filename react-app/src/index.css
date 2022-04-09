@@ -16,27 +16,6 @@ body {
     margin: 0
 }
 
-/* MAIN CHAT DIV  ============================================================================================================================================== */
-
-.chat {
-    background-color: rgb(54,57,63);
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 40px;
-}
-
-/* CHAT TEXT FIELD CONTAINER ================================== */
-.chat-field {
-    width: 95%;
-    background-color: rgba(240, 248, 255, 0.233);
-    border-radius: 8px;
-    margin-left: 15px;
-    outline: none;
-    padding: 8px;
-}
-
 ::-webkit-scrollbar {
     width: 5px;
 }
