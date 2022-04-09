@@ -80,8 +80,8 @@ def load_on_login(user_id):
 def remove_server_user(server_id, user_id):
   d = server_users.delete().where(server_users.c.server_join_id == server_id, server_users.c.user_join_id == user_id)
   d.execute()
-  return f"Removed server {server_id} from user {user_id}"
-
+  server_list = Server.query.join(server_users).join(User).filter(server_users.c.user_join_id == user_id).all()
+  return {"servers": [server.to_dict() for server in server_list]}
 
 # get server by invite
 @server_routes.route('/serverInvite/<server_invite>')
