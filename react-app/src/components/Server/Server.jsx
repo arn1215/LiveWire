@@ -1,9 +1,7 @@
 import './Server.css'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import ServerChannels from '../ChannelBar/ServerChannels';
-import ServerNav from '../ServerNav/ServerNav';
-// import MessageComponent from '../MessageComponent/MessageComponent';
+import ServerChannels from '../ChannelsList/ServerChannels';
 import * as serverActions from "../../store/server";
 
 function Server() {
@@ -22,9 +20,7 @@ function Server() {
 
     return isLoaded && (
     <div>
-        <ServerNav />
         <ServerChannels />
-        {/* <MessageComponent /> */}
     </div>
     )
 }

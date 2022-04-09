@@ -4,9 +4,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import LoginForm from './components/auth/LoginPage';
 import SignUpForm from './components/auth/RegisterPage';
 import ProtectedRoute from './components/auth/ProtectedRoute';
-import ServerNav from './components/ServerNav/ServerNav';
+import Parent from './components/Parent/Parent'
 import LandingPage from './components/LandingPage';
-import ErrorPage from './components/ErrorPage'
+import ErrorPage from './components/ErrorPage';
 import { authenticate } from './store/session';
 import * as serverActions from "./store/server";
 
@@ -44,16 +44,13 @@ function App() {
           <SignUpForm />
         </Route>
         <ProtectedRoute path='/@me/:serverId' exact={true} >
-          <ServerNav />
-          {/* <MessageComponent /> */}
+          <Parent />
         </ProtectedRoute>
         <ProtectedRoute path='/servers/:serverId' exact={true} >
-          <ServerNav />
-          {/* <MessageComponent /> */}
+          <Parent />
         </ProtectedRoute>
         <ProtectedRoute path='/servers/channels/:channelId' exact={true} >
-          <ServerNav />
-          {/* <MessageComponent /> */}
+          <Parent />
         </ProtectedRoute>
         <Route path='*'>
           <ErrorPage />

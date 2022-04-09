@@ -1,17 +1,17 @@
 import React from "react";
+import CreateServerModal from "../../components/CreateServer/CreateServer";
 import { useSelector } from "react-redux";
-import CreateServerModal from "../CreateServer";
 import { Link } from "react-router-dom";
 import './ServerList.css'
 
-const ServerNav = () => {
+const ServerList = () => {
     const userServers = useSelector(state => Object.values(state.server.userServers))
 
     return (
         <div className="sb">
             <div className="sb-icon-wrapper">
             {userServers.slice(0, 1).map(server => (
-                    <Link key={server.id} to={`/@me/${server.id}`}>
+                    <Link key={server.id}  to={`/@me/${server.id}`}>
                         <img src={server.icon} alt="" className="sb-server-icon" />
                     </Link>
                 ))}
@@ -26,4 +26,4 @@ const ServerNav = () => {
     );
 };
 
-export default ServerNav;
+export default ServerList;

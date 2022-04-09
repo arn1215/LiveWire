@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import CreateServerModal from "../CreateServer";
 import ServerList from '../ServerList/ServersList'
 import * as serverActions from "../../store/server";
 import './ServerNav.css'
@@ -20,9 +19,8 @@ const ServerNav = () => {
     }, [dispatch]);
 
     return isLoaded && (
-        <div className="sb">
+        <div className="server-nav">
             <ServerList />
-            <CreateServerModal />
         </div>
     );
 };
