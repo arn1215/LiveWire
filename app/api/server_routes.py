@@ -74,6 +74,15 @@ def load_on_login(user_id):
   server_list = Server.query.join(server_users).join(User).filter(server_users.c.user_join_id == user_id).all()
   return {"servers": [server.to_dict() for server in server_list]}
 
+# delete a server from server_users
+@server_routes.route('/leaveServer/<int:server_id>/<int:user_id>')
+# @login_required
+def remove_server_user(server_id, user_id):
+  server_user = server_users.query.filter(server_users.server_join_id == server_id, server_users.user_join_id == user_id).one()
+  db.session.delete(server_user)
+  db.session.commit()
+  return f"Removed server {server_id} from user {user_id}"
+
 
 # get server by invite
 @server_routes.route('/serverInvite/<server_invite>')
