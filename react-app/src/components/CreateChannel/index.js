@@ -8,7 +8,10 @@ function CreateChannelModal() {
 
     return (
         <>
-          <button onClick={() => setShowModal(true)}>+</button>
+          <div className='cc-wrapper'>
+            <p className='cc-text'>Create Text Channel</p>
+            <button className='cc-button' onClick={() => setShowModal(true)}>+</button>
+          </div>
           {showModal && (
             <Modal onClose={() => setShowModal(false)}>
               <CreateChannel />

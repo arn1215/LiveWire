@@ -74,7 +74,7 @@ export const removeChannel = (id) => async (dispatch) => {
 }
 
 
-export const createChannel = ({ name, server_id}) => async (dispatch) => {
+export const createChannel = ({ name, serverId}) => async (dispatch) => {
     const res = await fetch('/api/servers', {
         method: 'POST',
         headers: {
@@ -82,7 +82,7 @@ export const createChannel = ({ name, server_id}) => async (dispatch) => {
         },
         body: JSON.stringify({
             name,
-            server_id,
+            serverId
         })
     });
 

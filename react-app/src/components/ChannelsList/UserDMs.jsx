@@ -3,7 +3,6 @@ import CreateChannel from '../CreateChannel/index';
 import { useDispatch, useSelector } from 'react-redux';
 import * as channelActions from '../../store/channel';
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 
 const UserChannels = () => {
     const dispatch = useDispatch();
@@ -20,8 +19,8 @@ const UserChannels = () => {
 
 
     return isLoaded && (
-        <div className="c">
-            <div className="c-wrapper">
+        <div className="u-dms">
+            <div className="u-dm-wrapper">
             </div>
         <CreateChannel />
         </div>

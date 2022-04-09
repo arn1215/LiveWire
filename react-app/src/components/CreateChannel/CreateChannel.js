@@ -1,13 +1,11 @@
 import React, { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
+import { useParams } from 'react-router-dom';
 import * as channelActions from '../../store/channel'
-import * as sessionActions from '../../store/session'
 
 const CreateChannel = () => {
-
   const dispatch = useDispatch();
-  // const sessionUser = useSelector((state) => state.session.user)
-  const server = useSelector((state) => state.session.server)
+  const {serverId} = useParams()
 
   const [name, setName] = useState("")
 
@@ -16,25 +14,24 @@ const CreateChannel = () => {
 
     const newChannel = {
       name,
-      server_id: server.id
+      serverId
     }
 
-    let createdChannel;
 
     try {
-      createdChannel = await dispatch(channelActions.createChannel(newChannel))
+    await dispatch(channelActions.createChannel(newChannel))
     } catch (error) {
       console.log(error)
     }
   }
 
   return (
-    <div className="cs">
-    <h1 className="cs-title">Add A New Channel!</h1>
-    <p className="cs-sub">
+    <div className="cc">
+    <h1 className="cc-title">Add A New Channel!</h1>
+    <p className="cc-sub">
       Give your new channel a name to get started!
     </p>
-    <form onSubmit={handleSubmit} className="cs-server-name-form">
+    <form onSubmit={handleSubmit} className="cc-server-name-form">
       <label>
         CHANNEL NAME
       </label>
@@ -44,13 +41,9 @@ const CreateChannel = () => {
       onChange={(e) => setName(e.target.value)}
       required
       />
-      <div className="cs-footer-buttons">
-        <div className="cs-footer-left">
-          <a href="/" className="cs-back-button">Home</a>
-        </div>
-        <div className="cs-submit-button">
-          <button type='submit' className="cs-submit-button">Create Channel</button>
-        </div>
+      <div className="cc-footer-buttons">
+        <button type='submit' className="cc-submit-button">Create Channel</button>
+        <a href={`/servers/${serverId}`} className="cc-back-button">Back</a>
       </div>
     </form>
   </div>
