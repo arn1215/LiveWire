@@ -9,6 +9,8 @@ import LandingPage from './components/LandingPage';
 import ErrorPage from './components/ErrorPage';
 import { authenticate } from './store/session';
 import * as serverActions from "./store/server";
+import MessageComponent from './components/MessageComponent/MessageComponent'
+
 
 
 function App() {

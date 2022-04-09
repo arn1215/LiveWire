@@ -8,9 +8,10 @@ const MessageComponent = () => {
     const dispatch = useDispatch()
 
     const user = useSelector((state) => state.session.user);
-    const messages = useSelector((state) => state.messages);
+    const messagesObj = useSelector((state) => state.messages);
+    const messagesArr = Object.values(messagesObj);
+    // const messagesArr = [{ id: 1, content: "yo, dude", message_owner_id: 1 }, { id: 2, content: "bruh", message_owner_id: 2 }, { id: 3, content: "wagud", message_owner_id: 1 }]
     const channel = useSelector((state) => state.channel);
-    const server = useSelector((state) => state.session.server);
     const [content, setContent] = useState("");
     const [editedMessageId, setEditedMessageId] = useState(null);
     const [editedMessage, setEditedMessage] = useState('');
@@ -42,7 +43,8 @@ const MessageComponent = () => {
         await dispatch(messageActions.removeMessage(message.id))
     }
 
-    const onEdit = (messageId) => {
+    const onEdit = (messageId, messageContent) => {
+        setEditedMessage(messageContent)
         setEditedMessageId(messageId)
     }
 
@@ -54,7 +56,7 @@ const MessageComponent = () => {
         <>
             <div className="chat">
                 <div className="message-wrap">
-                    {messages.map(message => (
+                    {messagesArr?.map(message => (
                         <div>
                             {editedMessageId !== message.id && (
                                 <>
@@ -62,7 +64,7 @@ const MessageComponent = () => {
                                     {user.id === message.message_owner_id && (
                                         <div>
                                             <button messageId={message.id} onClick={() => onDelete(message) }>delete</button>
-                                            <button onClick={() => {onEdit(message.id)}}>edit</button>
+                                            <button onClick={() => {onEdit(message.id, message.content)}}>edit</button>
                                         </div>
                                     )}
                                 </>
