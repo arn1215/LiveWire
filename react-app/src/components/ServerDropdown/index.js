@@ -9,16 +9,17 @@ const ServerDropdown = () => {
     const [showMenu, setShowMenu] = useState(false);
     const [showNameField, setShowNameField] = useState(false);
     const [newName, setNewName] = useState('')
+    const user = useSelector(state => state.session.user);
     const currentServer = useSelector(state => state.oneServer.server);
-    const userServers = useSelector(state => state.userServers)
-    const belongsToUser = userServers.find(server => server.id === currentServer.id)
+    const userServers = useSelector(state => state.userServers);
+    const belongsToUser = userServers.find(server => server.id === currentServer.id);
 
     const deleteServer = () => {
         dispatch(serverActions.removeServer(currentServer.id));
     };
 
     const leaveServer = () => {
-        
+        dispatch(serverActions.removeUsersServers(currentServer.id, user.id));
     }
 
     const openNameField = () => {
