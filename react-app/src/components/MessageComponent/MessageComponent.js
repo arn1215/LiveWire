@@ -8,9 +8,9 @@ const MessageComponent = () => {
     const dispatch = useDispatch()
 
     const user = useSelector((state) => state.session.user);
-    const messages = useSelector((state) => state.messages);
+    const messagesObj = useSelector((state) => state.messages);
+    const messagesArr = Object.values(messagesObj);
     const channel = useSelector((state) => state.channel);
-    const server = useSelector((state) => state.session.server);
     const [content, setContent] = useState("");
     const [editedMessageId, setEditedMessageId] = useState(null);
     const [editedMessage, setEditedMessage] = useState('');
@@ -54,7 +54,7 @@ const MessageComponent = () => {
         <>
             <div className="chat">
                 <div className="message-wrap">
-                    {messages.map(message => (
+                    {messagesArr?.map(message => (
                         <div>
                             {editedMessageId !== message.id && (
                                 <>
