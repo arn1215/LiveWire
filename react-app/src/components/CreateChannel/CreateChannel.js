@@ -1,11 +1,10 @@
 import React, { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom';
 import * as channelActions from '../../store/channel'
 
 const CreateChannel = () => {
   const dispatch = useDispatch();
-  // const server = useSelector((state) => state.session.server)
   const {serverId} = useParams()
 
   const [name, setName] = useState("")
@@ -18,10 +17,9 @@ const CreateChannel = () => {
       serverId
     }
 
-    let createdChannel;
 
     try {
-      createdChannel = await dispatch(channelActions.createChannel(newChannel))
+    await dispatch(channelActions.createChannel(newChannel))
     } catch (error) {
       console.log(error)
     }

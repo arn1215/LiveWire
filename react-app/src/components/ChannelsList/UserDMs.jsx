@@ -3,7 +3,6 @@ import CreateChannel from '../CreateChannel/index';
 import { useDispatch, useSelector } from 'react-redux';
 import * as channelActions from '../../store/channel';
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 
 const UserChannels = () => {
     const dispatch = useDispatch();
