@@ -1,5 +1,5 @@
 import './ChannelsList.css'
-// import CreateChannel from '../CreateChannel/index';
+import CreateChannel from '../CreateChannel/index';
 import { useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 
@@ -14,15 +14,18 @@ const ServerChannels = () => {
     }
 
     return channels && (
-        <div className="c">
-            <div className="c-wrapper">
+        <div className="sc">
+        <CreateChannel />
+            <div className="sc-wrapper">
                 {channels.map(channel => (
-                    <div key={channel.id} className="c-channels">
-                        <Link>{`# ${channel.name}`}</Link>
+                    <div key={channel.id} className="sc-channels">
+                        <div className="channel-wrapper">
+                            <p className='channel-icon'>#</p>
+                            <Link className='sc-name'>{`${channel.name}`}</Link>
+                        </div>
                     </div>
                 ))}
             </div>
-        {/* <CreateChannel /> */}
         </div>
     )
 }

@@ -23,7 +23,6 @@ function Parent() {
         <div className='parent'>
             <ServerNav />
             <Server />
-            {/* <MessageComponent /> */}
         </div>
     )
 }

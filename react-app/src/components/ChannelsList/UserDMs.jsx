@@ -20,8 +20,8 @@ const UserChannels = () => {
 
 
     return isLoaded && (
-        <div className="c">
-            <div className="c-wrapper">
+        <div className="u-dms">
+            <div className="u-dm-wrapper">
             </div>
         <CreateChannel />
         </div>
