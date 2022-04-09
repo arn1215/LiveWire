@@ -13,10 +13,13 @@ const ServerDropdown = () => {
     const userServers = useSelector(state => state.userServers)
     const belongsToUser = userServers.find(server => server.id === currentServer.id)
 
-    const deleteServer = (e) => {
-        e.preventDefault();
+    const deleteServer = () => {
         dispatch(serverActions.removeServer(currentServer.id));
     };
+
+    const leaveServer = () => {
+        
+    }
 
     const openNameField = () => {
         if (showNameField) return;
@@ -71,11 +74,9 @@ const ServerDropdown = () => {
                             </div>
                         )}
                         {!belongsToUser && (
-                            <Link to='/@me'>
-                                <div className='leave-server'>
-                                    Leave Server
-                                </div>
-                            </Link>
+                            <div className='leave-server' onClick={leaveServer}>
+                                Leave Server
+                            </div>
                         )}
                     </div>
                 )}
