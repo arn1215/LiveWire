@@ -130,7 +130,9 @@ export const removeServer = (id) => async (dispatch) => {
         },
         body: JSON.stringify({ id })
     })
-    dispatch(deleteServer(id))
+    if (res.ok) {
+        dispatch(deleteServer(id))
+    }
 }
 
 const serversReducer = (state={

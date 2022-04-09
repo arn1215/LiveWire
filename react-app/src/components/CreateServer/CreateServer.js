@@ -1,14 +1,11 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import * as serverActions from '../../store/server'
-import * as sessionActions from '../../store/session'
-
 
 const CreateServer = () => {
 
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
-
   const [name, setName] = useState("");
   const [icon, setIcon] = useState("");
 
@@ -22,10 +19,8 @@ const CreateServer = () => {
       invite_URL: (Math.random(100, 10000)),
     };
 
-    let createdServer;
-
     try {
-      createdServer = await dispatch(serverActions.createServer(newServer))
+      await dispatch(serverActions.createServer(newServer))
     } catch (error) {
       console.log(error)
     }

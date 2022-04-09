@@ -1,11 +1,20 @@
-.sb-icon-wrapper{
+.sl{
+    background-color: rgb(32,34,37);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: hidden;
+}
+
+.sl-icon-wrapper{
     display: flex;
     flex-direction: column;
     justify-content: center;
     margin: 0px 5px;
 }
 
-.sb-server-icon{
+.sl-server-icon{
     background-color: aliceblue;
     text-align: center;
     justify-self: start;
@@ -19,7 +28,7 @@
     transition-duration: .5s;
 }
 
-.sb-server-icon:hover{
+.sl-server-icon:hover{
     background-color: aliceblue;
     width: 48px;
     height: 48px;

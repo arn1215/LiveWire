@@ -16,13 +16,6 @@ const getAllChannels = (channels) => {
     }
 }
 
-const getChannel = (channel) => {
-    return {
-        type: GET_CHANNEL,
-        channel
-    }
-}
-
 const addChannel = (channel) => {
     return {
         type: ADD_CHANNEL,
@@ -51,15 +44,6 @@ export const loadAllChannels = (serverId) => async (dispatch) => {
         dispatch(getAllChannels(channels.channel));
     }
 };
-
-// export const fetchChannels = (channel) => async (dispatch) => {
-//     const res = await fetch(`/api/channels/${channel.id}}`);
-
-//     if (res.ok) {
-//         const channel = await res.json();
-//         dispatch(getChannel(channel["channel"]));
-//     }
-// }
 
 export const updateChannel = (channel) => async (dispatch) => {
     const res = await fetch(`/api/channels/${channel.id}`, {
@@ -102,10 +86,10 @@ export const createChannel = ({ name, server_id}) => async (dispatch) => {
         })
     });
 
-
-    const data = await res.json();
-    dispatch(addChannel(data));
-    return data
+    if (res.ok) {
+        const data = await res.json();
+        dispatch(addChannel(data));
+    }
 };
 
 

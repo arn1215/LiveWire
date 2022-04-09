@@ -16,10 +16,10 @@ const ServerNav = () => {
             setIsLoaded(true)
         }
         loaded()
-    }, [dispatch]);
+    }, [dispatch, user.id]);
 
     return isLoaded && (
-        <div className="server-nav">
+        <div className="sn">
             <ServerList />
         </div>
     );
