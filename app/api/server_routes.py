@@ -75,7 +75,7 @@ def load_on_login(user_id):
   return {"servers": [server.to_dict() for server in server_list]}
 
 # delete a server from server_users
-@server_routes.route('/leaveServer/<int:server_id>/<int:user_id>')
+@server_routes.route('/leaveServer/<int:server_id>/<int:user_id>', methods=['DELETE'])
 # @login_required
 def remove_server_user(server_id, user_id):
   d = server_users.delete().where(server_users.c.server_join_id == server_id, server_users.c.user_join_id == user_id)
