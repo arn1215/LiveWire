@@ -1,4 +1,13 @@
 .sn{
+    display: flex;
+    flex-direction: column;
     height: 100vh;
     width: 72px;
+}
+
+.sn-title{
+    text-align: center;
+    color: grey;
+    font-size: 10px;
+    margin: 10px 0px 0px 5px;
 }

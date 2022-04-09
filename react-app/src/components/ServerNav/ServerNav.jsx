@@ -20,7 +20,10 @@ const ServerNav = () => {
 
     return isLoaded && (
         <div className="sn">
-            <ServerList />
+            <h2 className="sn-title">LiveWire</h2>
+            <div className="sn-wrapper">
+                <ServerList />
+            </div>
         </div>
     );
 };

@@ -1,0 +1,6 @@
+.server{
+    display: flex;
+    align-self: flex-end;
+    height: 97vh;
+    width: 100%;
+}

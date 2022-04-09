@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import './ServerDropdown.css'
 import { Link } from 'react-router-dom';
 import * as serverActions from '../../store/server';
+import './ServerDropDown.css'
 
 const ServerDropdown = () => {
     const dispatch = useDispatch();
@@ -12,8 +12,6 @@ const ServerDropdown = () => {
     const currentServer = useSelector(state => state.oneServer.server);
     const userServers = useSelector(state => state.userServers)
     const belongsToUser = userServers.find(server => server.id === currentServer.id)
-
-    const deleteServer
 
     const deleteServer = (e) => {
         e.preventDefault();

@@ -22,16 +22,18 @@ const ServerList = () => {
     return isLoaded && (
         <div className="sl">
             <div className="sl-icon-wrapper">
-            {userServers.slice(0, 1).map(server => (
-                    <Link key={server.id}  to={`/@me/${server.id}`}>
-                        <img src={server.icon} alt="" className="sl-server-icon" />
-                    </Link>
-                ))}
-                {userServers.slice(1).map(server => (
-                    <Link key={server.id} to={`/servers/${server.id}`}>
-                        <img src={server.icon} alt="" className="sl-server-icon" />
-                    </Link>
-                ))}
+                {userServers.slice(0, 1).map(server => (
+                    <div className="sl-home-icon">
+                        <Link key={server.id}  to={`/@me/${server.id}`}>
+                            <img src={server.icon} alt="" className="sl-server-icon" />
+                        </Link>
+                    </div>
+                    ))}
+                    {userServers.slice(1).map(server => (
+                        <Link key={server.id} to={`/servers/${server.id}`}>
+                            <img src={server.icon} alt="" className="sl-server-icon" />
+                        </Link>
+                    ))}
             </div>
             <CreateServerModal />
         </div>
