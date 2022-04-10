@@ -27,9 +27,8 @@ def create_channel():
 # @login_required
 def edit_channel(channel_id):
   channel = Channel.query.get(channel_id)
-  data = request.json
-  if 'name' in data.keys():
-    channel.name = data["name"]
+  data = request.get_json(force=True)
+  channel.name = data
   db.session.commit()
   return channel.to_dict()
 
