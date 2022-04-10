@@ -36,7 +36,7 @@ const LandingPage = () => {
                     </div>
 
                     <div className='top-btn-div'>
-                        <NavLink className='open-livewire-btn' to={`/@me/${user.id}`}>
+                        <NavLink className='open-livewire-btn' to={`/@me/${user?.id}`}>
                             <button className='livewire-register' type='button'>Open LiveWire in your browser</button>
                         </NavLink>
                     </div>

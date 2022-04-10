@@ -5,14 +5,18 @@
 
 .fa-solid.fa-angle-down{
     cursor: pointer;
-    margin-left: 20px;
+    margin-left: 50px;
 }
 
 .server-dropdown-bar{
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 100%;
+    background-color: rgb(32,34,37);
+    border-radius: 25px;
+    color: #808080;
+    margin: 10px 35px;
 }
 
 .current-server-name{
@@ -20,9 +24,34 @@
 }
 
 .server-name-edit{
+    display: flex;
+    justify-content: center;
     cursor: pointer;
+    /* border-bottom: 0.5px solid white; */
+    padding: 5px 0px;
 }
 
 .server-delete{
+    padding: 5px 0px;
     cursor: pointer;
+}
+
+.form-css {
+    display: flex;
+}
+
+.input-css {
+    width: 100px;
+    margin: 2px 5px 0px 5px;
+}
+
+.current-server-name {
+    background-color: rgb(32,34,37);
+    color: #808080;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    border-radius: 15px;
+    margin-top: 10px;
 }
