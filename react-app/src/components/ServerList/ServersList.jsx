@@ -1,30 +1,18 @@
-import React, { useEffect, useState } from "react";
-import * as serverActions from "../../store/server";
+import React from "react";
 import CreateServerModal from "../../components/CreateServer/index";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import './ServerList.css'
 
 const ServerList = () => {
     const userServers = useSelector(state => Object.values(state.server.userServers))
-    const dispatch = useDispatch();
-    const [isLoaded, setIsLoaded] = useState(false)
-    const user = useSelector(state => state.session.user);
 
-    useEffect(() => {
-        const loaded = async () => {
-            await dispatch(serverActions.loadUsersServers(user.id))
-            setIsLoaded(true)
-        }
-        loaded()
-    }, [dispatch, user.id]);
-
-    return isLoaded && (
+    return  (
         <div className="sl">
             <div className="sl-icon-wrapper">
                 {userServers.slice(0, 1).map(server => (
-                    <div className="sl-home-icon">
-                        <Link key={server.id} to={`/@me/${server.id}`}>
+                    <div key={server.id} className="sl-home-icon">
+                        <Link  to={`/@me/${server.id}`}>
                             <img src={server.icon} alt="" className="sl-server-icon" />
                         </Link>
                     </div>

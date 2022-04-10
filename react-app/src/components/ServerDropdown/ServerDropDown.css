@@ -1,0 +1,24 @@
+.server-dropdown {
+    display: flex;
+    flex-direction: column;
+}
+
+.fa-solid.fa-angle-down{
+    cursor: pointer;
+    margin-left: 20px;
+}
+
+.server-dropdown-bar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.current-server-name{
+    display: flex;
+}
+
+.server-name-edit{
+    cursor: pointer;
+}
