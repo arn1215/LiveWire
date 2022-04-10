@@ -61,6 +61,7 @@ def edit_server(server_id):
 @server_routes.route('/delete/<int:server_id>', methods=['DELETE'])
 # @login_required
 def delete_server(server_id):
+  print('You made it!!!!!!!!!!!')
   server = Server.query.filter(Server.id == server_id).first()
   db.session.delete(server)
   db.session.commit()

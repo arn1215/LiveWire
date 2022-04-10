@@ -127,13 +127,7 @@ export const createServer = ({ owner_id, name, icon, invite_URL }) => async (dis
 //delete server
 
 export const removeServer = (id) => async (dispatch) => {
-    const res = await fetch(`/api/servers/${id}`, {
-        method: 'DELETE',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ id })
-    })
+    const res = await fetch(`/api/servers/delete/${id}`, { method: 'DELETE' })
     if (res.ok) {
         dispatch(deleteServer(id))
     }
