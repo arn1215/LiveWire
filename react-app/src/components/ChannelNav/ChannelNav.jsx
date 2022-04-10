@@ -9,21 +9,23 @@ import { useSelector } from 'react-redux'
 
 function ChannelNav() {
     const location = useLocation();
-    const {serverId} = useParams();
     const home = useSelector(state => Object.values(state.server.userServers));
     const pathId = home[0].id
 
-    return (
-        <div className='channel-nav'>
-            <ServerDropDown />
-            {location.pathname === `/@me/${pathId}` && (
+
+    if (location.pathname === `/@me/${pathId}`) {
+        return (
+            <div className='channel-nav'>
+                <ServerDropDown />
                 <UserDMs />
-            )}
-            {location.pathname === `/servers/${serverId}` && (
+            </div>
+        )} else {
+        return (
+            <div className='channel-nav'>
+                <ServerDropDown />
                 <ServerChannels />
-            )}
-        </div>
-    )
+            </div>
+        )}
 }
 
 export default ChannelNav

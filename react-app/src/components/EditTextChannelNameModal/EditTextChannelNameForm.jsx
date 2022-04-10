@@ -9,7 +9,6 @@ function EditForm({ setShowModal, channelId, currentChannelName }) {
     const dispatch = useDispatch();
     let history = useHistory();
     const [channelName, setChannelName] = useState(currentChannelName);
-    console.log('this is the currentChannelName....', currentChannelName)
     const [errors, setErrors] = useState([]);
 
     const handleSubmit = async (e) => {

@@ -1,4 +1,4 @@
-const GET_CHANNEL = 'channels/getChannel'
+const GET_ONE_CHANNEL = 'channels/GET_ONE_CHANNEL'
 
 const GET_ALL_CHANNELS = 'channels/GET_ALL_CHANNELS'
 
@@ -9,6 +9,13 @@ const DELETE_CHANNEL = 'channels/deleteChannel'
 const EDIT_CHANNEL = 'channels/editChannel'
 
 // Actions
+const getOneChannel = (channel) => {
+    return {
+        type: GET_ONE_CHANNEL,
+        channel
+    }
+}
+
 const getAllChannels = (channels) => {
     return {
         type: GET_ALL_CHANNELS,
@@ -36,6 +43,11 @@ const editChannel = (channel) => ({
 })
 
 //Thunks
+export const loadOneChannel = (channelId) => async (dispatch) => {
+    const res = 
+}
+
+
 export const loadAllChannels = (serverId) => async (dispatch) => {
     const res = await fetch(`/api/channels/byServer/${serverId}`);
 

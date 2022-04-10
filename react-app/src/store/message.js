@@ -9,7 +9,7 @@ const EDIT_MESSAGE = 'messages/editMessage'
 const getMessages = (messages) => {
     return {
         type: GET_MESSAGES,
-        payload: messages
+        messages
     }
 }
 
@@ -37,7 +37,7 @@ export const fetchMessages = (channel_id) => async (dispatch) => {
 
     if (res.ok) {
         const messages = await res.json();
-        dispatch(getMessages(messages));
+        dispatch(getMessages(messages.messages));
     }
 };
 
@@ -80,27 +80,21 @@ export const removeMessage = (message_id) => async (dispatch) => {
     }
 };
 
-const initialState = {}
-
-export default function messageReducer(state = initialState, action) {
-    let newState;
+export default function messageReducer(state = {}, action) {
+    let newState = {...state}
     switch (action.type) {
         case GET_MESSAGES:
-            newState = {...state}
-            action.payload.forEach(message => {
+            action.messages.forEach(message => {
                 return newState[message.id] = message
             })
             return newState
         case ADD_MESSAGE:
-            newState = {...state}
             newState[action.payload.id] = action.payload
             return newState
         case EDIT_MESSAGE:
-            newState = {...state}
             newState[action.payload.id] = action.payload
             return newState
         case DELETE_MESSAGE:
-            newState = {...state}
             delete newState[action.payload.id]
             return newState
         default:
