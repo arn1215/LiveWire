@@ -8,9 +8,9 @@ function UserList() {
     const dispatch = useDispatch();
 
     const serverInfo = useSelector((state) => state.server.oneServer)
-    console.log("Server ------------------->", serverInfo)
+    // // console.log("Server ------------------->", serverInfo)
     const users = serverInfo.server.users
-    console.log("users------------------------>", users)
+    // console.log("users------------------------>", users)
     // const usersArray = Object.values(users)
 
 

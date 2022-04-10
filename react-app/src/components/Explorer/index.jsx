@@ -7,7 +7,7 @@ const Explorer = () => {
   return (
     <div className='explorer-button'>
       <Link to='/explorer' className='explorer-list'>
-        <button className='cs-button'>Explorer</button>
+        <button className='cs-explorer-button'>Join</button>
       </Link>
     </div>
   )

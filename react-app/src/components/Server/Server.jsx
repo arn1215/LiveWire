@@ -12,9 +12,7 @@ function Server() {
     if (location.pathname === '/explorer') {
         return (
             <div className='server'>
-                <ChannelNav />
                 <ExplorerList />
-                <UserList />
             </div>
         )
         } else {
