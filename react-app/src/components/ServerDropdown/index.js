@@ -9,14 +9,18 @@ const ServerDropdown = () => {
     const [showMenu, setShowMenu] = useState(false);
     const [showNameField, setShowNameField] = useState(false);
     const [newName, setNewName] = useState('')
-    const currentServer = useSelector(state => state.oneServer.server);
-    const userServers = useSelector(state => state.userServers)
-    const belongsToUser = userServers.find(server => server.id === currentServer.id)
+    const user = useSelector(state => state.session.user);
+    const currentServer = useSelector(state => state.oneServer?.server);
+    const userServers = useSelector(state => state.userServers);
+    const belongsToUser = userServers?.find(server => server.id === currentServer.id);
 
-    const deleteServer = (e) => {
-        e.preventDefault();
+    const deleteServer = () => {
         dispatch(serverActions.removeServer(currentServer.id));
     };
+
+    const leaveServer = () => {
+        dispatch(serverActions.removeUsersServers(currentServer.id, user.id));
+    }
 
     const openNameField = () => {
         if (showNameField) return;
@@ -50,7 +54,7 @@ const ServerDropdown = () => {
         <>
             <div className='dropdown'>
                 <button onClick={openMenu}>
-                    {currentServer.name}
+                    {currentServer?.name}
                 </button>
                 {showMenu && (
                     <div className='server-dropdown'>
@@ -71,11 +75,9 @@ const ServerDropdown = () => {
                             </div>
                         )}
                         {!belongsToUser && (
-                            <Link to='/@me'>
-                                <div className='leave-server'>
-                                    Leave Server
-                                </div>
-                            </Link>
+                            <div className='leave-server' onClick={leaveServer}>
+                                Leave Server
+                            </div>
                         )}
                     </div>
                 )}
