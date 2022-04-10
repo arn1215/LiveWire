@@ -1,7 +1,7 @@
-import './Channels.css'
+import './ChannelsList.css'
 import CreateChannel from '../CreateChannel/index';
 import { useDispatch, useSelector } from 'react-redux';
-import * as channelActions from '../../store/channel';
+// import * as channelActions from '../../store/channel';
 import { useEffect, useState } from 'react';
 
 const UserChannels = () => {
@@ -11,11 +11,11 @@ const UserChannels = () => {
 
     useEffect(() => {
         const loaded = async () => {
-            dispatch(channelActions.loadAllChannels(userId));
+
             setIsLoaded(true)
         }
         loaded()
-    }, [dispatch]);
+    }, [dispatch, userId]);
 
 
     return isLoaded && (
