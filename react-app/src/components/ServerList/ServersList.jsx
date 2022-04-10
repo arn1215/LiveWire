@@ -24,7 +24,7 @@ const ServerList = () => {
             <div className="sl-icon-wrapper">
                 {userServers.slice(0, 1).map(server => (
                     <div className="sl-home-icon">
-                        <Link key={server.id}  to={`/@me/${server.id}`}>
+                        <Link key={server.id} to={`/@me/${server.id}`}>
                             <img src={server.icon} alt="" className="sl-server-icon" />
                         </Link>
                     </div>
