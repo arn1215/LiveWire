@@ -1,7 +1,7 @@
 import './ChannelsList.css'
 import CreateChannel from '../CreateChannel/index';
 import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 const ServerChannels = () => {
     const { serverId } = useParams();
@@ -21,7 +21,7 @@ const ServerChannels = () => {
                     <div key={channel.id} className="sc-channels">
                         <div className="channel-wrapper">
                             <p className='channel-icon'>#</p>
-                            <p className='sc-name'>{`${channel.name}`}</p>
+                            <p /* onClick={} */ className='sc-name'>{`${channel.name}`}</p>
                         </div>
                     </div>
                 ))}
