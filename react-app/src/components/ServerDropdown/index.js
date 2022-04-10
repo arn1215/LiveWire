@@ -1,29 +1,36 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory, useLocation, useParams } from 'react-router-dom';
 import * as serverActions from '../../store/server';
 import './ServerDropDown.css'
 
 const ServerDropdown = () => {
     const dispatch = useDispatch();
+    let history = useHistory();
+    const {serverId} = useParams();
+    const location = useLocation();
     const [showMenu, setShowMenu] = useState(false);
+    // const [isLoaded, setIsLoaded] = useState(false)
     const [showNameField, setShowNameField] = useState(false);
     const [newName, setNewName] = useState('')
-    const currentUser = useSelector(state => state.session.user)
-    const currentServer = useSelector(state => state.server.oneServer?.server);
-    const userServers = useSelector(state => state.server.userServers);
-
+    // const currentUser = useSelector(state => state.session.user)
+    const currentServer = useSelector(state => state.server.oneServer.server);
+    // const userServers = useSelector(state => state.server.userServers);
+    const home = useSelector(state => Object.values(state.server.userServers));
+    const pathId = home[0].id
+    // const user = useSelector(state => state.session.user);
     // console.log('userServers = ', userServers);
     // const belongsToUser = userServers?.find(server => server.owner_id === currentUser.id);
 
 
-
-    const deleteServer = () => {
-        dispatch(serverActions.removeServer(currentServer.id));
-    };
-
-    // const leaveServer = () => {
-    //     dispatch(serverActions.removeUsersServers(currentServer.id, user.id));
-    // }
+    // useEffect(() => {
+    //     const loaded = async () => {
+    //         await dispatch(serverActions.loadUsersServers(user.id))
+    //         await dispatch(serverActions.loadServerById(serverId))
+    //         setIsLoaded(true)
+    //     }
+    //     loaded()
+    // }, [dispatch, user.id, serverId]);
 
     const openNameField = () => {
         if (showNameField) return;
@@ -35,59 +42,54 @@ const ServerDropdown = () => {
         setShowMenu(true);
     };
 
+    const HandleDelete = async () => {
+                // await setIsLoaded(false)
+                dispatch(serverActions.removeServer(currentServer.id))
+                history.push({
+                    pathname: `/@me/${pathId}`,
+                });
+                // await dispatch(serverActions.loadUsersServers(user.id))
+                // await setIsLoaded(true)
+    };
 
-
-
-    // useEffect(() => {
-    //     if (!showMenu) return;
-
-    //     const closeMenu = () => {
-    //         setShowMenu(false);
-    //     };
-
-    //     document.addEventListener('click', closeMenu);
-
-    //     return () => document.removeEventListener('click', closeMenu);
-    // }, [showMenu]);
-
-        const handleNameEdit = (e) => {
-            e.preventDefault();
-            setShowNameField(false)
-            dispatch(serverActions.putServer({ newName, currentServer }))
-        }
-
-
-
+    const HandleNameEdit = (e) => {
+        setShowNameField(false)
+        dispatch(serverActions.putServer({ newName, currentServer }))
+    };
 
     return (
         <div className='server-dropdown'>
             <p className='current-server-name'>{currentServer?.name}</p>
-            {/* {belongsToUser && */}
-            <i className="fa-solid fa-angle-down" onClick={openMenu}></i>
-            {/* } */}
-            {showMenu && (
-                <div className='server-dropdown-menu'>
-                    <div className='server-name-edit' onClick={openNameField}>
-                        Edit Name
-                    </div>
-                    {showNameField && (
-                        <form onSubmit={handleNameEdit}>
-                            <input
-                            type='text'
-                            value={newName}
-                            onChange={e => setNewName(e.target.value)}
-                            />
-                            <button type='submit'>Edit</button>
-                        </form>
+            {location.pathname === `/servers/${serverId}` && (
+                <div>
+                    {/* {belongsToUser && */}
+                    <i className="fa-solid fa-angle-down" onClick={openMenu}></i>
+                    {/* } */}
+                    {showMenu && (
+                        <div className='server-dropdown-menu'>
+                            <div className='server-name-edit' onClick={openNameField}>
+                                Edit Name
+                            </div>
+                            {showNameField && (
+                                <form onSubmit={HandleNameEdit}>
+                                    <input
+                                    type='text'
+                                    value={newName}
+                                    onChange={e => setNewName(e.target.value)}
+                                    />
+                                    <button type='submit'>Edit</button>
+                                </form>
+                            )}
+                                <div className='server-delete' onClick={HandleDelete}>
+                                    Delete Server
+                                </div>
+                            {/* {!belongsToUser && (
+                                <div className='leave-server' onClick={leaveServer}>
+                                    Leave Server
+                                </div>
+                            )} */}
+                        </div>
                     )}
-                        <div className='server-delete' onClick={deleteServer}>
-                            Delete Server
-                        </div>
-                    {/* {!belongsToUser && (
-                        <div className='leave-server' onClick={leaveServer}>
-                            Leave Server
-                        </div>
-                    )} */}
                 </div>
             )}
         </div>
