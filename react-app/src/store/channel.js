@@ -89,7 +89,7 @@ export const createChannel = ({ name, serverId }) => async (dispatch) => {
 
 // Reducer
 export default function channelReducer(state = {
-    currentChannel: [],
+    currentChannel: {},
     allChannels: [],
 }, action) {
     let newState = {...state};
