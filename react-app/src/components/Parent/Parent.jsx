@@ -4,9 +4,11 @@ import * as serverActions from "../../store/server";
 import ServerNav from '../../components/ServerNav/ServerNav';
 import Server from '../../components/Server/Server';
 import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
 function Parent() {
     const dispatch = useDispatch();
+    const {serverId} = useParams();
     const [isLoaded, setIsLoaded] = useState(false)
     const user = useSelector(state => state.session.user);
 
@@ -14,10 +16,11 @@ function Parent() {
     useEffect(() => {
         const loaded = async () => {
             await dispatch(serverActions.loadUsersServers(user.id))
+            await dispatch(serverActions.loadServerById(serverId))
             setIsLoaded(true)
         }
         loaded()
-    }, [dispatch, user.id]);
+    }, [dispatch, user.id, serverId]);
 
     return isLoaded && (
         <div className='parent'>
