@@ -4,7 +4,7 @@ import './UserList.css'
 
 function UserList() {
     const dispatch = useDispatch();
-    
+
 
     return (
         <div className='user-list'>
