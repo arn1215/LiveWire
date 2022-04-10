@@ -26,9 +26,10 @@ def create_channel():
 @channel_routes.route('/<int:channel_id>', methods=['PUT'])
 # @login_required
 def edit_channel(channel_id):
+  print('Over Here!!!!!!!')
   channel = Channel.query.get(channel_id)
   data = request.get_json(force=True)
-  channel.name = data
+  channel.name = data["newName"]
   db.session.commit()
   return channel.to_dict()
 
