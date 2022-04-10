@@ -41,6 +41,9 @@ function App() {
         <ProtectedRoute path='/servers/:serverId' exact={true} >
           <Parent />
         </ProtectedRoute>
+        <ProtectedRoute path='/servers/channels/:channelId' exact={true} >
+          <Parent />
+        </ProtectedRoute>
         <Route path='*'>
           <ErrorPage />
         </Route>
