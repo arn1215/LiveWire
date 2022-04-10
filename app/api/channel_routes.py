@@ -12,7 +12,7 @@ def create_channel():
 
       channel = Channel(
         name=data["name"],
-        server_id=data["server_id"]
+        server_id=data["serverId"]
       )
 
       db.session.add(channel)
