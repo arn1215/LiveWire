@@ -1,4 +1,4 @@
-const GET_CHANNEL = 'channels/getChannel'
+const GET_ONE_CHANNEL = 'channels/GET_ONE_CHANNEL'
 
 const GET_ALL_CHANNELS = 'channels/GET_ALL_CHANNELS'
 
@@ -9,6 +9,13 @@ const DELETE_CHANNEL = 'channels/deleteChannel'
 const EDIT_CHANNEL = 'channels/editChannel'
 
 // Actions
+const getOneChannel = (channel) => {
+    return {
+        type: GET_ONE_CHANNEL,
+        channel
+    }
+}
+
 const getAllChannels = (channels) => {
     return {
         type: GET_ALL_CHANNELS,
@@ -36,6 +43,11 @@ const editChannel = (channel) => ({
 })
 
 //Thunks
+export const loadOneChannel = (channelId) => async (dispatch) => {
+    const res = 
+}
+
+
 export const loadAllChannels = (serverId) => async (dispatch) => {
     const res = await fetch(`/api/channels/byServer/${serverId}`);
 
@@ -45,14 +57,15 @@ export const loadAllChannels = (serverId) => async (dispatch) => {
     }
 };
 
-export const updateChannel = ({ newName, channel }) => async (dispatch) => {
-    const res = await fetch(`/api/channels/${channel.id}`, {
+export const updateChannel = ({channelName, channelId}) => async (dispatch) => {
+    const res = await fetch(`/api/channels/${channelId}`, {
         method: 'PUT',
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(newName)
+        body: JSON.stringify(channelName)
+
     })
     const channelToUpdate = await res.json()
     dispatch(editChannel(channelToUpdate))
@@ -89,7 +102,7 @@ export const createChannel = ({ name, serverId }) => async (dispatch) => {
 
 // Reducer
 export default function channelReducer(state = {
-    currentChannel: [],
+    currentChannel: {},
     allChannels: [],
 }, action) {
     let newState = {...state};

@@ -7,6 +7,7 @@ import './UserList.css'
 function UserList() {
     const dispatch = useDispatch();
 
+
     const serverInfo = useSelector((state) => state.server.oneServer)
     // // console.log("Server ------------------->", serverInfo)
     const users = serverInfo.server.users

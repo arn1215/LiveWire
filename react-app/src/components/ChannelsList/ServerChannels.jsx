@@ -1,12 +1,15 @@
 import './ChannelsList.css'
 import CreateChannel from '../CreateChannel/index';
-import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useParams } from 'react-router-dom';
+import EditTextChannelNameModal from '../EditTextChannelNameModal'
+import DeleteConfirmationModal from '../DeleteConfirmationModal'
+import * as messageActions from '../../store/message'
 
 const ServerChannels = () => {
+    const dispatch = useDispatch();
     const { serverId } = useParams();
     const server = useSelector(state => (state.server.userServers))
-    useSelector(state => state.server)
 
     let channels;
     if (Object.keys(server).length) {
@@ -21,7 +24,9 @@ const ServerChannels = () => {
                     <div key={channel.id} className="sc-channels">
                         <div className="channel-wrapper">
                             <p className='channel-icon'>#</p>
-                            <p className='sc-name'>{`${channel.name}`}</p>
+                            <div className='sc-name' onClick={() => dispatch(messageActions.fetchMessages(channel.id))}>{channel.name}</div>
+                            <EditTextChannelNameModal currentChannelName={channel.name} channelId={channel.id}/>
+                            <DeleteConfirmationModal currentChannelName={channel.name} channelId={channel.id}/>
                         </div>
                     </div>
                 ))}
