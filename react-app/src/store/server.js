@@ -52,10 +52,14 @@ const deleteServer = (serverId) => {
 
 //Edit a server
 
-export const putServer = (data) => async (dispatch) => {
-    const res = await fetch(`/api/servers/${data.id}`, {
+export const putServer = ({ newName, currentServer }) => async (dispatch) => {
+    const res = await fetch(`/api/servers/${currentServer.id}`, {
         method: "PUT",
-        body: JSON.stringify(data),
+        headers: {
+            'Accept': 'application/json',
+            "Content-Type": "application/json",
+          },
+        body: JSON.stringify(newName),
     });
     if (res.ok) {
         const updatedServer = await res.json()
@@ -123,13 +127,7 @@ export const createServer = ({ owner_id, name, icon, invite_URL }) => async (dis
 //delete server
 
 export const removeServer = (id) => async (dispatch) => {
-    const res = await fetch(`/api/servers/${id}`, {
-        method: 'DELETE',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ id })
-    })
+    const res = await fetch(`/api/servers/delete/${id}`, { method: 'DELETE' })
     if (res.ok) {
         dispatch(deleteServer(id))
     }

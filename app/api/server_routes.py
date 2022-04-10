@@ -47,11 +47,12 @@ def get_one_server(server_id):
 # @login_required
 def edit_server(server_id):
   server = Server.query.get(server_id)
-  data = request.json
-  if 'name' in data.keys():
-    server.name = data['name']
-  if 'icon' in data.keys():
-    server.icon = data["icon"]
+  data = request.get_json(force=True)
+  print('Over Here!!!!!!!', data)
+  # if 'name' in data.keys():
+  server.name = data
+  # if 'icon' in data.keys():
+  #   server.icon = data["icon"]
   db.session.commit()
   return server.to_dict()
 
@@ -60,6 +61,7 @@ def edit_server(server_id):
 @server_routes.route('/delete/<int:server_id>', methods=['DELETE'])
 # @login_required
 def delete_server(server_id):
+  print('You made it!!!!!!!!!!!')
   server = Server.query.filter(Server.id == server_id).first()
   db.session.delete(server)
   db.session.commit()
