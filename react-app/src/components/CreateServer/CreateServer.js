@@ -7,7 +7,8 @@ const CreateServer = ({onClose}) => {
   let history = useHistory();
   const {serverId} = useParams();
   const dispatch = useDispatch();
-  const sessionUser = useSelector((state) => state.session.user);
+  const sessionUser = useSelector(state => state.session.user);
+  useSelector(state => state.server)
   const [name, setName] = useState("");
   const [icon, setIcon] = useState("");
 

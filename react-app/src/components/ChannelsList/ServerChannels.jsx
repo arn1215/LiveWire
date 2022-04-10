@@ -1,9 +1,13 @@
 import './ChannelsList.css'
 import CreateChannel from '../CreateChannel/index';
-import { useSelector } from 'react-redux';
-import { Link, useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory, useParams } from 'react-router-dom';
+import * as actionChannels from '../../store/channel'
 
 const ServerChannels = () => {
+    const history = useHistory();
+    const [channelName, setChannelName] = useState()
+    const dispatch = useDispatch();
     const { serverId } = useParams();
     const server = useSelector(state => (state.server.userServers))
     useSelector(state => state.server)
@@ -22,6 +26,8 @@ const ServerChannels = () => {
                         <div className="channel-wrapper">
                             <p className='channel-icon'>#</p>
                             <p /* onClick={} */ className='sc-name'>{`${channel.name}`}</p>
+                            <button onClick={() => dispatch(actionChannels.updateChannel).then(history.push(`/servers/${serverId}`))} className="sc-edit-button">Edit</button>
+                            <button className="sc-delete-button">Delete</button>
                         </div>
                     </div>
                 ))}
