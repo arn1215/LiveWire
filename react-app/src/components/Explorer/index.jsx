@@ -1,13 +1,17 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 import ExplorerList from '../ExplorerList'
-import './ExplorerList.css'
+import './ExplorerCSS.css'
 
 const Explorer = () => {
   return (
     <div className='explorer-button'>
-      <div className='explorer-list'>
-        <ExplorerList />
-      </div>
+      <Link to='/explorer' className='explorer-list'>
+        <button className='cs-button'><ExplorerList /></button>
+      </Link>
     </div>
   )
 }
+
+
+export default Explorer;

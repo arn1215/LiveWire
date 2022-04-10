@@ -1,21 +1,24 @@
 import React from 'react'
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import './ExplorerList.css'
+// import './ExplorerList.css'
 
 const ExplorerList = () => {
-  const allServers = useSelector(state => Object.values(state.server.servers.servers))
+  const allServers = useSelector(state => state.server.allServers)
+  console.log("allServers-------------------------------->", allServers)
 
 
   return (
     <div>
-      <div>
+      {/* <div>
           {allServers.map(server => {
             <div key={server.id}>
               {server.icon}
             </div>
           })}
-      </div>
+      </div> */}
     </div>
   )
 }
+
+export default ExplorerList;
