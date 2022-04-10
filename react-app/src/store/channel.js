@@ -45,14 +45,15 @@ export const loadAllChannels = (serverId) => async (dispatch) => {
     }
 };
 
-export const updateChannel = ({ newName, channel }) => async (dispatch) => {
-    const res = await fetch(`/api/channels/${channel.id}`, {
+export const updateChannel = ({channelName, channelId}) => async (dispatch) => {
+    const res = await fetch(`/api/channels/${channelId}`, {
         method: 'PUT',
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(newName)
+        body: JSON.stringify(channelName)
+
     })
     const channelToUpdate = await res.json()
     dispatch(editChannel(channelToUpdate))
