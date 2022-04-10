@@ -60,15 +60,8 @@ export const updateChannel = ({ newName, channel }) => async (dispatch) => {
 }
 
 export const removeChannel = (id) => async (dispatch) => {
-    const res = await fetch(`/api/channels/${id}`, {
-        method: 'DELETE',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ id })
-    })
+    const res = await fetch(`/api/channels/delete/${id}`, { method: 'DELETE' })
     if (res.ok) {
-        const id = await res.json()
         dispatch(deleteChannel(id))
     }
 }
