@@ -4,25 +4,24 @@ import * as messageActions from "../../store/message";
 import './Message.css'
 
 const MessageComponent = () => {
-
     const dispatch = useDispatch()
-
     const user = useSelector((state) => state.session.user);
     const messagesObj = useSelector((state) => state.messages);
     const messagesArr = Object.values(messagesObj);
     // const messagesArr = [{ id: 1, content: "yo, dude", message_owner_id: 1 }, { id: 2, content: "bruh", message_owner_id: 2 }, { id: 3, content: "wagud", message_owner_id: 1 }]
-    const channel = useSelector((state) => state.channel);
+    const channel = useSelector((state) => state.channel.currentChannel);
+    console.log('this is channel,', channel);
     const [content, setContent] = useState("");
     const [editedMessageId, setEditedMessageId] = useState(null);
     const [editedMessage, setEditedMessage] = useState('');
 
 
 
-    const onSubmit = () => {
-
+    const onSubmit = (e) => {
+        
         let message = {
-            message_owner_id: user.id,
             channel_id: channel.id,
+            message_owner_id: user.id,
             content
         }
         setContent("")
@@ -37,7 +36,6 @@ const MessageComponent = () => {
         setEditedMessage("")
         dispatch(messageActions.updateMessage(updatedMessage))
     }
-
 
     const onDelete = async (message) => {
         await dispatch(messageActions.removeMessage(message.id))
@@ -81,34 +79,11 @@ const MessageComponent = () => {
                                     )}
                                 </>
                             )}
-
-
-
                         </div>
                     ))}
                 </div>
-
-
-
-
-
-
                 <div className="message-container">
-
                     <form onSubmit={onSubmit}>
-                        {/*
-                        <textarea
-                            placeholder={`Message #`}
-                            type="text"
-                            value={content}
-                            onChange={(e) => setContent(e.target.value)}
-                            required
-                            className="chat-field"
-                        >
-
-                        </textarea> */}
-                        {/*
-                        <button type='submit'>Submit</button> */}
                         <input
                             className="chat-field"
                             type="text"
@@ -116,7 +91,6 @@ const MessageComponent = () => {
                             onChange={(e) => setContent(e.target.value)}
                             required
                         />
-
                     </form>
                 </div>
             </div>
