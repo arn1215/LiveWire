@@ -49,9 +49,11 @@ export const updateChannel = ({channelName, channelId}) => async (dispatch) => {
     const res = await fetch(`/api/channels/${channelId}`, {
         method: 'PUT',
         headers: {
+            'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(channelName)
+
     })
     const channelToUpdate = await res.json()
     dispatch(editChannel(channelToUpdate))
@@ -60,22 +62,15 @@ export const updateChannel = ({channelName, channelId}) => async (dispatch) => {
 }
 
 export const removeChannel = (id) => async (dispatch) => {
-    const res = await fetch(`/api/channels/${id}`, {
-        method: 'DELETE',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ id })
-    })
+    const res = await fetch(`/api/channels/delete/${id}`, { method: 'DELETE' })
     if (res.ok) {
-        const id = await res.json()
         dispatch(deleteChannel(id))
     }
 }
 
 
-export const createChannel = ({ name, serverId}) => async (dispatch) => {
-    const res = await fetch('/api/servers', {
+export const createChannel = ({ name, serverId }) => async (dispatch) => {
+    const res = await fetch('/api/channels/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

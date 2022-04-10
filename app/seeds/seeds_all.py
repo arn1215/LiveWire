@@ -402,3 +402,6 @@ def undo_all():
     db.session.execute('TRUNCATE channels RESTART IDENTITY CASCADE;')
     db.session.execute('TRUNCATE messages RESTART IDENTITY CASCADE;')
     db.session.commit()
+
+
+### lets pray this works

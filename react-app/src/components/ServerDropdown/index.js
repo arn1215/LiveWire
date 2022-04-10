@@ -66,18 +66,19 @@ const ServerDropdown = () => {
                     <i className="fa-solid fa-angle-down" onClick={openMenu}></i>
                     {/* } */}
                     {showMenu && (
-                        <div className='server-dropdown-menu'>
+                        <div className='server-dropdown-bar'>
                             <div className='server-name-edit' onClick={openNameField}>
                                 Edit Name
                             </div>
                             {showNameField && (
-                                <form onSubmit={HandleNameEdit}>
+                                <form onSubmit={HandleNameEdit} className='form-css'>
                                     <input
+                                    className='input-css'
                                     type='text'
                                     value={newName}
                                     onChange={e => setNewName(e.target.value)}
                                     />
-                                    <button type='submit'>Edit</button>
+                                    <button type='submit' className='submit-edit-butt'>Edit</button>
                                 </form>
                             )}
                                 <div className='server-delete' onClick={HandleDelete}>
