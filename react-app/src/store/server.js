@@ -52,10 +52,14 @@ const deleteServer = (serverId) => {
 
 //Edit a server
 
-export const putServer = (data) => async (dispatch) => {
-    const res = await fetch(`/api/servers/${data.id}`, {
+export const putServer = ({ newName, currentServer }) => async (dispatch) => {
+    const res = await fetch(`/api/servers/${currentServer.id}`, {
         method: "PUT",
-        body: JSON.stringify(data),
+        headers: {
+            'Accept': 'application/json',
+            "Content-Type": "application/json",
+          },
+        body: JSON.stringify(newName),
     });
     if (res.ok) {
         const updatedServer = await res.json()

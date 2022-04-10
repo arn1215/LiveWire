@@ -47,11 +47,12 @@ def get_one_server(server_id):
 # @login_required
 def edit_server(server_id):
   server = Server.query.get(server_id)
-  data = request.json
-  if 'name' in data.keys():
-    server.name = data['name']
-  if 'icon' in data.keys():
-    server.icon = data["icon"]
+  data = request.get_json(force=True)
+  print('Over Here!!!!!!!', data)
+  # if 'name' in data.keys():
+  server.name = data
+  # if 'icon' in data.keys():
+  #   server.icon = data["icon"]
   db.session.commit()
   return server.to_dict()
 

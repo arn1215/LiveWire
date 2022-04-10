@@ -10,9 +10,12 @@ const ServerDropdown = () => {
     const [newName, setNewName] = useState('')
     const currentUser = useSelector(state => state.session.user)
     const currentServer = useSelector(state => state.server.oneServer?.server);
+    const serverID = currentServer.id
     const userServers = useSelector(state => state.server.userServers);
+    const currentServerName = useSelector(state => state.server.allServers.serverID)
     // console.log('userServers = ', userServers);
     // const belongsToUser = userServers?.find(server => server.owner_id === currentUser.id);
+
 
 
     const deleteServer = () => {
@@ -36,24 +39,22 @@ const ServerDropdown = () => {
 
 
 
-    useEffect(() => {
-        if (!showMenu) return;
+    // useEffect(() => {
+    //     if (!showMenu) return;
 
-        const closeMenu = () => {
-            setShowMenu(false);
-        };
+    //     const closeMenu = () => {
+    //         setShowMenu(false);
+    //     };
 
-        document.addEventListener('click', closeMenu);
+    //     document.addEventListener('click', closeMenu);
 
-        return () => document.removeEventListener('click', closeMenu);
-    }, [showMenu]);
+    //     return () => document.removeEventListener('click', closeMenu);
+    // }, [showMenu]);
 
         const handleNameEdit = (e) => {
             e.preventDefault();
             setShowNameField(false)
-            currentServer.name = newName
-            console.log('this is the new...,', currentServer)
-            dispatch(serverActions.putServer(currentServer))
+            dispatch(serverActions.putServer({ newName, currentServer }))
         }
 
 
