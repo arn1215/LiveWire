@@ -24,7 +24,7 @@ const MessageComponent = () => {
     const onSubmit = () => {
 
         let message = {
-            channel_id: channel.id,
+            channel_id: 1,
             message_owner_id: user.id,
             content: content
         }
@@ -37,7 +37,7 @@ const MessageComponent = () => {
             message_id: messageId,
             content: editedMessage
         }
-        setEditedMessage("")
+        setEditedMessageId(null)
         dispatch(messageActions.updateMessage(updatedMessage))
     }
 
@@ -55,7 +55,7 @@ const MessageComponent = () => {
     }
 
     useEffect(() => {
-        dispatch(messageActions.fetchMessages(channel.id))
+        dispatch(messageActions.fetchMessages(1))
     }, [dispatch])
 
     return (
@@ -99,7 +99,6 @@ const MessageComponent = () => {
                             onChange={(e) => setContent(e.target.value)}
                             required
                         />
-                        <button type='submit'>Submit</button>
                     </form>
                 </div>
             </div>
