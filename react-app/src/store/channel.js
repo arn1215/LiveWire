@@ -108,12 +108,12 @@ export const createChannel = ({ name, serverId }) => async (dispatch) => {
 // Reducer
 export default function channelReducer(state = {
     currentChannel: {},
-    allChannels: [],
+    allChannels: {},
 }, action) {
     let newState = {...state};
     switch (action.type) {
         case GET_ONE_CHANNEL:
-            newState.currentChannel.channels = action.channel
+            newState.currentChannel = action.channel
             return newState;
         case GET_ALL_CHANNELS:
             action.channels.forEach(channel => {
