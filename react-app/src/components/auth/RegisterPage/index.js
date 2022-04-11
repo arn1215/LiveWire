@@ -46,7 +46,7 @@ const SignUpForm = () => {
   return (
     <div className='register-form'>
       <form onSubmit={onSignUp} className='register-box'>
-        <div>
+        <div className='sign-up-title'> Register To Be A User Here!
           {errors.map((error, ind) => (
             <div key={ind}>{error}</div>
           ))}

@@ -30,5 +30,6 @@
 .link-login {
   background-color: white;
   padding: 20px;
-  width: 296px;
+  width: fit-content;
+  margin-top: 200px;
 }

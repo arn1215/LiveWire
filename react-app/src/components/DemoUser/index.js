@@ -24,9 +24,10 @@ function DemoUser() {
     return (
         <div>
             <form onSubmit={demoUserLogin}>
-                <button id='' className="demoUserButton">
-                    <i className="fa-solid fa-user"></i>
-                    <p>Demo User</p>
+                <button id='' >
+                    Demo User
+                    {/* <i className="fa-solid fa-user"></i> */}
+                    {/* <p>Demo User</p> */}
                 </button>
             </form>
         </div>
