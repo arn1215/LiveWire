@@ -1,0 +1,41 @@
+.register-form {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  background-color: #404eed;
+  width: 100%;
+  height: 100vh;
+  margin: auto;
+  align-items: center;
+}
+
+.register-box {
+  background-color: white;
+  text-align: center;
+}
+
+.title-register {
+  padding: 20px;
+}
+
+.email-css {
+  padding: 20px;
+}
+
+.password-css {
+  margin: 20px;
+}
+
+.username-css {
+  margin: 20px;
+}
+
+.link-register {
+  background-color: white;
+  padding: 20px;
+  width: 296px;
+}
+
+.sign-up-title {
+  margin: 15px;
+}

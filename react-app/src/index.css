@@ -29,3 +29,16 @@ body {
     margin: 10px;
     text-align: center;
 }
+
+
+button {
+    background-color: white;
+    padding: 10px;
+    border-radius: 25px;
+    border: none;
+    font: 15px black sans-serif;
+    font-weight: bold;
+    /* box-shadow: 1.5px 1.5px #0396A6; */
+    border: 1px solid #0D0D0D;
+    margin-bottom: 10px;
+  }
