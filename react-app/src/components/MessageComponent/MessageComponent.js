@@ -9,7 +9,7 @@ const MessageComponent = () => {
     const dispatch = useDispatch()
     const {channelId} = useParams();
     const user = useSelector((state) => state.session.user);
-    const messagesObj = useSelector((state) => state.messages);
+    const messagesObj = useSelector((state) => state.messages.allMessages);
     const messagesArr = Object.values(messagesObj);
     const channel = useSelector((state) => state.channel.currentChannel);
     const [content, setContent] = useState("");
@@ -78,7 +78,7 @@ const MessageComponent = () => {
                             )}
                             {editedMessageId === message.id && (
                                 <>
-                                    <input value={editedMessage} onChange={handleOnChange}></input>
+                                    <input type='text' className='edit-input' value={editedMessage} onChange={handleOnChange}></input>
                                     {user.id === message.message_owner_id && (
                                         <div>
                                             {/* <button onClick={() => onDelete(message) }>delete</button> */}
