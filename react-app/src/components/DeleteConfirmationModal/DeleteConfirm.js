@@ -13,7 +13,6 @@ function DeleteConfirm( { setShowModal, channelId } ) {
     e.preventDefault();
     await dispatch(channelActions.removeChannel(channelId));
     setShowModal(false);
-    history.push(`/servers/${serverId}`)
     }
 
     return (
