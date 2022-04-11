@@ -13,16 +13,16 @@ const MessageComponent = () => {
     const messagesArr = Object.values(messagesObj);
     const channel = useSelector((state) => state.channel.currentChannel);
     const [content, setContent] = useState("");
-    const [editedMessageId, setEditedMessageId] = useState(null);
+    // const [editedMessageId, setEditedMessageId] = useState(null);
     const [editedMessage, setEditedMessage] = useState('');
-    const [deletedMessage, setDeletedMessage] = useState('');
+    // const [deletedMessage, setDeletedMessage] = useState('');
 
     useEffect(() => {
         if (channelId) {
             dispatch(messageActions.fetchMessages(channelId))
             dispatch(channelActions.loadOneChannel(channelId))
         }
-    }, [])
+    },)
 
     const onSubmit = async (e) => {
         e.preventDefault();
@@ -37,24 +37,24 @@ const MessageComponent = () => {
         await dispatch(messageActions.fetchMessages(channelId))
     }
 
-    const onSubmitEdit = (messageId) => {
-        let updatedMessage = {
-            message_id: messageId,
-            content: editedMessage
-        }
-        setEditedMessageId(null)
-        dispatch(messageActions.updateMessage(updatedMessage))
-    }
+    // const onSubmitEdit = (messageId) => {
+    //     let updatedMessage = {
+    //         message_id: messageId,
+    //         content: editedMessage
+    //     }
+    //     setEditedMessageId(null)
+    //     dispatch(messageActions.updateMessage(updatedMessage))
+    // }
 
     // const onDelete = (message) => {
     //     setDeletedMessage(message.content)
     //     dispatch(messageActions.removeMessage({ message_id: message.id, channel_id: 1 }))
     // }
 
-    const onEdit = (messageId, messageContent) => {
-        setEditedMessage(messageContent)
-        setEditedMessageId(messageId)
-    }
+    // const onEdit = (messageId, messageContent) => {
+    //     setEditedMessage(messageContent)
+    //     setEditedMessageId(messageId)
+    // }
 
     const handleOnChange = (e) => {
         setEditedMessage(e.target.value)
@@ -67,7 +67,7 @@ const MessageComponent = () => {
                     {messagesArr?.map(message => (
                         <div key={message.id}>
                             <div  className="message">{message?.content}</div>
-                            {editedMessageId !== message.id && (
+                            {/* {editedMessageId !== message.id && ( */}
                                 <>
                                     {user.id === message.message_owner_id && (
                                         <div>
@@ -77,8 +77,8 @@ const MessageComponent = () => {
                                         </div>
                                     )}
                                 </>
-                            )}
-                            {editedMessageId === message.id && (
+                            {/* // )} */}
+                            {/* {editedMessageId === message.id && ( */}
                                 <>
                                     <input type='text' className='edit-input' value={editedMessage} onChange={handleOnChange}></input>
                                     {user.id === message.message_owner_id && (
@@ -88,7 +88,7 @@ const MessageComponent = () => {
                                         </div>
                                     )}
                                 </>
-                            )}
+                            {/* )} */}
                         </div>
                     ))}
                 </div>
