@@ -19,10 +19,14 @@ const ServerChannels = () => {
                 {channels.map(channel => (
                     <div key={channel.id} className="sc-channels">
                         <div className="channel-wrapper">
-                            <p className='channel-icon'>#</p>
-                            <Link to={`/servers/${serverId}/channel/${channel.id}`} className='sc-name' onClick={() => dispatch(messageActions.fetchMessages(channel.id), dispatch(channelActions.loadOneChannel(channel.id)))}>{channel.name}</Link>
-                            <EditTextChannelNameModal currentChannelName={channel.name} channelId={channel.id}/>
-                            <DeleteConfirmationModal currentChannelName={channel.name} channelId={channel.id}/>
+                            <div>
+                                <p className='channel-icon'>#</p>
+                                <Link to={`/servers/${serverId}/channel/${channel.id}`} className='sc-name' onClick={() => dispatch(messageActions.fetchMessages(channel.id), dispatch(channelActions.loadOneChannel(channel.id)))}>{channel.name}</Link>
+                            </div>
+                            <div>
+                                <EditTextChannelNameModal currentChannelName={channel.name} channelId={channel.id}/>
+                                <DeleteConfirmationModal currentChannelName={channel.name} channelId={channel.id}/>
+                            </div>
                         </div>
                     </div>
                 ))}

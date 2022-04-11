@@ -9,6 +9,7 @@
 
 .chat-field {
     width: 95%;
+    color: aliceblue;
     background-color: rgba(240, 248, 255, 0.233);
     border-radius: 8px;
     margin-left: 15px;
@@ -17,14 +18,28 @@
 }
 
 .message-wrap{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
     overflow-y: scroll;
     margin-bottom: 10px;
+    margin-left: 5px;
 }
 
 .message {
-    margin: 10px;
+    margin-top: 5px;
     color: aliceblue;
+    font-weight: 300;
+}
 
+.message-container{
+    padding: 5px;
+    margin: 5px;
+}
+
+.message-owner{
+    font-weight: 600;
+    color: rgb(43, 106, 215);
 }
 
 .message:hover {
