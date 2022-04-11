@@ -1,6 +1,6 @@
 import React from "react";
 import CreateServerModal from "../../components/CreateServer/index";
-import Explorer from "../../components/Explorer/index"
+// import Explorer from "../../components/Explorer/index"
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import './ServerList.css'
@@ -25,7 +25,7 @@ const ServerList = () => {
                     ))}
             </div>
             <CreateServerModal />
-            <Explorer />
+            {/* <Explorer /> */}
         </div>
     );
 };
