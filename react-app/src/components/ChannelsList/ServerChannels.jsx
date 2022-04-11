@@ -28,7 +28,6 @@ const ServerChannels = () => {
     }, [channels])
 
     useEffect(() => {
-        console.log('Channels! ', channelsArr)
         setLoaded(true)
     }, [channelsArr])
 
