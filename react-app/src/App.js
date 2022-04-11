@@ -38,10 +38,10 @@ function App() {
         <ProtectedRoute path='/explorer' exact={true} >
           <Parent />
         </ProtectedRoute>
-        <ProtectedRoute path='/@me/:serverId' >
+        <ProtectedRoute path='/@me/:serverId' exact={true} >
           <Parent />
         </ProtectedRoute>
-        <ProtectedRoute path='/@me/:serverId/dm/:channelId' >
+        <ProtectedRoute path='/@me/:serverId/dm/:channelId' exact={true} >
           <Parent />
         </ProtectedRoute>
         <ProtectedRoute path='/servers/:serverId' exact={true} >

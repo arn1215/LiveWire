@@ -8,9 +8,11 @@ const ServerChannels = () => {
     const {serverId} = useParams();
     const dispatch = useDispatch();
     const channels = useSelector(state => Object.values(state.channel.allChannels))
+    const user = useSelector(state => state.session.user)
 
     return (
         <div className="sc">
+            <div className="user-name">{user.username}</div>
             <div className="sc-wrapper">
                 {channels.map(channel => (
                     <div key={channel.id} className="sc-channels">

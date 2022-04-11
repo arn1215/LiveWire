@@ -12,7 +12,6 @@ function ChannelNav() {
     if (location.pathname === `/@me/${serverId}` || location.pathname === `/@me/${serverId}/dm/${channelId}`) {
         return (
             <div className='channel-nav'>
-                <ServerDropDown />
                 <UserDMs />
             </div>
         )} else {

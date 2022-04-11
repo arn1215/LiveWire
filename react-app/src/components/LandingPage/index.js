@@ -3,6 +3,8 @@ import './LandingPage.css'
 import DemoUser from '../DemoUser'
 import { useSelector } from "react-redux";
 import ProfileButton from './ProfileButton';
+import studygroupimg from '../../imgs/studygroupimg.svg'
+import logo from '../../imgs/logo_livewire.png'
 
 const LandingPage = ({isLoaded}) => {
     const user = useSelector(state => state.session.user)
@@ -33,7 +35,7 @@ const LandingPage = ({isLoaded}) => {
                 <header className='nav-header'>
                     <nav className='landing-nav'>
                         <NavLink className='logo-link' to='/'>
-                            <div className='svg-logo'>SVG LOGO</div>
+                            <img className='svg-logo' src={logo}/>
                         </NavLink>
                         {isLoaded && sessionLinks}
                     </nav>
@@ -56,9 +58,11 @@ const LandingPage = ({isLoaded}) => {
                 </div>
             </div>
             <div className='row-2-div'>
-                <div className='img1-div'></div>
+                <div className='img1-div'>
+                    <img className="img1" src={studygroupimg}/>
+                </div>
                 <div className='description1-div'>
-                    <h2>Create an invite-only place where you belong</h2>
+                    <p className="create-invite-test">Create an invite-only place where you belong</p>
                     <div className='description1-text'>
                         LiveWire servers are organized into topic-based channels where you can collaborate, share, and just talk about your day without clogging up a group chat.
                     </div>
