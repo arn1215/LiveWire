@@ -2,4 +2,11 @@
     height: 100%;
     width: 240px;
     background-color: rgb(44, 45, 48);
+    display: flex;
+    justify-content: center;
+}
+
+.username-div {
+    margin: 20px;
+    color: #808080;
 }
