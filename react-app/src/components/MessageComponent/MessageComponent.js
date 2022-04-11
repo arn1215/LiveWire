@@ -73,6 +73,7 @@ const MessageComponent = () => {
                                         <div>
                                             {/* <button onClick={() => onDelete(message) }>delete</button> */}
                                             {/* <button onClick={() => {onEdit(message.id, message.content)}}>edit</button> */}
+
                                         </div>
                                     )}
                                 </>
