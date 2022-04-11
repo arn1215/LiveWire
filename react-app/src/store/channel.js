@@ -44,7 +44,12 @@ const editChannel = (channel) => ({
 
 //Thunks
 export const loadOneChannel = (channelId) => async (dispatch) => {
-    const res = 
+    const res = await fetch(`/api/channels/${channelId}`)
+
+    if (res.ok) {
+        const channel = await res.json();
+        dispatch(getOneChannel(channel));
+    }
 }
 
 
@@ -103,12 +108,12 @@ export const createChannel = ({ name, serverId }) => async (dispatch) => {
 // Reducer
 export default function channelReducer(state = {
     currentChannel: {},
-    allChannels: [],
+    allChannels: {},
 }, action) {
     let newState = {...state};
     switch (action.type) {
-        case GET_CHANNEL:
-            newState.currentChannel.channels = action.channel
+        case GET_ONE_CHANNEL:
+            newState.currentChannel = action.channel
             return newState;
         case GET_ALL_CHANNELS:
             action.channels.forEach(channel => {
