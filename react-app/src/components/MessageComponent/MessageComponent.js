@@ -94,7 +94,7 @@ const MessageComponent = () => {
                         </div>
                     ))}
                 </div>
-                <div className="message-container">
+                <div className="input-container">
                     <form onSubmit={onSubmit}>
                         <input
                             className="chat-field"

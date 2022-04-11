@@ -35,12 +35,18 @@ button {
     background-color: white;
     padding: 10px;
     border-radius: 25px;
-    border: none;
-    font: 15px black sans-serif;
-    font-weight: bold;
+    border: 1px solid black;
+    font: 15px black;
+    font-weight: 600;
+    /* font-weight: bold; */
     /* box-shadow: 1.5px 1.5px #0396A6; */
-    border: 1px solid #0D0D0D;
     margin-bottom: 10px;
     margin-top: 5px;
     cursor: pointer;
-  }
+}
+
+a{
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+}

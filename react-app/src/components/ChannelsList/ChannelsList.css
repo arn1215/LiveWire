@@ -8,6 +8,7 @@
 .sc-wrapper{
     display: flex;
     flex-direction: column;
+    justify-content: center;
     margin-left: 10px;
 }
 
@@ -20,12 +21,34 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    height: 40px;
+}
+
+.trash-and-edit{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-right: 2px;
+}
+
+.trashcan{
+    margin-top: 2px;
+}
+
+.edit-pencil{
+    display: flex;
+    margin-bottom: 2px;
 }
 
 .sc-name {
+    align-self: center;
+    justify-self: flex-start;
     cursor: pointer;
+    text-decoration: none;
     color: gray;
     margin: 0px 0px 0px 10px;
+    font-size: 80%;
 }
 
 .channel-icon {
@@ -34,11 +57,21 @@
     font-weight: 800px;
 }
 
-.user-name{
+.ci-and-cName{
     display: flex;
+}
+
+.user-name{
+    color: rgb(66, 121, 217);
+    display: flex;
+    font-weight: 800;
+    font-size: 20px;
     text-align: center;
     justify-content: center;
-    font-weight: 600;
     margin: 10px 0px;
     border-bottom: 1px solid black;
+}
+
+.icon-and-channel-name{
+    display: flex;
 }
