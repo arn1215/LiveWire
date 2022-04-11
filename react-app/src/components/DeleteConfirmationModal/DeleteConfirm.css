@@ -8,3 +8,7 @@
 .deleteButtonContainer > * {
     margin: 10px;
 }
+
+.fa-trash-can {
+    margin-left: 4px;
+}
