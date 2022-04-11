@@ -36,10 +36,11 @@ def edit_message(message_id):
 
 
 # delete one message
-@message_routes.route('/delete/<int:message_id>', methods=['DELETE'])
+@message_routes.route('/delete/<int:message_id>/<int:channel_id>', methods=['DELETE'])
 # @login_required
-def delete_message(message_id):
+def delete_message(message_id, channel_id):
     message = Message.query.filter(Message.id == message_id).first()
     db.session.delete(message)
     db.session.commit()
-    return f"Deleted Message: {message_id}"
+    messages = Message.query.filter(Message.channel_id == channel_id)
+    return {"messages": [m.to_dict() for m in messages]}

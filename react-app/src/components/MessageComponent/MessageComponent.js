@@ -14,8 +14,11 @@ const MessageComponent = () => {
     const [content, setContent] = useState("");
     const [editedMessageId, setEditedMessageId] = useState(null);
     const [editedMessage, setEditedMessage] = useState('');
+    const [deletedMessage, setDeletedMessage] = useState('');
 
-    console.log("MESSAGES: ", messagesObj)
+
+    console.log("Deleted Message: ", deletedMessage)
+    console.log("MESSAGES: ", messagesArr)
 
     console.log("Channel ID: ", channel)
     console.log("Message Owner: ", user.id)
@@ -41,8 +44,9 @@ const MessageComponent = () => {
         dispatch(messageActions.updateMessage(updatedMessage))
     }
 
-    const onDelete = async (message) => {
-        await dispatch(messageActions.removeMessage(message.id))
+    const onDelete = (message) => {
+        setDeletedMessage(message.content)
+        dispatch(messageActions.removeMessage({ message_id: message.id, channel_id: 1 }))
     }
 
     const onEdit = (messageId, messageContent) => {
@@ -56,7 +60,7 @@ const MessageComponent = () => {
 
     useEffect(() => {
         dispatch(messageActions.fetchMessages(1))
-    }, [dispatch])
+    }, [dispatch, deletedMessage])
 
     return (
         <>
