@@ -42,7 +42,6 @@ const editChannel = (channel) => ({
     payload: channel
 })
 
-//Thunks
 export const loadOneChannel = (channelId) => async (dispatch) => {
     const res = await fetch(`/api/channels/${channelId}`)
 
@@ -51,7 +50,6 @@ export const loadOneChannel = (channelId) => async (dispatch) => {
         dispatch(getOneChannel(channel));
     }
 }
-
 
 export const loadAllChannels = (serverId) => async (dispatch) => {
     const res = await fetch(`/api/channels/byServer/${serverId}`);
@@ -62,7 +60,7 @@ export const loadAllChannels = (serverId) => async (dispatch) => {
     }
 };
 
-export const updateChannel = ({channelName, channelId}) => async (dispatch) => {
+export const updateChannel = ({ channelName, channelId }) => async (dispatch) => {
     const res = await fetch(`/api/channels/${channelId}`, {
         method: 'PUT',
         headers: {
@@ -110,25 +108,29 @@ export default function channelReducer(state = {
     currentChannel: {},
     allChannels: {},
 }, action) {
-    let newState = {...state};
+    let newState = { ...state };
     switch (action.type) {
         case GET_ONE_CHANNEL:
             newState.currentChannel = action.channel
             return newState;
         case GET_ALL_CHANNELS:
+            const newAllChannels = {}
             action.channels.forEach(channel => {
-                newState.allChannels[channel.id] = channel;
+                newAllChannels[channel.id] = channel;
             });
-            return newState;
+            return { ...state, allChannels: newAllChannels };
         case ADD_CHANNEL:
-            newState.allChannels[action.payload.id] = action.payload
-            return newState;
+            const newAllChannelsAdd = {}
+            newAllChannelsAdd[action.payload.id] = action.payload;
+            return { ...state, allChannels: newAllChannelsAdd };
         case EDIT_CHANNEL:
-            newState.allChannels[action.payload.id] = action.payload
-            return newState;
+            const newAllC = {...state.allChannels}
+            newAllC[action.payload.id] = action.payload
+            return {...state, allChannels: newAllC};
         case DELETE_CHANNEL:
-            delete newState.allChannels[action.payload.id]
-            return newState;
+            const newAC = {...state.allChannels}
+            delete newAC[action.payload.id]
+            return { ...state, allChannels: newAC };
         default:
             return state
     }

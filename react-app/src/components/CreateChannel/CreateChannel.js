@@ -20,6 +20,7 @@ const CreateChannel = () => {
 
     try {
     await dispatch(channelActions.createChannel(newChannel))
+    await dispatch(channelActions.loadAllChannels(serverId))
     } catch (error) {
       console.log(error)
     }

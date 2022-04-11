@@ -13,12 +13,16 @@ function Parent() {
     const [isLoaded, setIsLoaded] = useState(false)
     const user = useSelector(state => state.session.user);
 
+    useEffect(() => {
+
+    })
 
     useEffect(() => {
         const loaded = async () => {
             await dispatch(serverActions.loadUsersServers(user.id))
             await dispatch(serverActions.loadServerById(serverId))
             await dispatch(channelActions.loadAllChannels(serverId))
+            await dispatch(serverActions.loadAllServers())
             setIsLoaded(true)
         }
         loaded()

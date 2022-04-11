@@ -27,7 +27,7 @@ function App() {
     <BrowserRouter>
       <Switch>
         <Route path='/' exact={true}>
-          <LandingPage />
+          <LandingPage isLoaded={isLoaded} />
         </Route>
         <Route path='/login' exact={true}>
           <LoginForm />
@@ -35,6 +35,9 @@ function App() {
         <Route path='/register' exact={true}>
           <SignUpForm />
         </Route>
+        <ProtectedRoute path='/explorer' exact={true} >
+          <Parent />
+        </ProtectedRoute>
         <ProtectedRoute path='/@me/:serverId' exact={true} >
           <Parent />
         </ProtectedRoute>

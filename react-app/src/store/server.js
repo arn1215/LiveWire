@@ -142,32 +142,37 @@ const serversReducer = (state={
 
     switch (action.type) {
         case ADD_SERVER: {
-            newState.allServers[action.server.id] = action.server
-            return newState;
+            const newAllServers = {}
+            newAllServers[action.server.id] = action.server
+            return {...state, allServers: newAllServers};
         }
         case LOAD_SERVERS: {
+            const allServersNew = {}
             action.servers.forEach(server => {
-                newState.allServers[server.id] = server;
+                allServersNew[server.id] = server;
             })
-            return newState;
+            return {...state, allServers: allServersNew};
         }
         case LOAD_USER_SERVERS: {
+            const newUsersServers = {}
             action.user_Servers.forEach(server => {
-                newState.userServers[server.id] = server
+                newUsersServers[server.id] = server
             })
-            return newState;
+            return {...state, userServers: newUsersServers};
         }
         case DELETE_SERVER: {
-            delete newState.allServers[action.serverId]
-            return newState;
+            const newAllS = {...state.allServers}
+            delete newAllS[action.serverId]
+            return {...state, allServers: newAllS};
         }
         case LOAD_SERVER: {
             newState.oneServer.server = action.server
             return newState;
         }
         case EDIT_SERVER: {
-            newState.allServers[action.updatedServer.id] = action.updatedServer
-            return newState;
+            const allSNew = {}
+            allSNew[action.updatedServer.id] = action.updatedServer
+            return {...state, allServers: allSNew};
         }
         default:
             return state;
