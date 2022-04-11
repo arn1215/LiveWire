@@ -38,16 +38,16 @@ function App() {
         <ProtectedRoute path='/explorer' exact={true} >
           <Parent />
         </ProtectedRoute>
-        <ProtectedRoute path='/@me/:serverId' exact={true} >
+        <ProtectedRoute path='/@me/:serverId' >
           <Parent />
         </ProtectedRoute>
-        <ProtectedRoute path='/@me/:serverId/dm/:channelId' exact={true} >
+        <ProtectedRoute path='/@me/:serverId/dm/:channelId' >
           <Parent />
         </ProtectedRoute>
         <ProtectedRoute path='/servers/:serverId' exact={true} >
           <Parent />
         </ProtectedRoute>
-        <ProtectedRoute path='/servers/:serverId/channels/:channelId' exact={true} >
+        <ProtectedRoute path='/servers/:serverId/channel/:channelId' exact={true} >
           <Parent />
         </ProtectedRoute>
         <Route path='*'>

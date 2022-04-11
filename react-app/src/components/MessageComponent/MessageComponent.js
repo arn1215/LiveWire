@@ -7,7 +7,7 @@ import './Message.css'
 
 const MessageComponent = () => {
     const dispatch = useDispatch()
-    const {serverId, channelId} = useParams();
+    const {channelId} = useParams();
     const user = useSelector((state) => state.session.user);
     const messagesObj = useSelector((state) => state.messages);
     const messagesArr = Object.values(messagesObj);
@@ -58,7 +58,7 @@ const MessageComponent = () => {
     }
 
     useEffect(() => {
-        dispatch(messageActions.fetchMessages(1))
+        dispatch(messageActions.fetchMessages(channel.id))
     }, [dispatch, deletedMessage])
 
     return (
