@@ -72,7 +72,7 @@ const MessageComponent = () => {
                                     {user.id === message.message_owner_id && (
                                         <div>
                                             {/* <button onClick={() => onDelete(message) }>delete</button> */}
-                                            <button onClick={() => {onEdit(message.id, message.content)}}>edit</button>
+                                            <button onClick={() => {onEdit(message.id, message.content)}}>Edit</button>
                                         </div>
                                     )}
                                 </>
