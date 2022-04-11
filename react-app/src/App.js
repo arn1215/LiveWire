@@ -27,7 +27,7 @@ function App() {
     <BrowserRouter>
       <Switch>
         <Route path='/' exact={true}>
-          <LandingPage />
+          <LandingPage isLoaded={isLoaded} />
         </Route>
         <Route path='/login' exact={true}>
           <LoginForm />

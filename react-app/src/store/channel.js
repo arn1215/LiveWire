@@ -1,4 +1,4 @@
-const GET_ONE_CHANNEL = 'channels/GET_ONE_CHANNEL'
+// const GET_ONE_CHANNEL = 'channels/GET_ONE_CHANNEL'
 
 const GET_ALL_CHANNELS = 'channels/GET_ALL_CHANNELS'
 
@@ -9,12 +9,12 @@ const DELETE_CHANNEL = 'channels/deleteChannel'
 const EDIT_CHANNEL = 'channels/editChannel'
 
 // Actions
-const getOneChannel = (channel) => {
-    return {
-        type: GET_ONE_CHANNEL,
-        channel
-    }
-}
+// const getOneChannel = (channel) => {
+//     return {
+//         type: GET_ONE_CHANNEL,
+//         channel
+//     }
+// }
 
 const getAllChannels = (channels) => {
     return {
@@ -43,9 +43,9 @@ const editChannel = (channel) => ({
 })
 
 //Thunks
-export const loadOneChannel = (channelId) => async (dispatch) => {
-    const res = 
-}
+// export const loadOneChannel = (channelId) => async (dispatch) => {
+//     const res =
+// }
 
 
 export const loadAllChannels = (serverId) => async (dispatch) => {
@@ -107,9 +107,9 @@ export default function channelReducer(state = {
 }, action) {
     let newState = {...state};
     switch (action.type) {
-        case GET_CHANNEL:
-            newState.currentChannel.channels = action.channel
-            return newState;
+        // case GET_CHANNEL:
+        //     newState.currentChannel.channels = action.channel
+        //     return newState;
         case GET_ALL_CHANNELS:
             action.channels.forEach(channel => {
                 newState.allChannels[channel.id] = channel;

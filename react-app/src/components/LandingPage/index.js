@@ -2,9 +2,30 @@ import { NavLink } from "react-router-dom";
 import './LandingPage.css'
 import DemoUser from '../DemoUser'
 import { useSelector } from "react-redux";
+import ProfileButton from './ProfileButton';
 
-const LandingPage = () => {
+const LandingPage = ({isLoaded}) => {
     const user = useSelector(state => state.session.user)
+
+    let sessionLinks;
+
+    if (user) {
+    sessionLinks = (
+        <ProfileButton user={user} />
+    );
+    } else {
+    sessionLinks = (
+        <div className='sessionLinks'>
+            <DemoUser />
+            <NavLink className='nav-btn' to='/login'>
+                Login
+            </NavLink>
+            <NavLink className='nav-btn' to='/register'>
+                Sign Up
+            </NavLink>
+        </div>
+    );
+}
 
     return (
         <div className='page-div'>
@@ -14,16 +35,7 @@ const LandingPage = () => {
                         <NavLink className='logo-link' to='/'>
                             <div className='svg-logo'>SVG LOGO</div>
                         </NavLink>
-                        {!user && (<div>
-                            <DemoUser />
-                            <NavLink className='nav-btn' to='/login'>
-                                Login
-                            </NavLink>
-                            <NavLink className='nav-btn' to='/register'>
-                                Sign Up
-                            </NavLink>
-                        </div>
-                        )}
+                        {isLoaded && sessionLinks}
                     </nav>
                 </header>
             </div>

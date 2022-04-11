@@ -211,3 +211,59 @@
     height: 680px;
     width: 100%;
 }
+
+.sessionLinks {
+    display: flex;
+}
+
+.sessionLinks > * {
+    display: flex;
+    margin: 10px;
+    align-self: center;
+}
+
+.profileButton {
+    border: none;
+    background-color: white;
+    cursor: pointer;
+    font-size: 20px;
+    padding: 0px 10px;
+    border-radius: 25px;
+    margin: 7px;
+    box-shadow: 2px 2px 5px rgb(46, 46, 46);
+}
+
+.profileButton > i {
+    font-size: 20px;
+
+}
+
+.profileButton > * {
+    padding: 5px;
+}
+
+.profile-dropdown {
+    display: flex;
+    position: fixed;
+    color: white;
+    top: 75px;
+    right: 40px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 10px;
+    border-radius: 15px;
+    background-color: rgba(31, 31, 31, 0.973);
+}
+
+.profile-dropdown > * {
+    padding: 5px 0px;
+}
+
+.logoutButton {
+    padding: 5px 15px;
+    border-radius: 15px;
+    cursor: pointer;
+    background-color: #2f00ff;
+    color: white;
+}
