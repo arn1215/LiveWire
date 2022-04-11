@@ -58,6 +58,9 @@ const ServerDropdown = () => {
         setShowNameField(false)
         dispatch(serverActions.putServer({ newName, currentServer }))
         await dispatch(serverActions.loadUsersServers(sessionUser.id))
+        history.push({
+            pathname: `/@me/${pathId}`,
+        })
     };
 
     return (
