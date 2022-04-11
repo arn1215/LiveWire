@@ -16,6 +16,11 @@
     padding: 8px;
 }
 
+.message-wrap{
+    overflow-y: scroll;
+    margin-bottom: 10px;
+}
+
 .message {
     margin: 10px;
     color: aliceblue;

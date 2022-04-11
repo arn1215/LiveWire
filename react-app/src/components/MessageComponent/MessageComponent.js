@@ -7,7 +7,7 @@ import './Message.css'
 
 const MessageComponent = () => {
     const dispatch = useDispatch()
-    const {serverId, channelId} = useParams();
+    const {channelId} = useParams();
     const user = useSelector((state) => state.session.user);
     const messagesObj = useSelector((state) => state.messages.allMessages);
     const messagesArr = Object.values(messagesObj);
@@ -18,8 +18,10 @@ const MessageComponent = () => {
     const [deletedMessage, setDeletedMessage] = useState('');
 
     useEffect(() => {
-        dispatch(messageActions.fetchMessages(channelId))
-        dispatch(channelActions.loadOneChannel(channelId))
+        if (channelId) {
+            dispatch(messageActions.fetchMessages(channelId))
+            dispatch(channelActions.loadOneChannel(channelId))
+        }
     }, [])
 
     const onSubmit = (e) => {
@@ -56,10 +58,6 @@ const MessageComponent = () => {
     const handleOnChange = (e) => {
         setEditedMessage(e.target.value)
     }
-
-    useEffect(() => {
-        dispatch(messageActions.fetchMessages())
-    }, [dispatch, deletedMessage])
 
     return (
         <>

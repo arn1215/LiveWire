@@ -27,7 +27,6 @@
     display: flex;
     justify-content: center;
     cursor: pointer;
-    /* border-bottom: 0.5px solid white; */
     padding: 5px 0px;
 }
 
@@ -46,7 +45,7 @@
 }
 
 .current-server-name {
-    background-color: rgb(32,34,37);
+    /* background-color: rgb(32,34,37); */
     color: #808080;
     padding: 10px;
     display: flex;
