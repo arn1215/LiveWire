@@ -85,7 +85,6 @@ export const updateMessage = ({ message_id, content }) => async (dispatch) => {
 export default function messageReducer(state = {
     allMessages: {},
 }, action) {
-    let newState;
     switch (action.type) {
         case GET_MESSAGES:
             const newAllMessages = {}

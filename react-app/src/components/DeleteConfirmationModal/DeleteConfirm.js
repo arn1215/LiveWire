@@ -1,13 +1,12 @@
 import React from "react";
 import * as channelActions from "../../store/channel";
 import { useDispatch } from "react-redux";
-import { useHistory, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import './DeleteConfirm.css';
 
 function DeleteConfirm( { setShowModal, channelId } ) {
     const {serverId} = useParams();
     const dispatch = useDispatch();
-    const history = useHistory()
 
     const handleCLick = async (e) => {
     e.preventDefault();
