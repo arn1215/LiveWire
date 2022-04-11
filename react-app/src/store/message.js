@@ -82,15 +82,17 @@ export const removeMessage = ({ message_id, channel_id }) => async (dispatch) =>
     }
 };
 
-export default function messageReducer(state = {}, action) {
+export default function messageReducer(state = {
+    allMessages: {},
+}, action) {
     let newState;
     switch (action.type) {
         case GET_MESSAGES:
-            newState = {...state}
+            const newAllMessages = {}
             action.messages.forEach(message => {
-            newState[message.id] = message
+            newAllMessages[message.id] = message
             })
-            return newState
+            return {...state, allMessages: newAllMessages}
         case ADD_MESSAGE:
             newState = {...state}
             newState[action.payload.id] = action.payload

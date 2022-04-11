@@ -1,6 +1,6 @@
 from flask import Blueprint, request
 from flask_login import login_required
-from app.models import db, Channel
+from app.models import db, Channel, User, Server
 
 channel_routes = Blueprint('channels', __name__)
 
@@ -57,3 +57,29 @@ def get_one_channel(channel_id):
 def get_server_channels(server_id):
     channels = Channel.query.filter(Channel.server_id == server_id).all()
     return { "channels": [channel.to_dict() for channel in channels] }
+
+
+#joining a dm
+@channel_routes.route('/dm/:user_id_1/:user_id_2')
+@login_required
+def create_dm_channel(user_id_1, user_id_2):
+  first_user = User.query.get(user_id_1)
+  second_user = User.query.get(user_id_2)
+  root = Server.query.get(first_user.root_server)
+  root2 = Server.query.get(second_user.root)
+
+  dm_channel = Channel(
+    name=f'{first_user.username} and {second_user.username}',
+    server_id= first_user.root_server
+  )
+
+  db.session.add(dm_channel)
+  db.session.commit()
+
+  root.users_many.append(second_user)
+  root2.users_many.append(first_user)
+
+  db.session.commit(root)
+  db.session.commit(root2)
+
+  return dm_channel.to_dict()
