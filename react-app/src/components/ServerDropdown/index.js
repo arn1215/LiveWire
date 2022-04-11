@@ -13,6 +13,7 @@ const ServerDropdown = () => {
     // const [isLoaded, setIsLoaded] = useState(false)
     const [showNameField, setShowNameField] = useState(false);
     const [newName, setNewName] = useState('')
+    const sessionUser = useSelector(state => state.session.user)
     // const currentUser = useSelector(state => state.session.user)
     const currentServer = useSelector(state => state.server.oneServer.server);
     // const userServers = useSelector(state => state.server.userServers);
@@ -45,6 +46,7 @@ const ServerDropdown = () => {
     const HandleDelete = async () => {
                 // await setIsLoaded(false)
                 dispatch(serverActions.removeServer(currentServer.id))
+                dispatch(serverActions.loadUsersServers(sessionUser.id))
                 history.push({
                     pathname: `/@me/${pathId}`,
                 });
@@ -52,9 +54,10 @@ const ServerDropdown = () => {
                 // await setIsLoaded(true)
     };
 
-    const HandleNameEdit = (e) => {
+    const HandleNameEdit = async (e) => {
         setShowNameField(false)
         dispatch(serverActions.putServer({ newName, currentServer }))
+        await dispatch(serverActions.loadUsersServers(sessionUser.id))
     };
 
     return (

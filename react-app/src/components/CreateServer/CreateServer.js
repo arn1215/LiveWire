@@ -24,8 +24,10 @@ const CreateServer = ({onClose}) => {
 
     try {
       await dispatch(serverActions.createServer(newServer))
+      await dispatch(serverActions.loadAllServers())
+      await dispatch(serverActions.loadUsersServers(sessionUser.id))
       onClose();
-      history.push(`/servers/${serverId}`)
+      // history.push(`/servers/${serverId}`)
     } catch (error) {
       console.log(error)
     }

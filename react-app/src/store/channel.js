@@ -60,7 +60,7 @@ export const loadAllChannels = (serverId) => async (dispatch) => {
     }
 };
 
-export const updateChannel = ({channelName, channelId}) => async (dispatch) => {
+export const updateChannel = ({ channelName, channelId }) => async (dispatch) => {
     const res = await fetch(`/api/channels/${channelId}`, {
         method: 'PUT',
         headers: {
@@ -108,7 +108,7 @@ export default function channelReducer(state = {
     currentChannel: {},
     allChannels: {},
 }, action) {
-    let newState = {...state};
+    let newState = { ...state };
     switch (action.type) {
         case GET_ONE_CHANNEL:
             newState.currentChannel = action.channel
@@ -118,19 +118,19 @@ export default function channelReducer(state = {
             action.channels.forEach(channel => {
                 newAllChannels[channel.id] = channel;
             });
-            return {...state, allChannels: newAllChannels};
+            return { ...state, allChannels: newAllChannels };
         case ADD_CHANNEL:
             const newAllChannelsAdd = {}
             newAllChannelsAdd[action.payload.id] = action.payload;
-            return {...state, allChannels: newAllChannelsAdd};
+            return { ...state, allChannels: newAllChannelsAdd };
         case EDIT_CHANNEL:
-            const newAllC = {}
+            const newAllC = {...state.allChannels}
             newAllC[action.payload.id] = action.payload
             return {...state, allChannels: newAllC};
         case DELETE_CHANNEL:
-            const newAC = {}
+            const newAC = {...state.allChannels}
             delete newAC[action.payload.id]
-            return {...state, allChannels: newAC};
+            return { ...state, allChannels: newAC };
         default:
             return state
     }

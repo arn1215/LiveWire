@@ -12,6 +12,7 @@ function DeleteConfirm( { setShowModal, channelId } ) {
     const handleCLick = async (e) => {
     e.preventDefault();
     await dispatch(channelActions.removeChannel(channelId));
+    await dispatch(channelActions.loadAllChannels(serverId))
     setShowModal(false);
     }
 
