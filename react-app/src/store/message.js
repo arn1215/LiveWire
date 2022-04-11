@@ -2,7 +2,7 @@ const GET_MESSAGES = 'messages/getMessages'
 
 const ADD_MESSAGE= 'messages/addMessage'
 
-const DELETE_MESSAGE = 'messages/deleteMessage'
+// const DELETE_MESSAGE = 'messages/deleteMessage'
 
 const EDIT_MESSAGE = 'messages/editMessage'
 
@@ -20,12 +20,12 @@ const addMessage = (message) => {
     }
 }
 
-const deleteMessage = (id) => {
-    return {
-        type: DELETE_MESSAGE,
-        payload: id
-    }
-}
+// const deleteMessage = (id) => {
+//     return {
+//         type: DELETE_MESSAGE,
+//         payload: id
+//     }
+// }
 
 const editMessage = (message) => ({
     type: EDIT_MESSAGE,
@@ -36,8 +36,8 @@ export const fetchMessages = (channel_id) => async (dispatch) => {
     const res = await fetch(`/api/messages/${channel_id}`);
 
     if (res.ok) {
-        const messages = await res.json();
-        dispatch(getMessages(messages.messages));
+        const {messages} = await res.json();
+        dispatch(getMessages(messages));
     }
 };
 
@@ -56,7 +56,7 @@ export const createMessage = ({ channel_id, message_owner_id, content }) => asyn
 
     const data = await res.json();
     dispatch(addMessage(data));
-    return data;
+    // return data;
 };
 
 export const updateMessage = ({ message_id, content }) => async (dispatch) => {
@@ -72,15 +72,15 @@ export const updateMessage = ({ message_id, content }) => async (dispatch) => {
     return data;
 };
 
-export const removeMessage = ({ message_id, channel_id }) => async (dispatch) => {
-    const res = await fetch(`/api/messages/delete/${message_id}/${channel_id}`, {
-        method: 'DELETE',
-    })
-    if (res.ok) {
-        const messages = await res.json();
-        dispatch(getMessages(messages.messages));
-    }
-};
+// export const removeMessage = ({ message_id, channel_id }) => async (dispatch) => {
+//     const res = await fetch(`/api/messages/delete/${message_id}/${channel_id}`, {
+//         method: 'DELETE',
+//     })
+//     if (res.ok) {
+//         const messages = await res.json();
+//         dispatch(getMessages(messages.messages));
+//     }
+// };
 
 export default function messageReducer(state = {
     allMessages: {},
@@ -97,14 +97,15 @@ export default function messageReducer(state = {
             const newMessagesAll = {}
             newMessagesAll[action.payload.id] = action.payload
             return {...state, allMessages: newMessagesAll}
+
         case EDIT_MESSAGE:
-            newState = {...state}
-            newState[action.payload.id] = action.payload
-            return newState
-        case DELETE_MESSAGE:
-            newState = {...state}
-            delete newState[action.payload.id]
-            return newState
+            const newAllM = {}
+            newAllM[action.payload.id] = action.payload
+            return {...state, allMessages: newAllM}
+        // case DELETE_MESSAGE:
+        //     newState = {...state}
+        //     delete newState[action.payload.id]
+        //     return newState
         default:
             return state
     }
