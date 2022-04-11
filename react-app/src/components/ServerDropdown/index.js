@@ -41,7 +41,6 @@ const ServerDropdown = () => {
         dispatch(serverActions.loadUsersServers(sessionUser.id))
         dispatch(serverActions.loadServerById(serverId))
     };
-    
 
     return (
         <div className='server-dropdown'>
