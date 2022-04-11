@@ -21,6 +21,7 @@ function EditForm({ setShowModal, channelId, currentChannelName }) {
         let editedName;
         try {
             editedName = dispatch(channelActions.updateChannel(updateChannelName));
+            dispatch(channelActions.loadAllChannels(serverId))
             setShowModal(false)
         } catch (error) {
         }
