@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux";
 import * as messageActions from "../../store/message";
 import './Message.css'
@@ -14,15 +14,17 @@ const MessageComponent = () => {
     const [content, setContent] = useState("");
     const [editedMessageId, setEditedMessageId] = useState(null);
     const [editedMessage, setEditedMessage] = useState('');
+    const [deletedMessage, setDeletedMessage] = useState('');
 
-    console.log("MESSAGES: ", messagesObj)
 
+    console.log("Deleted Message: ", deletedMessage)
+    console.log("MESSAGES: ", messagesArr)
 
+    console.log("Channel ID: ", channel)
+    console.log("Message Owner: ", user.id)
+    console.log("Content: ", content)
 
     const onSubmit = () => {
-        console.log("Channel ID: ", channel)
-        console.log("Message Owner: ", user.id)
-        console.log("Content: ", content)
 
         let message = {
             channel_id: 1,
@@ -38,12 +40,13 @@ const MessageComponent = () => {
             message_id: messageId,
             content: editedMessage
         }
-        setEditedMessage("")
+        setEditedMessageId(null)
         dispatch(messageActions.updateMessage(updatedMessage))
     }
 
-    const onDelete = async (message) => {
-        await dispatch(messageActions.removeMessage(message.id))
+    const onDelete = (message) => {
+        setDeletedMessage(message.content)
+        dispatch(messageActions.removeMessage({ message_id: message.id, channel_id: 1 }))
     }
 
     const onEdit = (messageId, messageContent) => {
@@ -54,6 +57,10 @@ const MessageComponent = () => {
     const handleOnChange = (e) => {
         setEditedMessage(e.target.value)
     }
+
+    useEffect(() => {
+        dispatch(messageActions.fetchMessages(1))
+    }, [dispatch, deletedMessage])
 
     return (
         <>
@@ -96,7 +103,6 @@ const MessageComponent = () => {
                             onChange={(e) => setContent(e.target.value)}
                             required
                         />
-                        <button type='submit'>Submit</button>
                     </form>
                 </div>
             </div>

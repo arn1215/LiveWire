@@ -71,12 +71,13 @@ export const updateMessage = ({ message_id, content }) => async (dispatch) => {
     return data;
 };
 
-export const removeMessage = (message_id) => async (dispatch) => {
-    const res = await fetch(`/api/messages/delete/${message_id}`, {
+export const removeMessage = ({ message_id, channel_id }) => async (dispatch) => {
+    const res = await fetch(`/api/messages/delete/${message_id}/${channel_id}`, {
         method: 'DELETE',
     })
     if (res.ok) {
-        dispatch(deleteMessage(message_id))
+        const messages = await res.json();
+        dispatch(getMessages(messages.messages));
     }
 };
 
