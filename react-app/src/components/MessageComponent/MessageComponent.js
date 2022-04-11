@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux";
 import * as messageActions from "../../store/message";
 import './Message.css'
@@ -17,15 +17,14 @@ const MessageComponent = () => {
 
     console.log("MESSAGES: ", messagesObj)
 
-
+    console.log("Channel ID: ", channel)
+    console.log("Message Owner: ", user.id)
+    console.log("Content: ", content)
 
     const onSubmit = () => {
-        console.log("Channel ID: ", channel)
-        console.log("Message Owner: ", user.id)
-        console.log("Content: ", content)
 
         let message = {
-            channel_id: 1,
+            channel_id: channel.id,
             message_owner_id: user.id,
             content: content
         }
@@ -54,6 +53,10 @@ const MessageComponent = () => {
     const handleOnChange = (e) => {
         setEditedMessage(e.target.value)
     }
+
+    useEffect(() => {
+        dispatch(messageActions.fetchMessages(channel.id))
+    }, [dispatch])
 
     return (
         <>
