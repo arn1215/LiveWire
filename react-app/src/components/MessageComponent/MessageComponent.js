@@ -24,7 +24,7 @@ const MessageComponent = () => {
         }
     }, [])
 
-    const onSubmit = (e) => {
+    const onSubmit = async (e) => {
         e.preventDefault();
 
         let message = {
@@ -33,7 +33,8 @@ const MessageComponent = () => {
             content: content
         }
         setContent("")
-        dispatch(messageActions.createMessage(message))
+        await dispatch(messageActions.createMessage(message))
+        await dispatch(messageActions.fetchMessages(channelId))
     }
 
     const onSubmitEdit = (messageId) => {

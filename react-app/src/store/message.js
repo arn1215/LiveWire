@@ -83,20 +83,21 @@ export const updateMessage = ({ message_id, content }) => async (dispatch) => {
 // };
 
 export default function messageReducer(state = {
-   allMessages: {},
+    allMessages: {},
 }, action) {
-    let newState = {...state};
+    let newState;
     switch (action.type) {
         case GET_MESSAGES:
-            const allMessageNew = {}
-            action.messages.forEach(message => {
-            allMessageNew[message.id] = message
-            })
-            return {...state, allMessages: allMessageNew}
-        case ADD_MESSAGE:
             const newAllMessages = {}
-            newAllMessages[action.payload.id] = action.payload
+            action.messages.forEach(message => {
+            newAllMessages[message.id] = message
+            })
             return {...state, allMessages: newAllMessages}
+        case ADD_MESSAGE:
+            const newMessagesAll = {}
+            newMessagesAll[action.payload.id] = action.payload
+            return {...state, allMessages: newMessagesAll}
+
         case EDIT_MESSAGE:
             const newAllM = {}
             newAllM[action.payload.id] = action.payload
