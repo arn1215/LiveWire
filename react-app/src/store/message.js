@@ -94,9 +94,9 @@ export default function messageReducer(state = {
             })
             return {...state, allMessages: newAllMessages}
         case ADD_MESSAGE:
-            newState = {...state}
-            newState[action.payload.id] = action.payload
-            return newState
+            const newMessagesAll = {}
+            newMessagesAll[action.payload.id] = action.payload
+            return {...state, allMessages: newMessagesAll}
         case EDIT_MESSAGE:
             newState = {...state}
             newState[action.payload.id] = action.payload
