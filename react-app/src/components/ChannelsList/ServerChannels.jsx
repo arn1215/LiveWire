@@ -5,6 +5,7 @@ import { Link, useParams } from 'react-router-dom';
 import EditTextChannelNameModal from '../EditTextChannelNameModal'
 import DeleteConfirmationModal from '../DeleteConfirmationModal'
 import * as messageActions from '../../store/message'
+import * as channelActions from '../../store/channel'
 import { useState } from 'react';
 import { useEffect } from 'react';
 
@@ -31,6 +32,11 @@ const ServerChannels = () => {
         setLoaded(true)
     }, [channelsArr])
 
+    const displayMessages = (channelId) => {
+        dispatch(messageActions.fetchMessages(channelId))
+        dispatch(channelActions.loadOneChannel(channelId))
+    }
+
 
 
     return loaded && (
@@ -41,7 +47,7 @@ const ServerChannels = () => {
                     <div key={channel.id} className="sc-channels">
                         <div className="channel-wrapper">
                             <p className='channel-icon'>#</p>
-                            <div className='sc-name' onClick={() => dispatch(messageActions.fetchMessages(channel.id))}>{channel.name}</div>
+                            <div className='sc-name' onClick={displayMessages(channel.id)}>{channel.name}</div>
                             <EditTextChannelNameModal currentChannelName={channel.name} channelId={channel.id}/>
                             <DeleteConfirmationModal currentChannelName={channel.name} channelId={channel.id}/>
                         </div>
