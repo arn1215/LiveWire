@@ -17,3 +17,8 @@
     align-items: center;
     text-align: center;
 }
+
+.cs-form{
+    display: flex;
+    flex-direction: column;
+}

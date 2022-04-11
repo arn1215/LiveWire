@@ -13,8 +13,8 @@ function UserList() {
     return (
         <div className='user-list'>
             {users.map((user) => (
-                <div key={user.id} className="username-div">
-                    <div onClick={() => dispatch(sessionChannel.createDM(sessionUser.id, user.id), dispatch(sessionChannel.loadAllChannels(homeServer.id)))}>
+                <div key={user.id} className="username-wrapper">
+                    <div className='username' onClick={() => dispatch(sessionChannel.createDM(sessionUser.id, user.id), dispatch(sessionChannel.loadAllChannels(homeServer.id)))}>
                     {user.username}
                     </div>
                 </div>

@@ -1,15 +1,8 @@
-.deleteButtonContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px 0px;
-}
-
-.deleteButtonContainer > * {
-    margin: 10px;
-}
-
 .fa-trash-can {
     margin-left: 4px;
     cursor: pointer;
+}
+
+.fa-trash-can:hover {
+    color: red;
 }

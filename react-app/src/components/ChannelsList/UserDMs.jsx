@@ -17,8 +17,10 @@ const ServerChannels = () => {
                 {channels.map(channel => (
                     <div key={channel.id} className="sc-channels">
                         <div className="channel-wrapper">
+                            <div className="icon-and-channel-name">
                             <p className='channel-icon'>#</p>
                             <Link to={`/@me/${serverId}/dm/${channel.id}`} className='sc-name' onClick={() => dispatch(messageActions.fetchMessages(channel.id), dispatch(channelActions.loadOneChannel(channel.id)))}>{channel.name}</Link>
+                        </div>
                         </div>
                     </div>
                 ))}

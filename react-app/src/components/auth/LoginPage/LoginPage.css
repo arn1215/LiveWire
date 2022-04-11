@@ -12,7 +12,7 @@
 
 .login-box {
   background-color: white;
-
+  border-radius: 5px;
 }
 
 .title-login {
@@ -29,6 +29,7 @@
 
 .link-login {
   background-color: white;
+  border-radius: 5px;
   padding: 20px;
   width: fit-content;
   margin-top: 200px;

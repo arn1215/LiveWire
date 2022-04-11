@@ -1,26 +1,30 @@
 .server-dropdown {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
 }
 
 .fa-solid.fa-angle-down{
     cursor: pointer;
-    margin-left: 50px;
+    margin-right: 10px;
+    text-align: center;
 }
 
 .server-dropdown-bar{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
     background-color: rgb(32,34,37);
-    border-radius: 25px;
+    border-radius: 15px;
     color: #808080;
-    margin: 10px 35px;
 }
 
 .current-server-name{
     display: flex;
+    margin: 0;
 }
 
 .server-name-edit{
@@ -30,9 +34,17 @@
     padding: 5px 0px;
 }
 
+.server-name-edit:hover{
+    color: red;
+}
+
 .server-delete{
     padding: 5px 0px;
     cursor: pointer;
+}
+
+.server-delete:hover{
+    color: red;
 }
 
 .form-css {
@@ -45,12 +57,13 @@
 }
 
 .current-server-name {
-    /* background-color: rgb(32,34,37); */
     color: #808080;
-    padding: 10px;
+    padding-bottom: 15px;
+    padding-top: 15px;
     display: flex;
     justify-content: center;
-    margin: auto;
     border-radius: 15px;
+    margin: auto;
     margin-top: 10px;
+    font-weight: 800;
 }

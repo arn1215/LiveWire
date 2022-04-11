@@ -38,10 +38,8 @@ const ServerDropdown = () => {
     const HandleNameEdit = async (e) => {
         setShowNameField(false)
         dispatch(serverActions.putServer({ newName, currentServer }))
-        await dispatch(serverActions.loadUsersServers(sessionUser.id))
-        history.push({
-            pathname: `/@me/${pathId}`,
-        })
+        dispatch(serverActions.loadUsersServers(sessionUser.id))
+        dispatch(serverActions.loadServerById(serverId))
     };
 
     return (

@@ -6,8 +6,13 @@
 }
 
 .sn-title{
+    text-decoration: none;
     text-align: center;
     color: grey;
     font-size: 10px;
     margin: 10px 0px 0px 5px;
+}
+
+.linkToHome{
+    text-decoration: none;
 }
