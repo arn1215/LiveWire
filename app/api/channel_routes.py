@@ -5,21 +5,6 @@ from app.models import db, Channel, User, Server
 channel_routes = Blueprint('channels', __name__)
 
 
-@channel_routes.route('/', methods=['POST'])
-def create_channel():
-    if request.method == "POST":
-      data = request.get_json(force=True)
-
-      channel = Channel(
-        name=data["name"],
-        server_id=data["serverId"]
-      )
-
-      db.session.add(channel)
-      db.session.flush()
-      db.session.commit()
-
-      return channel.to_dict()
 
 
 # edit one channel
@@ -48,9 +33,6 @@ def get_one_channel(channel_id):
   channel = Channel.query.filter(Channel.id == channel_id).first()
   return channel.to_dict()
 
-
-
-
 # get channels by server_id
 @channel_routes.route('/byServer/<int:server_id>')
 # @login_required
@@ -58,10 +40,26 @@ def get_server_channels(server_id):
     channels = Channel.query.filter(Channel.server_id == server_id).all()
     return { "channels": [channel.to_dict() for channel in channels] }
 
+# create a channel
+@channel_routes.route('/', methods=['POST'])
+def create_channel():
+    if request.method == "POST":
+      data = request.get_json(force=True)
 
-#joining a dm
-@channel_routes.route('/dm/<int:user_id_1>/<int:user_id_2>')
-@login_required
+      channel = Channel(
+        name=data["name"],
+        server_id=data["serverId"]
+      )
+
+      db.session.add(channel)
+      db.session.flush()
+      db.session.commit()
+
+      return channel.to_dict()
+
+# joining a dm
+@channel_routes.route('/dm/<int:user_id_1>/<int:user_id_2>', methods=['POST'])
+# @login_required
 def create_dm_channel(user_id_1, user_id_2):
   first_user = User.query.get(user_id_1)
   second_user = User.query.get(user_id_2)
@@ -76,10 +74,10 @@ def create_dm_channel(user_id_1, user_id_2):
   db.session.add(dm_channel)
   db.session.commit()
 
-  root.users_many.append(second_user)
-  root2.users_many.append(first_user)
+  # root.users_many.append(second_user)
+  # root2.users_many.append(first_user)
 
-  db.session.commit(root)
-  db.session.commit(root2)
+  # db.session.commit(root)
+  # db.session.commit(root2)
 
   return dm_channel.to_dict()

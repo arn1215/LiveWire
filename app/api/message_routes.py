@@ -1,6 +1,6 @@
 from flask import Blueprint, request
 from flask_login import login_required
-from ..models import db, Message
+from ..models import db, Message, User
 from random import randint
 message_routes = Blueprint('messages', __name__)
 
@@ -20,7 +20,8 @@ def get_messages(channel_id):
         db.session.commit()
         return message.to_dict()
     messages = Message.query.filter(Message.channel_id == channel_id)
-    return {"messages": [m.to_dict() for m in messages]}
+    owners = User.query.join(Message).filter(Message.message_owner_id == User.id)
+    return {"messages": [m.to_dict() for m in messages], "owners": [o.to_dict() for o in owners]}
 
 
 # edit one message

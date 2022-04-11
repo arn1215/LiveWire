@@ -66,13 +66,14 @@ const MessageComponent = () => {
                 <div className="message-wrap">
                     {messagesArr?.map(message => (
                         <div key={message.id}>
+                            <div  className="message">{message?.content}</div>
                             {editedMessageId !== message.id && (
                                 <>
-                                    <div  className="message">{message?.content}</div>
                                     {user.id === message.message_owner_id && (
                                         <div>
                                             {/* <button onClick={() => onDelete(message) }>delete</button> */}
-                                            <button onClick={() => {onEdit(message.id, message.content)}}>Edit</button>
+                                            {/* <button onClick={() => {onEdit(message.id, message.content)}}>edit</button> */}
+
                                         </div>
                                     )}
                                 </>
@@ -83,7 +84,7 @@ const MessageComponent = () => {
                                     {user.id === message.message_owner_id && (
                                         <div>
                                             {/* <button onClick={() => onDelete(message) }>delete</button> */}
-                                            <button onClick={() => {onSubmitEdit(message.id)}}>Submit</button>
+                                            {/* <button onClick={() => {onSubmitEdit(message.id)}}>Submit</button> */}
                                         </div>
                                     )}
                                 </>
