@@ -4,7 +4,7 @@ import ChannelNav from '../../components/ChannelNav/ChannelNav'
 import MessageComponent from '../../components/MessageComponent/MessageComponent'
 import UserList from '../../components/UserList/UserList'
 // import ExplorerList from '../ExplorerList'
-import {useLocation} from 'react-router-dom'
+// import {useLocation} from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
 function Server() {

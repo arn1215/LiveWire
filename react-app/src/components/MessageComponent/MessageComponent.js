@@ -18,8 +18,10 @@ const MessageComponent = () => {
     const [deletedMessage, setDeletedMessage] = useState('');
 
     useEffect(() => {
-        dispatch(messageActions.fetchMessages(channelId))
-        dispatch(channelActions.loadOneChannel(channelId))
+        if (channelId) {
+            dispatch(messageActions.fetchMessages(channelId))
+            dispatch(channelActions.loadOneChannel(channelId))
+        }
     }, [])
 
     const onSubmit = (e) => {
@@ -56,10 +58,6 @@ const MessageComponent = () => {
     const handleOnChange = (e) => {
         setEditedMessage(e.target.value)
     }
-
-    useEffect(() => {
-        dispatch(messageActions.fetchMessages(channel.id))
-    }, [dispatch, deletedMessage])
 
     return (
         <>

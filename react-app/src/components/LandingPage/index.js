@@ -35,7 +35,7 @@ const LandingPage = ({isLoaded}) => {
                 <header className='nav-header'>
                     <nav className='landing-nav'>
                         <NavLink className='logo-link' to='/'>
-                            <img className='svg-logo' src={logo}/>
+                            <img alt="livewire-logo" className='svg-logo' src={logo}/>
                         </NavLink>
                         {isLoaded && sessionLinks}
                     </nav>
@@ -59,7 +59,7 @@ const LandingPage = ({isLoaded}) => {
             </div>
             <div className='row-2-div'>
                 <div className='img1-div'>
-                    <img className="img1" src={studygroupimg}/>
+                    <img alt="study-group-img" className="img1" src={studygroupimg}/>
                 </div>
                 <div className='description1-div'>
                     <p className="create-invite-test">Create an invite-only place where you belong</p>
