@@ -1,11 +1,8 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useHistory, useParams } from 'react-router-dom'
 import * as serverActions from '../../store/server'
 
 const CreateServer = ({onClose}) => {
-  let history = useHistory();
-  const {serverId} = useParams();
   const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user);
   useSelector(state => state.server)
