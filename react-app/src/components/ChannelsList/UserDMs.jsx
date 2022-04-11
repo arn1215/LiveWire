@@ -1,30 +1,27 @@
 import './ChannelsList.css'
 import CreateChannel from '../CreateChannel/index';
 import { useDispatch, useSelector } from 'react-redux';
-// import * as channelActions from '../../store/channel';
-import { useEffect, useState } from 'react';
+import * as messageActions from '../../store/message'
 
-const UserChannels = () => {
+const ServerChannels = () => {
     const dispatch = useDispatch();
-    const [isLoaded, setIsLoaded] = useState(false);
-    const userId = useSelector(state => state.session.user.id);
+    const channels = useSelector(state => Object.values(state.channel.allChannels))
 
-    useEffect(() => {
-        const loaded = async () => {
-
-            setIsLoaded(true)
-        }
-        loaded()
-    }, [dispatch, userId]);
-
-
-    return isLoaded && (
-        <div className="u-dms">
-            <div className="u-dm-wrapper">
-            </div>
+    return (
+        <div className="sc">
         <CreateChannel />
+            <div className="sc-wrapper">
+                {channels.map(channel => (
+                    <div key={channel.id} className="sc-channels">
+                        <div className="channel-wrapper">
+                            <p className='channel-icon'>#</p>
+                            <div className='sc-name' onClick={() => dispatch(messageActions.fetchMessages(channel.id))}>{channel.name}</div>
+                        </div>
+                    </div>
+                ))}
+            </div>
         </div>
     )
 }
 
-export default UserChannels;
+export default ServerChannels;
