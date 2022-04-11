@@ -10,14 +10,14 @@ const ExplorerList = () => {
 
   return (
     <div className='explorer-div'>
-      EXPLORER
-      <div>
+      EXPLORER: THIS PAGE IS UNDER CONSTRUCTION :/
+      {/* <div>
           {serversArray.map(server => {
             <div key={server.id}>
               <div> {server?.icon} </div>
             </div>
           })}
-      </div>
+      </div> */}
     </div>
   )
 }
