@@ -9,7 +9,7 @@ const MessageComponent = () => {
     const messagesObj = useSelector((state) => state.messages);
     const messagesArr = Object.values(messagesObj);
     // const messagesArr = [{ id: 1, content: "yo, dude", message_owner_id: 1 }, { id: 2, content: "bruh", message_owner_id: 2 }, { id: 3, content: "wagud", message_owner_id: 1 }]
-    const channel = useSelector((state) => state.channel.currentChannel);
+    const channel = useSelector((state) => state.channel.currentChannel.channels);
     console.log('this is channel,', channel);
     const [content, setContent] = useState("");
     const [editedMessageId, setEditedMessageId] = useState(null);
@@ -18,11 +18,11 @@ const MessageComponent = () => {
 
 
     const onSubmit = (e) => {
-        
+
         let message = {
             channel_id: channel.id,
             message_owner_id: user.id,
-            content
+            content: content
         }
         setContent("")
         dispatch(messageActions.createMessage(message))
