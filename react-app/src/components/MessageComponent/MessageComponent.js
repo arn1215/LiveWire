@@ -1,10 +1,13 @@
 import { useState, useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
 import * as messageActions from "../../store/message";
+import * as channelActions from '../../store/channel'
 import './Message.css'
 
 const MessageComponent = () => {
     const dispatch = useDispatch()
+    const {serverId, channelId} = useParams();
     const user = useSelector((state) => state.session.user);
     const messagesObj = useSelector((state) => state.messages);
     const messagesArr = Object.values(messagesObj);
@@ -14,10 +17,17 @@ const MessageComponent = () => {
     const [editedMessage, setEditedMessage] = useState('');
     const [deletedMessage, setDeletedMessage] = useState('');
 
-    const onSubmit = () => {
+    useEffect(() => {
+        dispatch(messageActions.fetchMessages(channelId))
+        dispatch(channelActions.loadOneChannel(channelId))
+    }, [])
+
+    const onSubmit = (e) => {
+        e.preventDefault();
+        console.log('SUBMITTED!', channel.id);
 
         let message = {
-            channel_id: 1,
+            channel_id: channel.id,
             message_owner_id: user.id,
             content: content
         }
@@ -57,25 +67,24 @@ const MessageComponent = () => {
             <div className="chat">
                 <div className="message-wrap">
                     {messagesArr?.map(message => (
-                        <div>
+                        <div key={message.id}>
                             {editedMessageId !== message.id && (
                                 <>
-                                    <div key={message.id} className="message">{message?.content}</div>
+                                    <div  className="message">{message?.content}</div>
                                     {user.id === message.message_owner_id && (
                                         <div>
-                                            <button messageId={message.id} onClick={() => onDelete(message) }>delete</button>
+                                            <button onClick={() => onDelete(message) }>delete</button>
                                             <button onClick={() => {onEdit(message.id, message.content)}}>edit</button>
                                         </div>
                                     )}
                                 </>
                             )}
-
                             {editedMessageId === message.id && (
                                 <>
                                     <input value={editedMessage} onChange={handleOnChange}></input>
                                     {user.id === message.message_owner_id && (
                                         <div>
-                                            <button messageId={message.id} onClick={() => onDelete(message) }>delete</button>
+                                            <button onClick={() => onDelete(message) }>delete</button>
                                             <button onClick={() => {onSubmitEdit(message.id)}}>Submit</button>
                                         </div>
                                     )}

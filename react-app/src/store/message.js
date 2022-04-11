@@ -48,6 +48,7 @@ export const createMessage = ({ channel_id, message_owner_id, content }) => asyn
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
+            channel_id,
             message_owner_id,
             content,
         })
