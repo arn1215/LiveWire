@@ -102,15 +102,15 @@ export const createChannel = ({ name, serverId }) => async (dispatch) => {
     }
 };
 
-export const createDM = ({ name, serverId }) => async (dispatch) => {
-    const res = await fetch('/api/channels/dm/:user_id_1/:user_id_2', {
+export const createDM = (user_id_1, user_id_2) => async (dispatch) => {
+    const res = await fetch(`/api/channels/dm/${user_id_1}/${user_id_2}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            name,
-            serverId
+            user_id_1,
+            user_id_2
         })
     });
 

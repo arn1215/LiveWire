@@ -1,39 +1,26 @@
-import React, {useEffect} from 'react'
-import { Link, Redirect } from 'react-router-dom'
+import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { loadServerById } from '../../store/server'
 import * as sessionChannel from '../../store/channel'
 import './UserList.css'
 
 function UserList() {
     const dispatch = useDispatch();
-
-    const serverInfo = useSelector((state) => state.server.oneServer)
-    // // console.log("Server ------------------->", serverInfo)
-    const users = serverInfo.server.users
-    // console.log("users------------------------>", users)
-    // const usersArray = Object.values(users)
-
-
-
-    const handleClick = (e) => {
-        e.preventDefault();
-
-        dispatch(sessionChannel.createDM(users[0], users[1]))
-
-    }
+    const sessionUser = useSelector(state => state.session.user)
+    const users = useSelector(state => state.server.oneServer.server.users)
+    const servers = useSelector(state => Object.values(state.server.allServers))
+    const homeServer = servers[0]
 
     return (
         <div className='user-list'>
             {users.map((user) => (
                 <div key={user.id} className="username-div">
-                    <Link exact to='/@me/:serverId/dm/:channelId' onClick={handleClick}>
+                    <div onClick={() => dispatch(sessionChannel.createDM(sessionUser.id, user.id), dispatch(sessionChannel.loadAllChannels(homeServer.id)))}>
                     {user.username}
-                    </Link>
+                    </div>
                 </div>
             ))}
         </div>
     )
 }
-
+// {`/@me/${serverId}/dm/${channelId}`}
 export default UserList
