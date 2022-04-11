@@ -47,6 +47,9 @@ def seed_all():
 
     ### server seeds
 
+    root2 = Server(
+        owner_id=3, name='root', icon='https://cdn.discordapp.com/attachments/920118561173798923/962016283442958417/discordHomeIcon.png', invite_URL= (f'{randint(100, 10000)}'))
+
     root = Server(
         owner_id=1, name='root', icon='https://cdn.discordapp.com/attachments/920118561173798923/962016283442958417/discordHomeIcon.png', invite_URL= (f'{randint(100, 10000)}'))
 
@@ -79,9 +82,6 @@ def seed_all():
 
     server10 = Server(
         owner_id=1, name='LiveWire Gang', icon='https://pbs.twimg.com/tweet_video_thumb/D29rDOtW0AA7CJI.jpg', invite_URL= (f'{randint(100, 10000)}'))
-
-    root2 = Server(
-        owner_id=3, name='root', icon='https://cdn.discordapp.com/attachments/920118561173798923/962016283442958417/discordHomeIcon.png', invite_URL= (f'{randint(100, 10000)}'))
 
 
     ###channel seeds
@@ -303,6 +303,7 @@ def seed_all():
     db.session.add(server10)
 
     root.users_many.append(demo);
+    root2.users_many.append(bobbie);
     server1.users_many.append(demo);
     server2.users_many.append(demo);
     server3.users_many.append(marnie);
@@ -316,7 +317,6 @@ def seed_all():
     server1.users_many.append(bobbie);
     server2.users_many.append(bobbie);
     server3.users_many.append(bobbie);
-    root2.users_many.append(bobbie);
 
     db.session.commit()
 
