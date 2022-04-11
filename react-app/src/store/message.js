@@ -48,6 +48,7 @@ export const createMessage = ({ channel_id, message_owner_id, content }) => asyn
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
+            channel_id,
             message_owner_id,
             content,
         })
@@ -82,20 +83,24 @@ export const removeMessage = ({ message_id, channel_id }) => async (dispatch) =>
 };
 
 export default function messageReducer(state = {}, action) {
-    let newState = {...state}
+    let newState;
     switch (action.type) {
         case GET_MESSAGES:
+            newState = {...state}
             action.messages.forEach(message => {
-                return newState[message.id] = message
+            newState[message.id] = message
             })
             return newState
         case ADD_MESSAGE:
+            newState = {...state}
             newState[action.payload.id] = action.payload
             return newState
         case EDIT_MESSAGE:
+            newState = {...state}
             newState[action.payload.id] = action.payload
             return newState
         case DELETE_MESSAGE:
+            newState = {...state}
             delete newState[action.payload.id]
             return newState
         default:
