@@ -66,7 +66,7 @@ const MessageComponent = () => {
                 <div className="message-wrap">
                     {messagesArr?.map(message => (
                         <div key={message.id}>
-                            <div  className="message">{message?.content}</div>
+                            <div  className="message">{message?.content} - {message?.message_owner_id}</div>
                             {/* {editedMessageId !== message.id && ( */}
                                 <>
                                     {user.id === message.message_owner_id && (
