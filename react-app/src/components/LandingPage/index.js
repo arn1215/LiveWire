@@ -14,7 +14,7 @@ const LandingPage = () => {
                         <NavLink className='logo-link' to='/'>
                             <div className='svg-logo'>SVG LOGO</div>
                         </NavLink>
-                        <div>
+                        {!user && (<div>
                             <DemoUser />
                             <NavLink className='nav-btn' to='/login'>
                                 Login
@@ -23,6 +23,7 @@ const LandingPage = () => {
                                 Sign Up
                             </NavLink>
                         </div>
+                        )}
                     </nav>
                 </header>
             </div>
