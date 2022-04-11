@@ -14,15 +14,12 @@ function UserList() {
     // console.log("users------------------------>", users)
     // const usersArray = Object.values(users)
 
-    const newDM = {
-        name: "DM",
-        serverId: 1
-    }
+
 
     const handleClick = (e) => {
         e.preventDefault();
 
-        dispatch(sessionChannel.createChannel(newDM))
+        dispatch(sessionChannel.createDM(users[0], users[1]))
 
     }
 
@@ -30,7 +27,7 @@ function UserList() {
         <div className='user-list'>
             {users.map((user) => (
                 <div key={user.id} className="username-div">
-                    <Link exact to='/@me/1' onClick={handleClick}>
+                    <Link exact to='/@me/:serverId/dm/:channelId' onClick={handleClick}>
                     {user.username}
                     </Link>
                 </div>
