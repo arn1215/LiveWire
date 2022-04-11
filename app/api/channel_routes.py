@@ -74,10 +74,10 @@ def create_dm_channel(user_id_1, user_id_2):
   db.session.add(dm_channel)
   db.session.commit()
 
-  # root.users_many.append(second_user)
-  # root2.users_many.append(first_user)
+  root.users_many.append(second_user)
+  root2.users_many.append(first_user)
 
-  # db.session.commit(root)
-  # db.session.commit(root2)
+  db.session.commit()
+
 
   return dm_channel.to_dict()
