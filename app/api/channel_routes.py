@@ -60,13 +60,13 @@ def get_server_channels(server_id):
 
 
 #joining a dm
-@channel_routes.route('/dm/:user_id_1/:user_id_2')
+@channel_routes.route('/dm/<int:user_id_1>/<int:user_id_2>')
 @login_required
 def create_dm_channel(user_id_1, user_id_2):
   first_user = User.query.get(user_id_1)
   second_user = User.query.get(user_id_2)
   root = Server.query.get(first_user.root_server)
-  root2 = Server.query.get(second_user.root)
+  root2 = Server.query.get(second_user.root_server)
 
   dm_channel = Channel(
     name=f'{first_user.username} and {second_user.username}',
