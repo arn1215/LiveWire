@@ -24,7 +24,6 @@ const MessageComponent = () => {
 
     const onSubmit = (e) => {
         e.preventDefault();
-        console.log('SUBMITTED!', channel.id);
 
         let message = {
             channel_id: channel.id,
@@ -44,10 +43,10 @@ const MessageComponent = () => {
         dispatch(messageActions.updateMessage(updatedMessage))
     }
 
-    const onDelete = (message) => {
-        setDeletedMessage(message.content)
-        dispatch(messageActions.removeMessage({ message_id: message.id, channel_id: 1 }))
-    }
+    // const onDelete = (message) => {
+    //     setDeletedMessage(message.content)
+    //     dispatch(messageActions.removeMessage({ message_id: message.id, channel_id: 1 }))
+    // }
 
     const onEdit = (messageId, messageContent) => {
         setEditedMessage(messageContent)
@@ -73,7 +72,7 @@ const MessageComponent = () => {
                                     <div  className="message">{message?.content}</div>
                                     {user.id === message.message_owner_id && (
                                         <div>
-                                            <button onClick={() => onDelete(message) }>delete</button>
+                                            {/* <button onClick={() => onDelete(message) }>delete</button> */}
                                             <button onClick={() => {onEdit(message.id, message.content)}}>edit</button>
                                         </div>
                                     )}
@@ -84,7 +83,7 @@ const MessageComponent = () => {
                                     <input value={editedMessage} onChange={handleOnChange}></input>
                                     {user.id === message.message_owner_id && (
                                         <div>
-                                            <button onClick={() => onDelete(message) }>delete</button>
+                                            {/* <button onClick={() => onDelete(message) }>delete</button> */}
                                             <button onClick={() => {onSubmitEdit(message.id)}}>Submit</button>
                                         </div>
                                     )}
