@@ -9,7 +9,7 @@ const MessageComponent = () => {
     const dispatch = useDispatch()
     const {serverId, channelId} = useParams();
     const user = useSelector((state) => state.session.user);
-    const messagesObj = useSelector((state) => state.messages);
+    const messagesObj = useSelector((state) => state.messages.allMessages);
     const messagesArr = Object.values(messagesObj);
     const channel = useSelector((state) => state.channel.currentChannel);
     const [content, setContent] = useState("");
@@ -58,7 +58,7 @@ const MessageComponent = () => {
     }
 
     useEffect(() => {
-        dispatch(messageActions.fetchMessages(1))
+        dispatch(messageActions.fetchMessages())
     }, [dispatch, deletedMessage])
 
     return (
